@@ -1,0 +1,30 @@
+{
+  "name": "TaskManager",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular"          : "1.2.16",
+    "angular-route"    : "1.2.16",
+    "bootstrap"        : "3.1.1",
+    "jquery"           : "2.1.1"
+  },
+  "homepage": "https://github.com/sergiodxa/TaskManager",
+  "authors": [
+    "Sergio Daniel Xalambrí <sergio@xalambri.com.ar>"
+  ],
+  "description": "WebApp para controlar tareas en proyectos.",
+  "main": "app.js",
+  "keywords": [
+    "scrum",
+    "task"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "front/vendor",
+    "test",
+    "tests"
+  ]
+}

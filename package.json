@@ -1,0 +1,31 @@
+{
+  "name": "TaskMnager",
+  "version": "0.0.0",
+  "description": "WebApp para controlar tareas en proyectos.",
+  "main": "app.js",
+  "dependencies": {
+    "bower"     : "1.3.*",
+    "express"   : "4.3.*",
+    "less"      : "1.7.*",
+    "mysql"     : "2.3.*"
+  },
+  "scripts": {
+    "test": "jasmine-node --color --verbose --autotest specs",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sergiodxa/TaskManager.git"
+  },
+  "keywords": [
+    "scrum",
+    "task"
+  ],
+  "author": "Sergio Daniel Xalambrí <sergio@xalambri.com.ar>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sergiodxa/TaskManager/issues"
+  },
+  "private": true,
+  "homepage": "https://github.com/sergiodxa/TaskManager"
+}
