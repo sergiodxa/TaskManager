@@ -1,16 +1,16 @@
-var modelo = require('../models/miembro');
+var model = require('../models/user');
 
 exports.getAll = function (req, res) {
-  modelo.getAll(function (miembros) {
-    res.send(miembros);
+  model.getAll(function (users) {
+    res.send(users);
   });
 };
 
 exports.getSingle = function (req, res) {
   var id = req.params.id;
 
-  modelo.getSingle(id, function (miembro) {
-    res.send(miembro);
+  model.getSingle(id, function (user) {
+    res.send(user);
   });
 };
 

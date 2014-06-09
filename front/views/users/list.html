@@ -1,0 +1,24 @@
+<section class="row">
+  <legend class="text-center">Users</legend>
+  <article ng-repeat="user in users" class="col-md-6">
+    <div class="panel panel-primary">
+
+      <header ng-bind="user.fullName" class="panel-heading text-center"></header>
+
+      <div class="panel-body">
+        <strong>Email: </strong>
+        <a ng-href="mailto:{{user.email}}" ng-bind="user.email"></a>
+      </div>
+
+      <footer class="panel-footer">
+        <a ng-href="#/users/{{user.id}}" class="btn btn-sm btn-block btn-primary">
+          <span class="glyphicon glyphicon-list-alt"></span> View details
+        </a>
+        <a ng-href="#/users/{{user.id}}/tasks" class="btn btn-sm btn-block btn-primary">
+          <span class="glyphicon glyphicon-tasks"></span> View tasks
+        </a>
+      </footer>
+
+    </div>
+  </article>
+</section>

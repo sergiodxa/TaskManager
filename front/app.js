@@ -1,20 +1,21 @@
 /**
-* ScrumManager Module
+* TaskManager Module
 *
-* WebApp para controlar proyectos en base a Scrum.
+* WebApp para controlar tareas en proyectos.
 */
-var ScrumManager = angular.module('ScrumManager', ['ngRoute']);
+var TaskManager = angular.module('TaskManager', ['ngRoute']);
 
-ScrumManager.config(['$routeProvider', '$locationProvider', function ($routeProvider) {
+TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvider) {
 
   $routeProvider
-    .when('/miembros', {
-      controller : MiembrosListaCtrl,
-      templateUrl: 'views/miembros/lista.html'
+    .when('/users', {
+      controller : UserListCtrl,
+      templateUrl: 'views/users/list.html'
     })
-    .when('/miembros/:id', {
-      controller : MiembroDetalleCtrl,
-      templateUrl: 'views/miembros/detalle.html'
+    .when('/users/:id', {
+      controller : UserDetailCtrl,
+      templateUrl: 'views/users/detail.html'
     })
+    .otherwise({ redirectTo: '/users' });
 
 }]);

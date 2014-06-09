@@ -1,0 +1,55 @@
+<section class="row">
+  <article class="col-md-8 col-md-offset-2">
+    <div class="panel" ng-class="{'panel-danger': tarea.statement == 'pendiente', 'panel-primary': tarea.statement == 'en progreso', 'panel-warning': tarea.statement == 'en prueba', 'panel-success': tarea.statement == 'completa'}">
+
+      <header ng-bind="tarea.task_name" class="panel-heading"></header>
+
+      <div class="panel-body">
+        <div class="pull-right btn" ng-class="{'btn-danger': tarea.statement == 'pendiente', 'btn-primary': tarea.statement == 'en progreso', 'btn-warning': tarea.statement == 'en prueba', 'btn-success': tarea.statement == 'completa'}">
+          Estado: <span ng-bind="tarea.statement"></span>
+        </div>
+        <strong>Proyecto: </strong>
+        <a ng-href="#/proyectos/{{tarea.project}}" ng-bind="tarea.project"></a>
+        <br>
+        <strong>Equipo a cargo: </strong>
+        <a ng-href="#/proyectos/{{tarea.assigned_team}}" ng-bind="tarea.assigned_team"></a>
+        <br>
+        <strong>Encargado: </strong>
+        <a ng-href="#/miembros/{{tarea.assigned_to}}" ng-bind="tarea.full_name"></a>
+        <br>
+        <strong>Tiempo estimado: </strong>
+        <span ng-bind="tarea.time_estimated"></span>
+        <span ng-if="tarea.time_required != NULL">
+          <br>
+          <strong>Tiempo requerido: </strong>
+          <span ng-bind="tarea.time_required"></span>
+        </span>
+
+        <legend>Descripción:</legend>
+        <div ng-bind="tarea.description"></div>
+      </div>
+
+      <footer class="panel-footer" ng-if="itsMe">
+        <button class="btn btn-sm btn-block btn-danger" ng-if="tarea.statement === 'pendiente'">
+          Empezar <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+
+        <button class="btn btn-sm btn-block btn-primary" ng-if="tarea.statement === 'en progreso'">
+          Pasar a pruebas <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+
+        <button class="btn btn-sm btn-block btn-warning" ng-if="tarea.statement === 'en prueba'">
+           <span class="glyphicon glyphicon-chevron-left"></span> Seguír
+        </button>
+        <button class="btn btn-sm btn-block btn-warning" ng-if="tarea.statement === 'en prueba'">
+          Completar <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+
+        <button class="btn btn-sm btn-block btn-success" ng-if="tarea.statement === 'completa'">
+          Volver a pruebas <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+      </footer>
+
+    </div>
+  </article>
+</section>

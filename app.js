@@ -4,7 +4,7 @@ var express      = require('express');
 // Models
 
 // Controllers
-var miembros = require('./controllers/miembros');
+var user = require('./controllers/user');
 
 // Start app
 var app = express();
@@ -19,16 +19,16 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/front/app.html');
 });
 
-app.get('/api/miembros/get/all', miembros.getAll);
-app.get('/api/miembros/get/single/:id', miembros.getSingle)
-app.post('/api/miembros/add/:id', miembros.add)
-app.post('/api/miembros/edit/:id', miembros.edit)
-app.post('/api/miembros/delete/:id', miembros.erase)
+app.get('/api/users/get/all', user.getAll);
+app.get('/api/users/get/single/:id', user.getSingle)
+app.post('/api/users/add/:id', user.add)
+app.post('/api/users/edit/:id', user.edit)
+app.post('/api/users/delete/:id', user.erase)
 
 /*app.get('/test', function(req, res) {
-  ModelMiembros.erase(5, function (response) {
+  Modelusers.erase(5, function (response) {
     res.send(response);
   });
 });*/
 
-console.log('ScrumManager iniciado - App corriendo en el puerto ' + puerto);
+console.log('TaskManger started - App running in the port ' + puerto);
