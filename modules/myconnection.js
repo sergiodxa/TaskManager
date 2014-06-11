@@ -16,12 +16,12 @@ var mysql = require('mysql'),
 module.exports = function (connectionCallback) {
   pool.getConnection(function (err, connection) {
     if (err) {
-      console.error(err);
+      connectionCallback(false);
     } else {
       // do something if connection was successful
       if (connectionCallback && typeof (connectionCallback) === 'function') {
         connectionCallback(pool);
-      }
+      };
 
       // terminate the connection
       connection.release();
