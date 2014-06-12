@@ -10,8 +10,9 @@
     "mysql": "2.3.*"
   },
   "scripts": {
-    "test": "jasmine-node --color --verbose --autotest specs",
-    "start": "node app"
+    "build": "gulp build",
+    "start": "node app",
+    "test": "jasmine-node --color --verbose --autotest specs"
   },
   "repository": {
     "type": "git",
