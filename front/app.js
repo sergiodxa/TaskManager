@@ -16,6 +16,14 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       controller : UserDetailCtrl,
       templateUrl: 'views/users/detail.html'
     })
+    .when('/users/:id/edit', {
+      controller : UserEditCtrl,
+      templateUrl: 'views/users/edit.html'
+    })
+    .when('/users/add', {
+      controller : UserNewCtrl,
+      templateUrl: 'views/users/new.html'
+    })
     .otherwise({ redirectTo: '/users' });
 
 }]);

@@ -12,4 +12,24 @@ TaskManager.service('users', function($http) {
       url   : '/api/users/get/single/' + id
     });
   };
+
+  this.edit = function (id, data) {
+    return $http({
+      method: 'POST',
+      url   : '/api/users/edit/' + id,
+      params: {
+        user: data
+      }
+    });
+  };
+
+  this.add = function (data) {
+    return $http({
+      method: 'POST',
+      url   : '/api/users/add',
+      params: {
+        user: data
+      }
+    })
+  }
 });

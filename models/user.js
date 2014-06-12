@@ -52,15 +52,15 @@ exports.add = function (user, callback) {
 // método para modificar un user
 exports.edit = function (id, user, callback) {
   myconnection(function (pool) {
-    if (user.pass) {
-      if (user.pass === user.repeatPass) {
-        var query = 'UPDATE users SET userName = ' + pool.escape(user.userName) + ', pass = ' + pool.escape(user.pass) + ', firstName = ' + pool.escape(user.firstName) + ', lastName = ' + pool.escape(user.lastName) + ', email = ' + pool.escape(user.email) + ', position = ' + pool.escape(user.position) + 'WHERE id = ' + id;
+    if (user.newPass) {
+      if (user.newPass === user.repeatPass) {
+        var query = 'UPDATE users SET userName = ' + pool.escape(user.userName) + ', pass = ' + pool.escape(user.newPass) + ', firstName = ' + pool.escape(user.firstName) + ', lastName = ' + pool.escape(user.lastName) + ', email = ' + pool.escape(user.email) + ', position = ' + pool.escape(user.position) + 'WHERE id = ' + id;
 
         pool.query(query, function (err, response) {
           if (err) {
-            console.error(err);
+            callback(false);
           }
-          callback(response);
+          callback('User data with pass edited');
         });
       } else {
         callback('Password wrong');
@@ -70,9 +70,9 @@ exports.edit = function (id, user, callback) {
 
       pool.query(query, function (err, response) {
         if (err) {
-          console.error(err);
+          callback(false);
         }
-        callback(response);
+        callback('User data without pass edited');
       });
     };
   });

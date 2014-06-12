@@ -1,5 +1,5 @@
 // Dependencies
-var express      = require('express');
+var express = require('express');
 
 // Models
 
@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 
 app.get('/api/users/get/all', user.getAll);
 app.get('/api/users/get/single/:id', user.getSingle)
-app.post('/api/users/add/:id', user.add)
+app.post('/api/users/add', user.add)
 app.post('/api/users/edit/:id', user.edit)
 app.post('/api/users/delete/:id', user.erase)
 
