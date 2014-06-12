@@ -30,6 +30,13 @@ TaskManager.service('users', function($http) {
       params: {
         user: data
       }
-    })
-  }
+    });
+  };
+
+  this.erase = function (id) {
+    return $http({
+      method: 'POST',
+      url   : '/api/users/delete/' + id
+    });
+  };
 });
