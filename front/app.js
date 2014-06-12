@@ -12,11 +12,11 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       controller : UserListCtrl,
       templateUrl: 'views/users/list.html'
     })
-    .when('/users/:id', {
+    .when('/users/get/:id', {
       controller : UserDetailCtrl,
       templateUrl: 'views/users/detail.html'
     })
-    .when('/users/:id/edit', {
+    .when('/users/edit/:id', {
       controller : UserEditCtrl,
       templateUrl: 'views/users/edit.html'
     })
