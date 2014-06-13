@@ -12,7 +12,6 @@ gulp.task('build', function(callback) {
               callback);
 });
 
-
 gulp.task('minify controllers', function () {
   gulp.src('front/controllers/*.js')
       .pipe(watch())
