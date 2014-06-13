@@ -126,47 +126,31 @@ exports.add = function (task, callback) {
     });
   });
 };
-/*
+
 // método para modificar un user
-exports.edit = function (id, user, callback) {
+exports.edit = function (id, task, callback) {
   myconnection(function (pool) {
-    if (user.newPass) {
-      if (user.newPass === user.repeatPass) {
-        var query = 'UPDATE users SET userName = ' + pool.escape(user.userName) + ', pass = ' + pool.escape(user.newPass) + ', firstName = ' + pool.escape(user.firstName) + ', lastName = ' + pool.escape(user.lastName) + ', email = ' + pool.escape(user.email) + ', position = ' + pool.escape(user.position) + 'WHERE id = ' + id;
+    var query = 'UPDATE tasks SET name = ' + pool.escape(task.name) + ', description = ' + pool.escape(task.description) + ', project = ' + pool.escape(task.project) + ', priority = ' + pool.escape(task.priority) + ', estimatedTime = ' + pool.escape(task.estimatedTime) + ', requiredTime = ' + pool.escape(task.requiredTime) + ', userAsigned = ' + pool.escape(task.userAsigned) + ', state = ' + pool.escape(task.state) + ' WHERE id = ' + id;
 
-        pool.query(query, function (err, response) {
-          if (err) {
-            callback(false);
-          }
-          callback('User data with pass edited');
-        });
-      } else {
-        callback('Password wrong');
-      };
-    } else {
-      var query = 'UPDATE users SET userName = ' + pool.escape(user.userName) + ', firstName = ' + pool.escape(user.firstName) + ', lastName = ' + pool.escape(user.lastName) + ', email = ' + pool.escape(user.email) + ', position = ' + pool.escape(user.position) + 'WHERE id = ' + id;
-
-      pool.query(query, function (err, response) {
-        if (err) {
-          callback(false);
-        }
-        callback('User data without pass edited');
-      });
-    };
+    pool.query(query, function (err, response) {
+      if (err) {
+        callback(false);
+      }
+      callback('Task data edited');
+    });
   });
 };
 
 // método para eliminar un user
 exports.erase = function (id, callback) {
   myconnection(function (pool) {
-    var query = 'DELETE FROM users WHERE id = ' + id;
+    var query = 'DELETE FROM tasks WHERE id = ' + id;
 
     pool.query(query, function (err, response) {
       if (err) {
         callback(false)
       }
-      callback('User deleted');
+      callback('Task deleted');
     });
   });
 };
-*/

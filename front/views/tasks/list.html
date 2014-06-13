@@ -1,0 +1,102 @@
+<div class="row">
+
+  <!-- tareas pendientes -->
+  <section class="col-md-3" id="to-do">
+    <legend class="text-center">To do</legend>
+    <article ng-repeat="task in tasks | filter: {stateName: 'to do'}" class="panel panel-danger">
+      <header ng-bind="task.name" class="panel-heading text-center"></header>
+      <div class="panel-body">
+        <strong>Project: </strong>
+        <a ng-href="#/proyectos/{{tarea.project}}" ng-bind="task.project"></a><br>
+        <strong>Assigned to:</strong>
+        <a ng-href="#/miembros/{{tarea.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
+        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span>
+      </div>
+      <footer class="panel-footer">
+        <a ng-href="#/tareas/{{tarea.id}}" class="btn btn-sm btn-block btn-danger">
+          <span class="glyphicon glyphicon-list-alt"></span> View details
+        </a>
+        <button class="btn btn-sm btn-block btn-danger" ng-if="itsMe">
+          Start task <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+      </footer>
+    </article>
+  </section>
+
+  <!-- tareas en progreso -->
+  <section class="col-md-3" id="progress">
+    <legend class="text-center">In progress</legend>
+    <article ng-repeat="task in tasks | filter: {stateName: 'in progress'}" class="panel panel-primary">
+      <header ng-bind="task.name" class="panel-heading text-center"></header>
+      <div class="panel-body">
+        <strong>Project: </strong>
+        <a ng-href="#/proyectos/{{tarea.project}}" ng-bind="task.project"></a>
+        <br>
+        <strong>Doing: </strong>
+        <a ng-href="#/miembros/{{tarea.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
+        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span>
+      </div>
+      <footer class="panel-footer">
+        <a ng-href="#/tareas/{{tarea.id}}" class="btn btn-sm btn-block btn-primary">
+          <span class="glyphicon glyphicon-list-alt"></span> View details
+        </a>
+        <button class="btn btn-sm btn-block btn-primary" ng-if="itsMe">
+          Pass to tests <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+      </footer>
+    </article>
+  </section>
+
+  <!-- tareas en pruebas -->
+  <section class="col-md-3" id="testing">
+    <legend class="text-center">In testing</legend>
+    <article ng-repeat="task in tasks | filter: {stateName: 'testing'}" class="panel panel-warning">
+      <header ng-bind="task.name" class="panel-heading text-center"></header>
+      <div class="panel-body">
+        <strong>Project: </strong>
+        <a ng-href="#/proyectos/{{tarea.project}}" ng-bind="task.project"></a>
+        <br>
+        <strong>Testing: </strong>
+        <a ng-href="#/miembros/{{tarea.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
+        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span>
+      </div>
+      <footer class="panel-footer">
+        <a ng-href="#/tareas/{{tarea.id}}" class="btn btn-sm btn-block btn-warning">
+          <span class="glyphicon glyphicon-list-alt"></span> View details
+        </a>
+        <button class="btn btn-sm btn-block btn-warning" ng-if="itsMe">
+           <span class="glyphicon glyphicon-chevron-left"></span> Return to in progress
+        </button>
+        <button class="btn btn-sm btn-block btn-warning" ng-if="itsMe">
+          Complete <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+      </footer>
+    </article>
+  </section>
+
+  <!-- tareas completas -->
+  <section class="col-md-3" id="completed">
+    <legend class="text-center">Completed</legend>
+    <article ng-repeat="task in tasks | filter: {stateName: 'complete'}" class="panel panel-success">
+      <header ng-bind="task.name" class="panel-heading text-center"></header>
+      <div class="panel-body">
+        <strong>Project: </strong>
+        <a ng-href="#/proyectos/{{tarea.project}}" ng-bind="task.project"></a>
+        <br>
+        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span>
+        <span ng-if="tarea.time_required != NULL"><br>
+          <strong>Required time: </strong><span ng-bind="task.requiredTime"></span>
+        </span>
+      </div>
+      <footer class="panel-footer">
+        <a ng-href="#/tareas/{{tarea.id}}" class="btn btn-sm btn-block btn-success">
+          <span class="glyphicon glyphicon-list-alt"></span> View details
+        </a>
+        <button class="btn btn-sm btn-block btn-success" ng-if="itsMe">
+          Return to test <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+      </footer>
+    </article>
+  </section>
+
+</div>

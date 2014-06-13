@@ -18,7 +18,11 @@ exports.getByUser = function (req, res) {
   var userId = req.params.id;
 
   model.getByUser(userId, function (tasks) {
-    res.send(tasks);
+    if (tasks === false) {
+      res.send('Error');
+    } else {
+      res.send(tasks);
+    }
   });
 };
 
@@ -44,10 +48,10 @@ exports.add = function (req, res) {
 
 exports.edit = function (req, res) {
   var id = req.params.id;
-  var user = JSON.parse(req.query.user);
+  var task = JSON.parse(req.query.task);
 
-  model.edit(id, user, function (response) {
-    if (response === 'User data with pass edited' || response === 'Password wrong' || response === 'User data without pass edited') {
+  model.edit(id, task, function (response) {
+    if (response === 'Task data edited') {
       res.send(response);
     } else if (response === false) {
       res.send('An error has ocurred');
@@ -59,8 +63,8 @@ exports.erase = function (req, res) {
   var id = req.params.id;
 
   model.erase(id, function (response) {
-    if (response === 'User deleted') {
-      res.send('User deleted');
+    if (response === 'Task deleted') {
+      res.send(response);
     } else if (response === false) {
       res.send('Error');
     }
