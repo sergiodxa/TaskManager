@@ -1,10 +1,9 @@
 // Dependencies
 var express = require('express');
 
-// Models
-
 // Controllers
 var user = require('./controllers/user');
+var task = require('./controllers/task');
 
 // Start app
 var app = express();

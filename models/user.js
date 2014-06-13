@@ -6,7 +6,8 @@ exports.getSingle = function (id, callback) {
     var query = 'SELECT * FROM users WHERE id = ' + id;
     pool.query(query, function (err, response) {
       if (err) {
-        console.error(err);
+        callback(false);
+        return;
       }
 
       if (response.length === 1) {
@@ -26,7 +27,8 @@ exports.getAll = function (callback) {
     var query = 'SELECT id, userName, firstName, lastName, email, position FROM users';
     pool.query(query, function (err, response) {
       if (err) {
-        console.error(err);
+        callback(false);
+        return;
       }
       for (var i = 0; i < response.length; ++i) {
         response[i].fullName = response[i].firstName + ' ' + response[i].lastName;
@@ -43,6 +45,7 @@ exports.add = function (user, callback) {
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);
+        return;
       }
       callback('User created');
     });
@@ -59,6 +62,7 @@ exports.edit = function (id, user, callback) {
         pool.query(query, function (err, response) {
           if (err) {
             callback(false);
+            return;
           }
           callback('User data with pass edited');
         });
@@ -71,6 +75,7 @@ exports.edit = function (id, user, callback) {
       pool.query(query, function (err, response) {
         if (err) {
           callback(false);
+          return;
         }
         callback('User data without pass edited');
       });
@@ -85,7 +90,8 @@ exports.erase = function (id, callback) {
 
     pool.query(query, function (err, response) {
       if (err) {
-        callback(false)
+        callback(false);
+          return;
       }
       callback('User deleted');
     });
