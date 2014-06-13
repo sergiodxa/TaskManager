@@ -39,12 +39,12 @@ exports.getAll = function (callback) {
 // método para crear un nuevo user
 exports.add = function (user, callback) {
   myconnection(function (pool) {
-    var query = 'INSERT INTO users (userName, pass, firstName, lastName, email, position) VALUES (' + pool.escape(user.userName) + ', ' + pool.escape(user.pass) + ', ' + pool.escape(user.firstName) + ', ' + pool.escape(user.lastName) + ', ' + pool.escape(user.email) + ', ' + pool.escape(user.position) +')';
+    var query = 'INSERT INTO users (userName, pass, firstName, lastName, email, position) VALUES (' + pool.escape(user.userName) + ', ' + pool.escape(user.newPass) + ', ' + pool.escape(user.firstName) + ', ' + pool.escape(user.lastName) + ', ' + pool.escape(user.email) + ', ' + pool.escape(user.position) +')';
     pool.query(query, function (err, response) {
       if (err) {
-        console.error(err);
+        callback(false);
       }
-      callback(response);
+      callback('User created');
     });
   });
 };
@@ -85,9 +85,9 @@ exports.erase = function (id, callback) {
 
     pool.query(query, function (err, response) {
       if (err) {
-        console.error(err);
+        callback(false)
       }
-      callback(response);
+      callback('User deleted');
     });
   });
 };

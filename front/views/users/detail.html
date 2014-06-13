@@ -1,6 +1,6 @@
 <section class="row">
   <article class="col-md-8 col-md-offset-2">
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
 
       <header ng-bind="user.fullName" class="panel-heading"></header>
 
@@ -13,10 +13,15 @@
       </div>
 
       <footer class="panel-footer">
-        <button ng-click="deteleUser()" class="btn btn-sm btn-block btn-primary"><span class="glyphicon glyphicon-remove"></span> Delete user</button>
-        <a ng-href="#/users/{{user.id}}/tareas" class="btn btn-sm btn-block btn-primary">
+        <a ng-href="#/users/tasks/{{user.id}}" class="btn btn-sm btn-block btn-default">
           <span class="glyphicon glyphicon-tasks"></span> View tasks
         </a>
+        <a ng-href="#/users/edit/{{user.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-pencil"></span> Edit user
+        </a>
+        <button ng-click="deleteUser()" class="btn btn-sm btn-block btn-danger">
+          <span class="glyphicon glyphicon-remove"></span> Delete user
+        </button>
       </footer>
 
     </div>

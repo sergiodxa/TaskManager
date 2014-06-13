@@ -15,7 +15,15 @@ exports.getSingle = function (req, res) {
 };
 
 exports.add = function (req, res) {
-  console.log(req);
+  var user = JSON.parse(req.query.user);
+
+  model.add(user, function (response) {
+    if (response === 'User created') {
+      res.send('User added');
+    } else if (response === false) {
+      res.send('An error has ocurred');
+    }
+  });
 };
 
 exports.edit = function (req, res) {
@@ -32,5 +40,13 @@ exports.edit = function (req, res) {
 };
 
 exports.erase = function (req, res) {
-  console.log(req);
+  var id = req.params.id;
+
+  model.erase(id, function (response) {
+    if (response === 'User deleted') {
+      res.send('User deleted');
+    } else if (response === false) {
+      res.send('Error');
+    }
+  })
 };

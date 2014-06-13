@@ -1,6 +1,6 @@
 {
   "name": "TaskMnager",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "WebApp para controlar tareas en proyectos.",
   "main": "app.js",
   "dependencies": {

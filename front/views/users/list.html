@@ -1,7 +1,12 @@
 <section class="row">
-  <legend class="text-center">Users</legend>
+  <legend class="text-center">
+    Users
+    <a ng-href="#/users/add/" class="btn btn-sm btn-link pull-right">
+      <span class="glyphicon glyphicon-plus"></span> Add user
+    </a>
+  </legend>
   <article ng-repeat="user in users" class="col-md-6">
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
 
       <header ng-bind="user.fullName" class="panel-heading text-center"></header>
 
@@ -11,10 +16,10 @@
       </div>
 
       <footer class="panel-footer">
-        <a ng-href="#/users/{{user.id}}" class="btn btn-sm btn-block btn-primary">
+        <a ng-href="#/users/get/{{user.id}}" class="btn btn-sm btn-block btn-default">
           <span class="glyphicon glyphicon-list-alt"></span> View details
         </a>
-        <a ng-href="#/users/{{user.id}}/tasks" class="btn btn-sm btn-block btn-primary">
+        <a ng-href="#/users/tasks/{{user.id}}" class="btn btn-sm btn-block btn-default">
           <span class="glyphicon glyphicon-tasks"></span> View tasks
         </a>
       </footer>
