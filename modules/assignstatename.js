@@ -14,8 +14,10 @@ module.exports = function (task) {
       break;
     case 3:
       task.stateName = 'in testing';
+      break;
     case 4:
       task.stateName = 'completed';
+      break;
   }
   return task;
 }

@@ -32,7 +32,7 @@ TaskManager.service('tasks', function($http) {
       method: 'POST',
       url   : '/api/tasks/edit/' + id,
       params: {
-        user: data
+        task: data
       }
     });
   };
@@ -42,7 +42,7 @@ TaskManager.service('tasks', function($http) {
       method: 'POST',
       url   : '/api/tasks/add',
       params: {
-        user: data
+        task: data
       }
     });
   };
@@ -53,4 +53,17 @@ TaskManager.service('tasks', function($http) {
       url   : '/api/tasks/delete/' + id
     });
   };
+
+  this.getStateNumber = function (stateName) {
+    if (stateName === 'to do') {
+      return 1;
+    } else if (stateName === 'in progress') {
+      return 2;
+    } else if (stateName === 'in testing') {
+      return 3;
+    } else if (stateName === 'completed') {
+      return 4;
+    }
+  };
+
 });

@@ -72,7 +72,6 @@ exports.getByProject = function (projectId, callback) {
       user.getAll(function (usersData) {
         for (var i = 0; i < tasks.length; ++i) {
           var userId = tasks[i].userAsigned-1;
-          console.log(userId);
           if (userId >= 0) {
             tasks[i].userAsignedName = usersData[userId].fullName;
           } else {
@@ -99,9 +98,8 @@ exports.getByUser = function (userId, callback) {
       user.getSingle(userId, function (userData) {
         for (var i = 0; i < tasks.length; ++i) {
           var userId = tasks[i].userAsigned-1;
-          console.log(userId);
           if (userId >= 0) {
-            tasks[i].userAsignedName = usersData[userId].fullName;
+            tasks[i].userAsignedName = userData.fullName;
           } else {
             tasks[i].userAsignedName = null;
           }

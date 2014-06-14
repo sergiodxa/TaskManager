@@ -10,7 +10,11 @@ exports.getSingle = function (req, res) {
   var id = req.params.id;
 
   model.getSingle(id, function (task) {
-    res.send(task);
+    if (task === false) {
+      res.send('Error');
+    } else {
+      res.send(task);
+    }
   });
 };
 
@@ -30,7 +34,11 @@ exports.getByProject = function (req, res) {
   var projectId = req.params.id;
 
   model.getByProject(projectId, function (tasks) {
-    res.send(tasks);
+    if (tasks === false) {
+      res.send('Error');
+    } else {
+      res.send(tasks);
+    }
   });
 };
 

@@ -12,7 +12,7 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       controller : UserListCtrl,
       templateUrl: 'views/users/list.html'
     })
-    .when('/users/get/:id', {
+    .when('/users/single/:id', {
       controller : UserDetailCtrl,
       templateUrl: 'views/users/detail.html'
     })
@@ -26,19 +26,19 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
     })
     .when('/tasks', {
       controller : TaskListCtrl,
-      templateUrl: 'views/users/list.html'
-    });
-    .when('/tasks/get/:id', {});
+      templateUrl: 'views/tasks/list.html'
+    })
+    .when('/tasks/single/:id', {})
     .when('/tasks/by/project/:id', {
       controller : TaskByProjectCtrl,
-      templateUrl: 'views/users/list.html'
-    });
+      templateUrl: 'views/tasks/list.html'
+    })
     .when('/tasks/by/user/:id', {
       controller : TaskByUserCtrl,
-      templateUrl: 'views/users/list.html'
-    });
-    .when('/tasks/edit/:id', {});
-    .when('/tasks/add', {});
+      templateUrl: 'views/tasks/list.html'
+    })
+    .when('/tasks/edit/:id', {})
+    .when('/tasks/add', {})
     .otherwise({ redirectTo: '/tasks' });
 
 }]);
