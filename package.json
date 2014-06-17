@@ -10,9 +10,10 @@
     "mysql": "2.3.*"
   },
   "scripts": {
-    "build": "gulp build",
+    "merge": "gulp merge",
+    "minify": "gulp minify",
     "start": "node app",
-    "test": "jasmine-node --color --verbose --autotest specs"
+    "test" : "jasmine-node --color --verbose --autotest specs"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "gulp-jsmin": "^0.1.4",
     "gulp-rename": "^1.2.0",
     "run-sequence": "^0.3.6",
-    "gulp-jasmine": "^0.2.0"
+    "gulp-jasmine": "^0.2.0",
+    "gulp-concat": "^2.2.0"
   }
 }

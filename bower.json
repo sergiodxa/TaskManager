@@ -25,6 +25,8 @@
     "bower_components",
     "front/vendor",
     "test",
-    "tests"
+    "tests",
+    "front/minified",
+    "front/dist"
   ]
 }
