@@ -12,7 +12,7 @@
           <strong>Assigned to:</strong>
           <a ng-href="#/users/single/{{task.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
         </span>
-        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span>
+        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
       </div>
       <footer class="panel-footer">
         <a ng-href="#/tasks/single/{{task.id}}" class="btn btn-sm btn-block btn-danger">
@@ -36,7 +36,7 @@
         <br>
         <strong>Doing: </strong>
         <a ng-href="#/users/single/{{task.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
-        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span>
+        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
       </div>
       <footer class="panel-footer">
         <a ng-href="#/tasks/single/{{task.id}}" class="btn btn-sm btn-block btn-primary">
@@ -60,7 +60,7 @@
         <br>
         <strong>Testing: </strong>
         <a ng-href="#/users/single/{{task.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
-        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span>
+        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
       </div>
       <footer class="panel-footer">
         <a ng-href="#/tasks/single/{{task.id}}" class="btn btn-sm btn-block btn-warning">
@@ -85,9 +85,9 @@
         <strong>Project: </strong>
         <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.project"></a>
         <br>
-        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span>
-        <span ng-if="tarea.time_required != NULL"><br>
-          <strong>Required time: </strong><span ng-bind="task.requiredTime"></span>
+        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
+        <span ng-if="task.requiredTime != NULL"><br>
+          <strong>Required time: </strong><span ng-bind="task.requiredTime"></span> hours
         </span>
       </div>
       <footer class="panel-footer">

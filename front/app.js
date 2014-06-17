@@ -40,7 +40,10 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       controller : TaskByUserCtrl,
       templateUrl: 'views/tasks/list.html'
     })
-    .when('/tasks/edit/:id', {})
+    .when('/tasks/edit/:id', {
+      controller : TaskEditCtrl,
+      templateUrl: 'views/tasks/edit.html'
+    })
     .when('/tasks/add', {})
     .otherwise({ redirectTo: '/tasks' });
 

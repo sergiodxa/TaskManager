@@ -29,26 +29,12 @@
       </div>
 
       <footer class="panel-footer" ng-if="itsMe">
-        <button class="btn btn-sm btn-block btn-danger" ng-if="task.stateName === 'to do'">
-          Start task <span class="glyphicon glyphicon-chevron-right"></span>
+        <a class="btn btn-sm btn-block btn-default" ng-href="#/tasks/edit/{{task.id}}">
+          <span class="glyphicon glyphicon-pencil"></span> Edit task
+        </a>
+        <button class="btn btn-sm btn-block btn-danger" ng-click="deleteTask()">
+          <span class="glyphicon glyphicon-remove"></span> Delete task
         </button>
-
-        <button class="btn btn-sm btn-block btn-primary" ng-if="task.stateName === 'in progress'">
-          Pass to test <span class="glyphicon glyphicon-chevron-right"></span>
-        </button>
-
-        <button class="btn btn-sm btn-block btn-warning" ng-if="task.stateName === 'in testing'">
-           <span class="glyphicon glyphicon-chevron-left"></span> Seguír
-        </button>
-        <button class="btn btn-sm btn-block btn-warning" ng-if="task.stateName === 'in testing'">
-          Complete <span class="glyphicon glyphicon-chevron-right"></span>
-        </button>
-
-        <button class="btn btn-sm btn-block btn-success" ng-if="task.stateName === 'completed'">
-          Return to test <span class="glyphicon glyphicon-chevron-left"></span>
-        </button>
-        <a class="btn btn-sm btn-block btn-default" ng-href="#/tasks/edit/{{task.id}}">Edit task</a>
-        <button class="btn btn-sm btn-block btn-danger" ng-click="deleteTask()">Delete task</button>
       </footer>
 
     </div>

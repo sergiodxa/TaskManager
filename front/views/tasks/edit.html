@@ -1,0 +1,69 @@
+<section class="row">
+  <article class="col-md-8 col-md-offset-2">
+    <form role="form" ng-submit="sendForm()" class="panel panel-default">
+
+      <header class="panel-heading">Edit task <strong ng-bind="task.name"></strong></header>
+
+      <div class="panel-body">
+          <div class="alert alert-success alert-dismissable" ng-if="taskEdited">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <span ng-bind="taskEditedTxt"></span>
+          </div>
+          <div class="form-group">
+            <label for="taskname">Name</label>
+            <input type="text" id="taskname" class="form-control" ng-model="task.name" placeholder="taskname" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" class="form-control" ng-model="task.description" placeholder="Description" required rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="project">Project</label>
+            <select name="project" id="project" class="form-control" required ng-model="task.project">
+              <option ng-value="{{task.project}}">{{task.project}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="priority">Priority:</label>
+            <input type="number" id="priority" class="form-control" ng-model="task.priority" placeholder="Priority" required>
+          </div>
+          <div class="form-group">
+            <label for="estimated-time">Estimated time</label>
+            <select name="estimated-time" id="estimated-time" class="form-control" ng-model="task.estimatedTime" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="required-time">Required time</label>
+            <select name="required-time" id="required-time" class="form-control" ng-model="task.requiredTime" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select name="status" id="status" class="form-control" ng-model="task.stateName" required>
+              <option value="to do">To do</option>
+              <option value="in progress">In progress</option>
+              <option value="in testing">In testing</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+      </div>
+
+      <footer class="panel-footer">
+        <button type="submit" class="btn btn-sm btn-block btn-primary">
+          Submit
+        </button>
+      </footer>
+
+    </form>
+  </article>
+</section>
