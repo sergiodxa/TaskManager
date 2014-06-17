@@ -14,11 +14,11 @@ exports.getSingle = function (id, callback) {
       }
       if (response.length === 1) {
         var task = response[0];
-        var userId = task.userAsigned-1;
+        var userId = task.userAssigned-1;
         if (userId >= 0) {
         // obtenemos los datos del usuario para saber el nombre
-          user.getSingle(task.userAsigned, function (userData) {
-            task.userAsignedName = userData.fullName;
+          user.getSingle(task.userAssigned, function (userData) {
+            task.userAssignedName = userData.fullName;
             task = assignStateName(task);
             project.getSingle(task.project, function (projectData) {
               task.projectName = projectData.name;
@@ -26,7 +26,7 @@ exports.getSingle = function (id, callback) {
             });
           });
         } else {
-          task.userAsignedName = null;
+          task.userAssignedName = null;
           task = assignStateName(task);
           project.getSingle(task.project, function (projectData) {
             task.projectName = projectData.name;
@@ -55,9 +55,9 @@ exports.getAll = function (callback) {
         for (var i = 0; i < tasks.length; ++i) {
           var userId = tasks[i].userAsigned-1;
           if (userId >= 0) {
-            tasks[i].userAsignedName = usersData[userId].fullName;
+            tasks[i].userAssignedName = usersData[userId].fullName;
           } else {
-            tasks[i].userAsignedName = null;
+            tasks[i].userAssignedName = null;
           }
           tasks[i] = assignStateName(tasks[i]);
         }
@@ -85,11 +85,11 @@ exports.getByProject = function (projectId, callback) {
       // obtenemos los datos de todos los usuarios para saber sus nombres
       user.getAll(function (usersData) {
         for (var i = 0; i < tasks.length; ++i) {
-          var userId = tasks[i].userAsigned-1;
+          var userId = tasks[i].userAssigned-1;
           if (userId >= 0) {
-            tasks[i].userAsignedName = usersData[userId].fullName;
+            tasks[i].userAssignedName = usersData[userId].fullName;
           } else {
-            tasks[i].userAsignedName = null;
+            tasks[i].userAssignedName = null;
           }
           tasks[i] = assignStateName(tasks[i]);
         }
@@ -111,11 +111,11 @@ exports.getByUser = function (userId, callback) {
       // obtenemos los datos del usuario para saber el nombre
       user.getSingle(userId, function (userData) {
         for (var i = 0; i < tasks.length; ++i) {
-          var userId = tasks[i].userAsigned-1;
+          var userId = tasks[i].userAssigned-1;
           if (userId >= 0) {
-            tasks[i].userAsignedName = userData.fullName;
+            tasks[i].userAssignedName = userData.fullName;
           } else {
-            tasks[i].userAsignedName = null;
+            tasks[i].userAssignedName = null;
           }
           tasks[i] = assignStateName(tasks[i]);
         }
@@ -128,7 +128,7 @@ exports.getByUser = function (userId, callback) {
 // método para crear una nueva tarea
 exports.add = function (task, callback) {
   myconnection(function (pool) {
-    var query = 'INSERT INTO tasks (name, description, project, priority, estimatedTime, requiredTime, userAsigned, state) VALUES (' + pool.escape(user.name) + ', ' + pool.escape(user.description) + ', ' + pool.escape(user.project) + ', ' + pool.escape(user.priority) + ', ' + pool.escape(user.estimatedTime) + ', ' + pool.escape(user.requiredTime) +', ' + pool.escape(user.userAsigned) +', ' + pool.escape(user.state) +')';
+    var query = 'INSERT INTO tasks (name, description, project, priority, estimatedTime, requiredTime, userAssigned, state) VALUES (' + pool.escape(user.name) + ', ' + pool.escape(user.description) + ', ' + pool.escape(user.project) + ', ' + pool.escape(user.priority) + ', ' + pool.escape(user.estimatedTime) + ', ' + pool.escape(user.requiredTime) +', ' + pool.escape(user.userAssigned) +', ' + pool.escape(user.state) +')';
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);
@@ -142,7 +142,7 @@ exports.add = function (task, callback) {
 // método para modificar un user
 exports.edit = function (id, task, callback) {
   myconnection(function (pool) {
-    var query = 'UPDATE tasks SET name = ' + pool.escape(task.name) + ', description = ' + pool.escape(task.description) + ', project = ' + pool.escape(task.project) + ', priority = ' + pool.escape(task.priority) + ', estimatedTime = ' + pool.escape(task.estimatedTime) + ', requiredTime = ' + pool.escape(task.requiredTime) + ', userAsigned = ' + pool.escape(task.userAsigned) + ', state = ' + pool.escape(task.state) + ' WHERE id = ' + id;
+    var query = 'UPDATE tasks SET name = ' + pool.escape(task.name) + ', description = ' + pool.escape(task.description) + ', project = ' + pool.escape(task.project) + ', priority = ' + pool.escape(task.priority) + ', estimatedTime = ' + pool.escape(task.estimatedTime) + ', requiredTime = ' + pool.escape(task.requiredTime) + ', userAssigned = ' + pool.escape(task.userAssigned) + ', state = ' + pool.escape(task.state) + ' WHERE id = ' + id;
 
     pool.query(query, function (err, response) {
       if (err) {

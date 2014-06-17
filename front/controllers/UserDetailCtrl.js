@@ -10,4 +10,4 @@ function UserDetailCtrl ($scope, $routeParams, users) {
       window.location = "#/users";
     });
   };
-}
+};

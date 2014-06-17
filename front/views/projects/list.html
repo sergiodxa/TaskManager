@@ -1,48 +1,28 @@
 <section class="row">
-  <legend class="text-center">Proyectos</legend>
-  <article ng-repeat="proyecto in proyectos" class="col-md-6">
+  <legend class="text-center">
+    Projects
+    <a ng-href="#/projects/add/" class="btn btn-sm btn-link pull-right">
+      <span class="glyphicon glyphicon-plus"></span> Add project
+    </a>
+  </legend>
+  <article ng-repeat="project in projects" class="col-md-6">
     <div class="panel panel-info">
 
-      <header ng-bind="proyecto.project_name" class="panel-heading text-center"></header>
+      <header ng-bind="project.project_name" class="panel-heading text-center"></header>
 
       <div class="panel-body">
-        <strong>Cliente: </strong>
-        <a ng-href="#/clientes/{{proyecto.client}}" ng-bind="proyecto.client"></a>
-
-        <div class="row">
-          <div class="col-md-12">
-            <legend>Fecha de entrega</legend>
-          </div>
-
-          <div class="col-md-4">
-            <strong>
-              Deseada:
-            </strong><br>
-            <span ng-bind="proyecto.release_date_best"></span>
-          </div>
-
-          <div class="col-md-4">
-            <strong>
-              Esperada:
-            </strong><br>
-            <span ng-bind="proyecto.release_date_expected"></span>
-          </div>
-
-          <div class="col-md-4">
-            <strong>
-              Peor:
-            </strong><br>
-            <span ng-bind="proyecto.release_date_worst"></span>
-          </div>
-        </div>
+        <strong>Project owner: </strong>
+        <a ng-href="#/clients/{{project.owner}}" ng-bind="project.owner"></a><br>
+        <strong>Release date: </strong>
+        <span ng-bind="project.releaseDate"></span><br>
       </div>
 
       <footer class="panel-footer">
-        <a ng-href="#/proyectos/{{proyecto.project_name}}" class="btn btn-sm btn-block btn-info">
-          <span class="glyphicon glyphicon-list-alt"></span> Ver detalles
+        <a ng-href="#/projects/{{project.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-list-alt"></span> View details
         </a>
-        <a ng-href="#/proyectos/{{proyecto.project_name}}/tareas" class="btn btn-sm btn-block btn-info">
-          <span class="glyphicon glyphicon-tasks"></span> Ver tareas
+        <a ng-href="#/tasks/by/project/{{project.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-tasks"></span> View tasks
         </a>
       </footer>
 

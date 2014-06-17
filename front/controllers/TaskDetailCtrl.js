@@ -12,4 +12,4 @@ function TaskDetailCtrl ($scope, $routeParams, tasks) {
       window.location = "#/tasks";
     });
   };
-}
+};

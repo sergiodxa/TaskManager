@@ -1,4 +1,4 @@
-function TaskEditCtrl ($scope, $routeParams, tasks, projects) {
+function TaskEditCtrl ($scope, $routeParams, tasks, projects, users) {
   var id = $routeParams.id;
   $scope.taskEdited = false;
 
@@ -8,6 +8,10 @@ function TaskEditCtrl ($scope, $routeParams, tasks, projects) {
 
   projects.getAll().then(function (response) {
     $scope.projects = response.data;
+  });
+
+  users.getAll().then(function (response) {
+    $scope.users = response.data;
   })
 
   $scope.sendForm = function () {
@@ -18,8 +22,7 @@ function TaskEditCtrl ($scope, $routeParams, tasks, projects) {
         $scope.taskEdited = true;
       } else if (response.data === 'false') {
         console.log('An error has ocurred');
-      }
+      };
     });
-  }
-
-}
+  };
+};

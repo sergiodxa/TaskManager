@@ -44,7 +44,26 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       controller : TaskEditCtrl,
       templateUrl: 'views/tasks/edit.html'
     })
-    .when('/tasks/add', {})
+    .when('/tasks/add', {
+      controller : TaskNewCtrl,
+      templateUrl: 'views/tasks/new.html'
+    })
+    .when('/projects', {
+      controller : ProjectListCtrl,
+      templateUrl: 'views/projects/list.html'
+    })
+    .when('/projects/single/:id', {
+      controller : ProjectDetailCtrl,
+      templateUrl: 'views/projects/detail.html'
+    })
+    .when('/projects/edit/:id', {
+      controller : ProjectEditCtrl,
+      templateUrl: 'views/projects/edit.html'
+    })
+    .when('/projects/add', {
+      controller : ProjectNewCtrl,
+      templateUrl: 'views/users/new.html'
+    })
     .otherwise({ redirectTo: '/tasks' });
 
 }]);

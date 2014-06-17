@@ -16,8 +16,8 @@ function UserEditCtrl ($scope, $routeParams, users) {
       $scope.actualPassIncorrect = false;
     } else {
       $scope.actualPassIncorrect = true;
-    }
-  }
+    };
+  };
 
   $scope.newPassCheck = function () {
     if ($scope.user.newPass !== '' && $scope.user.repeatPass !== '' && ($scope.user.newPass === $scope.user.repeatPass)) {
@@ -26,8 +26,8 @@ function UserEditCtrl ($scope, $routeParams, users) {
       $scope.newPassIncorrect = false;
     } else {
       $scope.newPassIncorrect = true;
-    }
-  }
+    };
+  };
 
   $scope.sendForm = function () {
     if ($scope.actualPassIncorrect === false) {
@@ -42,9 +42,8 @@ function UserEditCtrl ($scope, $routeParams, users) {
           $scope.newPassIncorrect = true;
         } else if (response.data === 'false') {
           console.log('An error has ocurred');
-        }
+        };
       });
-    }
-  }
-
-}
+    };
+  };
+};

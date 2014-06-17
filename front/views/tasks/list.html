@@ -2,15 +2,20 @@
 
   <!-- tareas pendientes -->
   <section class="col-md-3" data-state="to do">
-    <legend class="text-center">To do</legend>
+    <legend class="text-center">
+      To do
+      <a ng-href="#/tasks/add/" class="btn btn-sm btn-link pull-right">
+        <span class="glyphicon glyphicon-plus"></span> Add task
+      </a>
+    </legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'to do'}" class="panel panel-danger" draggable="true" data-index="{{$index}}">
       <header ng-bind="task.name" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
         <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a><br>
-        <span ng-if="task.userAsigned !== 0">
+        <span ng-if="task.userAssigned !== 0">
           <strong>Assigned to:</strong>
-          <a ng-href="#/users/single/{{task.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
+          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.userAssignedName"></a><br>
         </span>
         <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
       </div>

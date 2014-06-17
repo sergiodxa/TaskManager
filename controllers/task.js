@@ -47,7 +47,7 @@ exports.add = function (req, res) {
 
   model.add(task, function (response) {
     if (response === 'Task added') {
-      res.send('Task added');
+      res.send(response);
     } else if (response === false) {
       res.send('An error has ocurred');
     }

@@ -2,47 +2,29 @@
   <article class="col-md-8 col-md-offset-2">
     <div class="panel panel-info">
 
-      <header ng-bind="proyecto.project_name" class="panel-heading"></header>
+      <header ng-bind="project.project_name" class="panel-heading"></header>
 
       <div class="panel-body">
-        <strong>Cliente: </strong>
-        <a ng-href="#/clientes/{{proyecto.client}}" ng-bind="proyecto.client"></a>
+        <strong>Project owner: </strong>
+        <a ng-href="#/clientes/{{project.owner}}" ng-bind="project.owner"></a>
 
-        <div class="row">
-          <div class="col-md-12">
-            <legend>Fecha de entrega</legend>
-          </div>
+        <strong>Release date: </strong>
+        <span ng-bind="project.releaseDate"></span><br>
 
-          <div class="col-md-4">
-            <strong>
-              Deseada:
-            </strong><br>
-            <span ng-bind="proyecto.release_date_best"></span>
-          </div>
-
-          <div class="col-md-4">
-            <strong>
-              Esperada:
-            </strong><br>
-            <span ng-bind="proyecto.release_date_expected"></span>
-          </div>
-
-          <div class="col-md-4">
-            <strong>
-              Peor:
-            </strong><br>
-            <span ng-bind="proyecto.release_date_worst"></span>
-          </div>
-        </div>
-
-        <legend>Descripción:</legend>
-        <div ng-bind="proyecto.description"></div>
+        <legend>Description:</legend>
+        <div ng-bind="project.description"></div>
       </div>
 
       <footer class="panel-footer">
-        <a ng-href="#/proyectos/{{proyecto.project_name}}/tareas" class="btn btn-sm btn-block btn-info">
-          <span class="glyphicon glyphicon-tasks"></span> Ver tareas
+        <a ng-href="#/tasks/by/project/{{project.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-tasks"></span> View tasks
         </a>
+        <a ng-href="#/projects/edit/{{project.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-pencil"></span> Edit project
+        </a>
+        <button ng-click="deleteProject()" class="btn btn-sm btn-block btn-danger">
+          <span class="glyphicon glyphicon-remove"></span> Delete project
+        </button>
       </footer>
 
     </div>

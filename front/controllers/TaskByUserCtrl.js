@@ -19,8 +19,8 @@ function TaskByUserCtrl ($scope, tasks) {
     for (task in $scope.tasks) {
       if ($scope.tasks[task].stateName === stateName) {
         taskList.push($scope.tasks[task]);
-      }
-    }
+      };
+    };
 
     // obtenemos los datos de la tarea
     var targetTask   = taskList[index];
@@ -41,9 +41,9 @@ function TaskByUserCtrl ($scope, tasks) {
         tasks.getByUser(userId).then(function (response) {
           if (response.data !== 'error') {
             $scope.tasks = response.data;
-          }
+          };
         });
-      }
+      };
     });
   });
   $('.col-md-3').on('dragover', function(event) {
@@ -53,5 +53,4 @@ function TaskByUserCtrl ($scope, tasks) {
   $('.col-md-3').on('dragleave', function(event) {
     $(this).removeClass('bg-info');
   });
-
-}
+};

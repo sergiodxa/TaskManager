@@ -12,8 +12,8 @@ function UserNewCtrl ($scope, users) {
       $scope.newPassIncorrect = false;
     } else {
       $scope.newPassIncorrect = true;
-    }
-  }
+    };
+  };
 
   $scope.sendForm = function () {
     if ($scope.newPassIncorrect === false) {
@@ -23,9 +23,8 @@ function UserNewCtrl ($scope, users) {
           $scope.user = {};
         } else if (response.data === 'An error has ocurred') {
           console.log(response.data);
-        }
+        };
       });
-    }
-  }
-
-}
+    };
+  };
+};

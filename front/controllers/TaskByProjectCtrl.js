@@ -42,7 +42,7 @@ function TaskByProjectCtrl ($scope, tasks) {
         tasks.getByProject(projectId).then(function (response) {
           if (response.data !== 'error') {
             $scope.tasks = response.data;
-          }
+          };
         });
       }
     });
@@ -54,5 +54,4 @@ function TaskByProjectCtrl ($scope, tasks) {
   $('.col-md-3').on('dragleave', function(event) {
     $(this).removeClass('bg-info');
   });
-
 };
