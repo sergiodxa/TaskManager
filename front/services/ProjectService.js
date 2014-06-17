@@ -39,4 +39,11 @@ TaskManager.service('projects', function($http) {
       url   : '/api/projects/delete/' + id
     });
   };
+
+  this.getOnlyScrumMasters = function () {
+    return $http({
+      method: 'GET',
+      url   : '/api/users/only/scrummasters'
+    });
+  };
 });

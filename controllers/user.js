@@ -14,6 +14,12 @@ exports.getSingle = function (req, res) {
   });
 };
 
+exports.getOnlyScrumMasters = function (req, res) {
+  model.getOnlyScrumMasters(function (users) {
+    res.send(users);
+  });
+};
+
 exports.add = function (req, res) {
   var user = JSON.parse(req.query.user);
 

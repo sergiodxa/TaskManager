@@ -6,7 +6,10 @@
 
       <div class="panel-body">
         <strong>Project owner: </strong>
-        <a ng-href="#/clientes/{{project.owner}}" ng-bind="project.owner"></a>
+        <a ng-href="#/clients/single/{{project.owner}}" ng-bind="project.owner"></a><br>
+
+        <strong>Scrum Master: </strong>
+        <a ng-href="#/users/single/{{project.scrumMaster}}" ng-bind="project.scrumMaster"></a><br>
 
         <strong>Release date: </strong>
         <span ng-bind="project.releaseDate"></span><br>

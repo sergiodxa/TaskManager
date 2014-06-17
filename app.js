@@ -22,6 +22,7 @@ app.get('/', function (req, res) {
   // Users routes
 app.get('/api/users/get/all', user.getAll);
 app.get('/api/users/get/single/:id', user.getSingle);
+app.get('/api/users/only/scrummasters', user.getOnlyScrumMasters);
 app.post('/api/users/add', user.add);
 app.post('/api/users/edit/:id', user.edit);
 app.post('/api/users/delete/:id', user.erase);

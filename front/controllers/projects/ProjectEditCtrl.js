@@ -1,4 +1,4 @@
-function ProjectEditCtrl ($scope, $routeParams, projects) {
+function ProjectEditCtrl ($scope, $routeParams, projects, users) {
   var id = $routeParams.id;
 
   $scope.projectEdited = false;
@@ -6,6 +6,10 @@ function ProjectEditCtrl ($scope, $routeParams, projects) {
   projects.getSingle(id).then(function (response) {
     $scope.project = response.data;
   });
+
+  users.getOnlyScrumMasters().then(function(response) {
+    $scope.project = response.data;
+  })
 
   $scope.sendForm = function () {
     projects.edit($scope.project.id, $scope.project).then(function (response) {

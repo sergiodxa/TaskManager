@@ -63,7 +63,6 @@ TaskManager.service('tasks', function($http) {
       return 3;
     } else if (stateName === 'completed') {
       return 4;
-    }
+    };
   };
-
 });

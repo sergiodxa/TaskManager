@@ -38,6 +38,20 @@ exports.getAll = function (callback) {
   });
 };
 
+// método para obtener todos los usuario que sean ScrumMasters
+exports.getOnlyScrumMasters = function (callback) {
+  myconnection(function (pool) {
+    var query = 'SELECT * FROM projects WHERE position = "ScrumMaster"';
+    pool.query(query, function (err, response) {
+      if (err) {
+        callback(false);
+        return;
+      }
+      callback(response);
+    });
+  });
+}
+
 // método para crear un nuevo user
 exports.add = function (user, callback) {
   myconnection(function (pool) {
