@@ -1,46 +1,15 @@
 var gulp        = require('gulp'),
-    runSequence = require('run-sequence'),
-    jasmine     = require('gulp-jasmine'),
+    concat      = require('gulp-concat');
     jsmin       = require('gulp-jsmin'),
     rename      = require('gulp-rename'),
     watch       = require('gulp-watch');
-    concat      = require('gulp-concat');
 
-gulp.task('minify', function(callback) {
-  runSequence('minify controllers',
-              'minify services',
-              'minify app',
-              callback);
-});
-
-gulp.task('minify controllers', function () {
-  gulp.src('front/controllers/**/*.js')
+gulp.task('minify', function () {
+  gulp.src(['front/controllers/**/*.js','front/services/*.js','front/app.js'])
       .pipe(watch())
       .pipe(jsmin())
       .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('front/minified'));
-});
-
-gulp.task('minify services', function () {
-  gulp.src('front/services/*.js')
-      .pipe(watch())
-      .pipe(jsmin())
-      .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest('front/minified'));
-});
-
-gulp.task('minify app', function () {
-  gulp.src('front/app.js')
-      .pipe(watch())
-      .pipe(jsmin())
-      .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest('front/minified'));
-});
-
-gulp.task('jasmine tests', function () {
-    gulp.src('spec/*.spec.js')
-        .pipe(watch())
-        .pipe(jasmine());
 });
 
 gulp.task('merge', function () {

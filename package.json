@@ -9,6 +9,13 @@
     "less": "1.7.*",
     "mysql": "2.3.*"
   },
+  "devDependencies": {
+    "gulp": "^3.8.0",
+    "gulp-concat": "^2.2.0",
+    "gulp-jsmin": "^0.1.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-watch": "^0.6.6"
+  },
   "scripts": {
     "merge": "gulp merge",
     "minify": "gulp minify",
@@ -29,14 +36,5 @@
     "url": "https://github.com/sergiodxa/TaskManager/issues"
   },
   "private": true,
-  "homepage": "https://github.com/sergiodxa/TaskManager",
-  "devDependencies": {
-    "gulp": "^3.8.0",
-    "gulp-watch": "^0.6.6",
-    "gulp-jsmin": "^0.1.4",
-    "gulp-rename": "^1.2.0",
-    "run-sequence": "^0.3.6",
-    "gulp-jasmine": "^0.2.0",
-    "gulp-concat": "^2.2.0"
-  }
+  "homepage": "https://github.com/sergiodxa/TaskManager"
 }
