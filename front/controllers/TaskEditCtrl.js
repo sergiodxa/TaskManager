@@ -1,10 +1,14 @@
-function TaskEditCtrl ($scope, $routeParams, tasks) {
+function TaskEditCtrl ($scope, $routeParams, tasks, projects) {
   var id = $routeParams.id;
   $scope.taskEdited = false;
 
   tasks.getSingle(id).then(function (response) {
     $scope.task = response.data;
   });
+
+  projects.getAll().then(function (response) {
+    $scope.projects = response.data;
+  })
 
   $scope.sendForm = function () {
     tasks.edit(id, $scope.task).then(function (response) {

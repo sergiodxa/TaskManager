@@ -7,7 +7,7 @@
       <header ng-bind="task.name" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.project"></a><br>
+        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a><br>
         <span ng-if="task.userAsigned !== 0">
           <strong>Assigned to:</strong>
           <a ng-href="#/users/single/{{task.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
@@ -32,7 +32,7 @@
       <header ng-bind="task.name" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.project"></a>
+        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
         <br>
         <strong>Doing: </strong>
         <a ng-href="#/users/single/{{task.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
@@ -56,7 +56,7 @@
       <header ng-bind="task.name" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.project"></a>
+        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
         <br>
         <strong>Testing: </strong>
         <a ng-href="#/users/single/{{task.userAsigned}}" ng-bind="task.userAsignedName"></a><br>
@@ -83,7 +83,7 @@
       <header ng-bind="task.name" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.project"></a>
+        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
         <br>
         <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
         <span ng-if="task.requiredTime != NULL"><br>

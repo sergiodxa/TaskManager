@@ -2,8 +2,9 @@
 var express = require('express');
 
 // Controllers
-var user = require('./controllers/user');
+var project = require('./controllers/project');
 var task = require('./controllers/task');
+var user = require('./controllers/user');
 
 // Start app
 var app = express();
@@ -33,6 +34,13 @@ app.get('/api/tasks/get/by/project/:id', task.getByProject);
 app.post('/api/tasks/add', task.add);
 app.post('/api/tasks/edit/:id', task.edit);
 app.post('/api/tasks/delete/:id', task.erase);
+
+  // Project routes
+app.get('/api/projects/get/all', project.getAll);
+app.get('/api/projects/get/single/:id', project.getSingle);
+app.post('/api/projects/add', project.add);
+app.post('/api/projects/edit/:id', project.edit);
+app.post('/api/projects/delete/:id', project.erase);
 
 /*app.get('/test', function(req, res) {
   Modelusers.erase(5, function (response) {

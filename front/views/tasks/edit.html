@@ -20,7 +20,7 @@
           <div class="form-group">
             <label for="project">Project</label>
             <select name="project" id="project" class="form-control" required ng-model="task.project">
-              <option ng-value="{{task.project}}">{{task.project}}</option>
+              <option ng-repeat="project in projects" ng-value="{{project.id}}">{{project.name}}</option>
             </select>
           </div>
           <div class="form-group">
