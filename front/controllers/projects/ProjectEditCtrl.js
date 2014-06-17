@@ -9,7 +9,7 @@ function ProjectEditCtrl ($scope, $routeParams, projects, users) {
 
   users.getOnlyScrumMasters().then(function(response) {
     $scope.project = response.data;
-  })
+  });
 
   $scope.sendForm = function () {
     projects.edit($scope.project.id, $scope.project).then(function (response) {

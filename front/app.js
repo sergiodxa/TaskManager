@@ -8,7 +8,7 @@ var TaskManager = angular.module('TaskManager', ['ngRoute']);
 TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvider) {
 
   $routeProvider
-    /*.when('/clients', {
+    .when('/clients', {
       controller : ClientListCtrl,
       templateUrl: 'views/clients/list.html'
     })
@@ -23,7 +23,7 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
     .when('/clients/add', {
       controller : ClientNewCtrl,
       templateUrl: 'views/clients/new.html'
-    })*/
+    })
     .when('/projects', {
       controller : ProjectListCtrl,
       templateUrl: 'views/projects/list.html'
