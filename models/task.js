@@ -1,6 +1,7 @@
 var myconnection    = require('../modules/myconnection');
 var assignStateName = require('../modules/assignstatename');
 var user            = require('./user.js');
+var project         = require('./project.js');
 
 // método para obtener todos los datos de una tarea
 exports.getSingle = function (id, callback) {
@@ -19,11 +20,18 @@ exports.getSingle = function (id, callback) {
           user.getSingle(task.userAsigned, function (userData) {
             task.userAsignedName = userData.fullName;
             task = assignStateName(task);
-            callback(task);
+            project.getSingle(task.project, function (projectData) {
+              task.projectName = projectData.name;
+              callback(task);
+            });
           });
         } else {
-            task.userAsignedName = null;
-            task = assignStateName(task);
+          task.userAsignedName = null;
+          task = assignStateName(task);
+          project.getSingle(task.project, function (projectData) {
+            task.projectName = projectData.name;
+            callback(task);
+          });
           callback(task);
         }
       } else {
@@ -53,7 +61,13 @@ exports.getAll = function (callback) {
           }
           tasks[i] = assignStateName(tasks[i]);
         }
-        callback(tasks);
+        project.getAll(function (projectData) {
+          for (var i = 0; i < tasks.length; ++i) {
+            var projectId = tasks[i].project-1;
+            tasks[i].projectName = projectData[projectId].name;
+          }
+          callback(tasks);
+        });
       });
     });
   });
