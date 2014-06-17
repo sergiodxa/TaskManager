@@ -34,6 +34,20 @@ exports.getAll = function (callback) {
   });
 };
 
+// método para obtener todos los proyectos de un client
+exports.getByClient = function (id, callback) {
+  myconnection(function (pool) {
+    var query = 'SELECT * FROM projects WHERE client = ' + pool.escape(id);
+    pool.query(query, function (err, response) {
+      if (err) {
+        callback(false);
+        return;
+      }
+      callback(response);
+    });
+  });
+};
+
 // método para crear un nuevo user
 exports.add = function (project, callback) {
   myconnection(function (pool) {

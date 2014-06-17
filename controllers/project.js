@@ -14,6 +14,18 @@ exports.getSingle = function (req, res) {
   });
 };
 
+exports.getByClient = function (req, res) {
+  var clientId = req.params.id;
+
+  model.getByProject(clientId, function (projects) {
+    if (projects === false) {
+      res.send('Error');
+    } else {
+      res.send(projects);
+    }
+  });
+};
+
 exports.add = function (req, res) {
   var project = JSON.parse(req.query.project);
 

@@ -28,6 +28,10 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       controller : ProjectListCtrl,
       templateUrl: 'views/projects/list.html'
     })
+    .when('/projects/by/client/:id', {
+      controller : ProjectByClientCtrl,
+      templateUrl: 'views/projects/list.html'
+    })
     .when('/projects/single/:id', {
       controller : ProjectDetailCtrl,
       templateUrl: 'views/projects/detail.html'

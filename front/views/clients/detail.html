@@ -1,0 +1,29 @@
+<section class="row">
+  <article class="col-md-8 col-md-offset-2">
+    <div class="panel panel-info">
+
+      <header ng-bind="client.name" class="panel-heading"></header>
+
+      <div class="panel-body">
+        <strong>Email: </strong>
+        <span ng-bind="client.email"></span><br>
+
+        <strong>Telephone: </strong>
+        <span ng-bind="client.telephone"></span><br>
+      </div>
+
+      <footer class="panel-footer">
+        <a ng-href="#/tasks/by/client/{{client.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-tasks"></span> View tasks
+        </a>
+        <a ng-href="#/clients/edit/{{client.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-pencil"></span> Edit client
+        </a>
+        <button ng-click="deleteClient()" class="btn btn-sm btn-block btn-danger">
+          <span class="glyphicon glyphicon-remove"></span> Delete client
+        </button>
+      </footer>
+
+    </div>
+  </article>
+</section>

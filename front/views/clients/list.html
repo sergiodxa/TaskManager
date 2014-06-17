@@ -1,0 +1,32 @@
+<section class="row">
+  <legend class="text-center">
+    Clients
+    <a ng-href="#/clients/add/" class="btn btn-sm btn-link pull-right">
+      <span class="glyphicon glyphicon-plus"></span> Add client
+    </a>
+  </legend>
+  <article ng-repeat="client in clients" class="col-md-6">
+    <div class="panel panel-info">
+
+      <header ng-bind="client.name" class="panel-heading text-center"></header>
+
+      <div class="panel-body">
+        <strong>Email: </strong>
+        <span ng-bind="client.email"></span><br>
+
+        <strong>Telephone: </strong>
+        <span ng-bind="client.telephone"></span><br>
+      </div>
+
+      <footer class="panel-footer">
+        <a ng-href="#/clients/{{client.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-list-alt"></span> View details
+        </a>
+        <a ng-href="#/projects/by/client/{{client.id}}" class="btn btn-sm btn-block btn-default">
+          <span class="glyphicon glyphicon-tasks"></span> View projects
+        </a>
+      </footer>
+
+    </div>
+  </article>
+</section>
