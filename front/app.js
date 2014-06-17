@@ -8,20 +8,36 @@ var TaskManager = angular.module('TaskManager', ['ngRoute']);
 TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvider) {
 
   $routeProvider
-    .when('/users', {
-      controller : UserListCtrl,
-      templateUrl: 'views/users/list.html'
+    /*.when('/clients', {
+      controller : ClientListCtrl,
+      templateUrl: 'views/clients/list.html'
     })
-    .when('/users/single/:id', {
-      controller : UserDetailCtrl,
-      templateUrl: 'views/users/detail.html'
+    .when('/clients/single/:id', {
+      controller : ClientDetailCtrl,
+      templateUrl: 'views/clients/detail.html'
     })
-    .when('/users/edit/:id', {
-      controller : UserEditCtrl,
-      templateUrl: 'views/users/edit.html'
+    .when('/clients/edit/:id', {
+      controller : ClientEditCtrl,
+      templateUrl: 'views/clients/edit.html'
     })
-    .when('/users/add', {
-      controller : UserNewCtrl,
+    .when('/clients/add', {
+      controller : ClientNewCtrl,
+      templateUrl: 'views/clients/new.html'
+    })*/
+    .when('/projects', {
+      controller : ProjectListCtrl,
+      templateUrl: 'views/projects/list.html'
+    })
+    .when('/projects/single/:id', {
+      controller : ProjectDetailCtrl,
+      templateUrl: 'views/projects/detail.html'
+    })
+    .when('/projects/edit/:id', {
+      controller : ProjectEditCtrl,
+      templateUrl: 'views/projects/edit.html'
+    })
+    .when('/projects/add', {
+      controller : ProjectNewCtrl,
       templateUrl: 'views/users/new.html'
     })
     .when('/tasks', {
@@ -48,20 +64,20 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       controller : TaskNewCtrl,
       templateUrl: 'views/tasks/new.html'
     })
-    .when('/projects', {
-      controller : ProjectListCtrl,
-      templateUrl: 'views/projects/list.html'
+    .when('/users', {
+      controller : UserListCtrl,
+      templateUrl: 'views/users/list.html'
     })
-    .when('/projects/single/:id', {
-      controller : ProjectDetailCtrl,
-      templateUrl: 'views/projects/detail.html'
+    .when('/users/single/:id', {
+      controller : UserDetailCtrl,
+      templateUrl: 'views/users/detail.html'
     })
-    .when('/projects/edit/:id', {
-      controller : ProjectEditCtrl,
-      templateUrl: 'views/projects/edit.html'
+    .when('/users/edit/:id', {
+      controller : UserEditCtrl,
+      templateUrl: 'views/users/edit.html'
     })
-    .when('/projects/add', {
-      controller : ProjectNewCtrl,
+    .when('/users/add', {
+      controller : UserNewCtrl,
       templateUrl: 'views/users/new.html'
     })
     .otherwise({ redirectTo: '/tasks' });

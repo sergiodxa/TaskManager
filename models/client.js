@@ -1,6 +1,6 @@
 var myconnection = require('../modules/myconnection');
 
-// método para obtener todos los datos de un user
+// método para obtener todos los datos de un cliente
 exports.getSingle = function (id, callback) {
   myconnection(function (pool) {
     var query = 'SELECT * FROM clients WHERE id = ' + id;
@@ -20,7 +20,7 @@ exports.getSingle = function (id, callback) {
   });
 };
 
-// método para obtener los datos de todos los users
+// método para obtener los datos de todos los clients
 exports.getAll = function (callback) {
   myconnection(function (pool) {
     var query = 'SELECT * FROM clients';
@@ -34,7 +34,7 @@ exports.getAll = function (callback) {
   });
 };
 
-// método para crear un nuevo user
+// método para crear un nuevo cliente
 exports.add = function (project, callback) {
   myconnection(function (pool) {
     var query = 'INSERT INTO clients (name, email, telephone) VALUES (' + pool.escape(project.name) + ', ' + pool.escape(project.email) + ', ' + pool.escape(project.telephone) + ')';
@@ -48,7 +48,7 @@ exports.add = function (project, callback) {
   });
 };
 
-// método para modificar un user
+// método para modificar un cliente
 exports.edit = function (id, project, callback) {
   myconnection(function (pool) {
     var query = 'UPDATE clients SET name = ' + pool.escape(project.name) + ', email = ' + pool.escape(project.email) + ', telephone = ' + pool.escape(project.telephone) + ' WHERE id = ' + id;
@@ -63,7 +63,7 @@ exports.edit = function (id, project, callback) {
   });
 };
 
-// método para eliminar un user
+// método para eliminar un cliente
 exports.erase = function (id, callback) {
   myconnection(function (pool) {
     var query = 'DELETE FROM clients WHERE id = ' + id;
