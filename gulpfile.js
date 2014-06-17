@@ -13,7 +13,7 @@ gulp.task('build', function(callback) {
 });
 
 gulp.task('minify controllers', function () {
-  gulp.src('front/controllers/*.js')
+  gulp.src('front/controllers/**/*.js')
       .pipe(watch())
       .pipe(jsmin())
       .pipe(rename({suffix: '.min'}))
