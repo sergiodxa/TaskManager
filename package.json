@@ -1,5 +1,5 @@
 {
-  "name": "TaskMnager",
+  "name": "TaskManager",
   "version": "0.1.0",
   "description": "WebApp para controlar tareas en proyectos.",
   "main": "app.js",

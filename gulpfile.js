@@ -1,5 +1,5 @@
 var gulp        = require('gulp'),
-    concat      = require('gulp-concat');
+    concat      = require('gulp-concat'),
     jsmin       = require('gulp-jsmin'),
     rename      = require('gulp-rename'),
     watch       = require('gulp-watch');
