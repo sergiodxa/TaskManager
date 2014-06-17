@@ -1,4 +1,5 @@
 var myconnection = require('../modules/myconnection');
+var client       = require('./client');
 
 // método para obtener todos los datos de un user
 exports.getSingle = function (id, callback) {
@@ -12,6 +13,10 @@ exports.getSingle = function (id, callback) {
 
       if (response.length === 1) {
         var project = response[0];
+        var clientId = project.owner;
+        client.getSingle(clientId, function (client) {
+          project.ownerName = client.name;
+        })
         callback(project);
       } else {
         callback('That project doesn\'t exist');
@@ -24,12 +29,19 @@ exports.getSingle = function (id, callback) {
 exports.getAll = function (callback) {
   myconnection(function (pool) {
     var query = 'SELECT * FROM projects';
-    pool.query(query, function (err, response) {
+    pool.query(query, function (err, projects) {
       if (err) {
         callback(false);
         return;
       }
-      callback(response);
+      // obtenemos los datos de todos los clients para saber sus nombres
+      client.getAll(function (clientsData) {
+        for (var i = 0; i < projects.length; ++i) {
+          var clientId = projects[i].userAsigned-1;
+          projects[i].ownerName = clientsData[clientId].name;
+        }
+        callback(projects)
+      });
     });
   });
 };
@@ -38,12 +50,17 @@ exports.getAll = function (callback) {
 exports.getByClient = function (id, callback) {
   myconnection(function (pool) {
     var query = 'SELECT * FROM projects WHERE client = ' + pool.escape(id);
-    pool.query(query, function (err, response) {
+    pool.query(query, function (err, projects) {
       if (err) {
         callback(false);
         return;
       }
-      callback(response);
+      client.getSingle(id, function (clientData) {
+        for (var i = 0; i < projects.length; ++i) {
+          projects.ownerName = client.name;
+        }
+        callback(projects);
+      });
     });
   });
 };

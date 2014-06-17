@@ -1,4 +1,4 @@
-function TaskNewCtrl ($scope, tasks, projects) {
+function TaskNewCtrl ($scope, tasks, projectsm users) {
 
   $scope.taskCreated = false;
   $scope.task = {};
@@ -6,6 +6,10 @@ function TaskNewCtrl ($scope, tasks, projects) {
   projects.getAll().then(function (response) {
     $scope.projects = response.data;
   });
+
+  users.getAll().then(function (response) {
+    $scope.users = response.data;
+  })
 
   $scope.sendForm = function () {
     $scope.task.state = tasks.getStateNumber($scope.task);

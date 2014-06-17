@@ -1,8 +1,16 @@
-function ProjectNewCtrl ($scope, projects) {
+function ProjectNewCtrl ($scope, projects, users, clients) {
 
   $scope.projectCreated = false;
 
   $scope.project = {};
+
+  users.getOnlyScrumMasters().then(function (response) {
+    $scope.users = response.data;
+  });
+
+  clients.getAll().then(function (response) {
+    $scope.clients = response.data;
+  });
 
   $scope.sendForm = function () {
     project.add($scope.project).then(function (response) {
