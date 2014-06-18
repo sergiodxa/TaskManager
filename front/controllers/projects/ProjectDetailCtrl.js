@@ -2,7 +2,7 @@ function ProjectDetailCtrl ($scope, $routeParams, projects) {
   var id = $routeParams.id;
 
   projects.getSingle(id).then(function (response) {
-    $scope.projects = response.data;
+    $scope.project = response.data;
   });
 
   $scope.deleteProject = function () {

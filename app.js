@@ -30,6 +30,7 @@ app.post('/api/clients/delete/:id', client.erase);
   // Project routes
 app.get('/api/projects/get/all', project.getAll);
 app.get('/api/projects/get/single/:id', project.getSingle);
+app.get('/api/projects/by/client/:id', project.getByClient);
 app.post('/api/projects/add', project.add);
 app.post('/api/projects/edit/:id', project.edit);
 app.post('/api/projects/delete/:id', project.erase);

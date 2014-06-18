@@ -1,5 +1,8 @@
-function ProjectByClientCtrl ($scope, projects) {
-  projects.getByClient().then(function (response) {
+function ProjectByClientCtrl ($scope, $routeParams, projects) {
+  var clientId = $routeParams.id;
+
+  projects.getByClient(clientId).then(function (response) {
+    console.log(response);
     $scope.projects = response.data;
   });
 };

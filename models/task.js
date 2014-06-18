@@ -14,7 +14,7 @@ exports.getSingle = function (id, callback) {
       }
       if (response.length === 1) {
         var task = response[0];
-        var userId = task.userAssigned-1;
+        var userId = task.userAssigned - 1;
         if (userId >= 0) {
         // obtenemos los datos del usuario para saber el nombre
           user.getSingle(task.userAssigned, function (userData) {
@@ -31,9 +31,7 @@ exports.getSingle = function (id, callback) {
           project.getSingle(task.project, function (projectData) {
             task.projectName = projectData.name;
             callback(task);
-          });
-          callback(task);
-        }
+          });      }
       } else {
         callback('That task doesn\'t exist');
       }
@@ -53,7 +51,7 @@ exports.getAll = function (callback) {
       // obtenemos los datos de todos los usuarios para saber sus nombres
       user.getAll(function (usersData) {
         for (var i = 0; i < tasks.length; ++i) {
-          var userId = tasks[i].userAsigned-1;
+          var userId = tasks[i].userAssigned - 1;
           if (userId >= 0) {
             tasks[i].userAssignedName = usersData[userId].fullName;
           } else {
@@ -63,7 +61,7 @@ exports.getAll = function (callback) {
         }
         project.getAll(function (projectData) {
           for (var i = 0; i < tasks.length; ++i) {
-            var projectId = tasks[i].project-1;
+            var projectId = tasks[i].project - 1;
             tasks[i].projectName = projectData[projectId].name;
           }
           callback(tasks);
@@ -85,7 +83,7 @@ exports.getByProject = function (projectId, callback) {
       // obtenemos los datos de todos los usuarios para saber sus nombres
       user.getAll(function (usersData) {
         for (var i = 0; i < tasks.length; ++i) {
-          var userId = tasks[i].userAssigned-1;
+          var userId = tasks[i].userAssigned - 1;
           if (userId >= 0) {
             tasks[i].userAssignedName = usersData[userId].fullName;
           } else {
@@ -93,7 +91,12 @@ exports.getByProject = function (projectId, callback) {
           }
           tasks[i] = assignStateName(tasks[i]);
         }
-        callback(tasks);
+        project.getSingle(projectId, function (projectData) {
+          for (var i = 0; i < tasks.length; ++i) {
+            tasks[i].projectName = projectData.name;
+          }
+          callback(tasks);
+        });
       });
     });
   });
@@ -102,7 +105,7 @@ exports.getByProject = function (projectId, callback) {
 // método para obtener todas las tareas de un usuario
 exports.getByUser = function (userId, callback) {
   myconnection(function (pool) {
-    var query = 'SELECT * FROM tasks WHERE userAsigned = ' + userId;
+    var query = 'SELECT * FROM tasks WHERE userAssigned = ' + userId;
     pool.query(query, function (err, tasks) {
       if (err) {
         callback(false);
@@ -111,7 +114,6 @@ exports.getByUser = function (userId, callback) {
       // obtenemos los datos del usuario para saber el nombre
       user.getSingle(userId, function (userData) {
         for (var i = 0; i < tasks.length; ++i) {
-          var userId = tasks[i].userAssigned-1;
           if (userId >= 0) {
             tasks[i].userAssignedName = userData.fullName;
           } else {
@@ -119,7 +121,13 @@ exports.getByUser = function (userId, callback) {
           }
           tasks[i] = assignStateName(tasks[i]);
         }
-        callback(tasks);
+        project.getAll(function (projectData) {
+          for (var i = 0; i < tasks.length; ++i) {
+            var projectId = tasks[i].project - 1;
+            tasks[i].projectName = projectData[projectId].name;
+          }
+          callback(tasks);
+        });
       });
     });
   });
@@ -128,7 +136,7 @@ exports.getByUser = function (userId, callback) {
 // método para crear una nueva tarea
 exports.add = function (task, callback) {
   myconnection(function (pool) {
-    var query = 'INSERT INTO tasks (name, description, project, priority, estimatedTime, requiredTime, userAssigned, state) VALUES (' + pool.escape(user.name) + ', ' + pool.escape(user.description) + ', ' + pool.escape(user.project) + ', ' + pool.escape(user.priority) + ', ' + pool.escape(user.estimatedTime) + ', ' + pool.escape(user.requiredTime) +', ' + pool.escape(user.userAssigned) +', ' + pool.escape(user.state) +')';
+    var query = 'INSERT INTO tasks (name, description, project, priority, estimatedTime, requiredTime, userAssigned, state) VALUES (' + pool.escape(task.name) + ', ' + pool.escape(task.description) + ', ' + task.project + ', ' + task.priority + ', ' + task.estimatedTime + ', ' + task.requiredTime +', ' + task.userAssigned +', ' + task.state +')';
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);

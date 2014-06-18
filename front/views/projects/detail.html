@@ -1,6 +1,6 @@
 <section class="row">
   <article class="col-md-8 col-md-offset-2">
-    <div class="panel panel-info">
+    <div class="panel panel-default">
 
       <header ng-bind="project.name" class="panel-heading"></header>
 
@@ -9,7 +9,7 @@
         <a ng-href="#/clients/single/{{project.owner}}" ng-bind="project.ownerName"></a><br>
 
         <strong>Scrum Master: </strong>
-        <a ng-href="#/users/single/{{project.scrumMaster}}" ng-bind="project.scrumMaster"></a><br>
+        <a ng-href="#/users/single/{{project.scrumMaster}}" ng-bind="project.scrumMasterName"></a><br>
 
         <strong>Release date: </strong>
         <span ng-bind="project.releaseDate"></span><br>

@@ -22,12 +22,12 @@
           <div class="form-group">
             <label for="scrummaster">Scrum Master</label>
             <select name="scrummaster" id="scrummaster" class="form-control" required ng-model="task.scrumMaster">
-              <option ng-repeat="user in users" ng-value="{{user.id}}">{{user.name}}</option>
+              <option ng-repeat="user in users" ng-value="{{user.id}}">{{user.fullName}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" class="form-control" ng-model="task.description" placeholder="Description" required rows="4"></textarea>
+            <textarea id="description" class="form-control" ng-model="project.description" placeholder="Description" required rows="4"></textarea>
           </div>
           <div class="form-group">
             <label for="release-date">Release Date</label>

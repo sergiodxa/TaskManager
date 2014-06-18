@@ -18,7 +18,7 @@ TaskManager.service('projects', function($http) {
       method: 'POST',
       url   : '/api/projects/edit/' + id,
       params: {
-        user: data
+        project: data
       }
     });
   };
@@ -28,7 +28,7 @@ TaskManager.service('projects', function($http) {
       method: 'POST',
       url   : '/api/projects/add',
       params: {
-        user: data
+        project: data
       }
     });
   };
@@ -37,6 +37,13 @@ TaskManager.service('projects', function($http) {
     return $http({
       method: 'POST',
       url   : '/api/projects/delete/' + id
+    });
+  };
+
+  this.getByClient = function (id) {
+    return $http({
+      method: 'GET',
+      url   : '/api/projects/by/client/' + id
     });
   };
 

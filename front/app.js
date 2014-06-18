@@ -42,7 +42,7 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
     })
     .when('/projects/add', {
       controller : ProjectNewCtrl,
-      templateUrl: 'views/users/new.html'
+      templateUrl: 'views/projects/new.html'
     })
     .when('/tasks', {
       controller : TaskListCtrl,

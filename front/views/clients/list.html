@@ -6,20 +6,23 @@
     </a>
   </legend>
   <article ng-repeat="client in clients" class="col-md-6">
-    <div class="panel panel-info">
+    <div class="panel panel-default">
 
       <header ng-bind="client.name" class="panel-heading text-center"></header>
 
       <div class="panel-body">
         <strong>Email: </strong>
-        <span ng-bind="client.email"></span><br>
+        <a ng-href="mailto:{{client.email}}" ng-bind="client.email"></a><br>
+
+        <strong>Address: </strong>
+        <span ng-bind="client.address"></span><br>
 
         <strong>Telephone: </strong>
         <span ng-bind="client.telephone"></span><br>
       </div>
 
       <footer class="panel-footer">
-        <a ng-href="#/clients/{{client.id}}" class="btn btn-sm btn-block btn-default">
+        <a ng-href="#/clients/single/{{client.id}}" class="btn btn-sm btn-block btn-default">
           <span class="glyphicon glyphicon-list-alt"></span> View details
         </a>
         <a ng-href="#/projects/by/client/{{client.id}}" class="btn btn-sm btn-block btn-default">

@@ -13,7 +13,7 @@ function ProjectNewCtrl ($scope, projects, users, clients) {
   });
 
   $scope.sendForm = function () {
-    project.add($scope.project).then(function (response) {
+    projects.add($scope.project).then(function (response) {
       if (response.data === 'Project edited') {
         $scope.projectCreated = true;
         $scope.project = {};

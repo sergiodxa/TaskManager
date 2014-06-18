@@ -17,7 +17,7 @@ exports.getSingle = function (req, res) {
 exports.getByClient = function (req, res) {
   var clientId = req.params.id;
 
-  model.getByProject(clientId, function (projects) {
+  model.getByClient(clientId, function (projects) {
     if (projects === false) {
       res.send('Error');
     } else {

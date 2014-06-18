@@ -1,4 +1,4 @@
-function TaskNewCtrl ($scope, tasks, projectsm users) {
+function TaskNewCtrl ($scope, tasks, projects, users) {
 
   $scope.taskCreated = false;
   $scope.task = {};
@@ -12,7 +12,11 @@ function TaskNewCtrl ($scope, tasks, projectsm users) {
   })
 
   $scope.sendForm = function () {
-    $scope.task.state = tasks.getStateNumber($scope.task);
+    $scope.task.estimatedTime = parseInt($scope.task.estimatedTime);
+    $scope.task.project = parseInt($scope.task.project);
+    $scope.task.requiredTime = null;
+    $scope.task.state = 1;
+    $scope.task.userAssigned = parseInt($scope.task.userAssigned);
     tasks.add($scope.task).then(function (response) {
       if (response.data === 'Task added') {
         $scope.taskCreatedTxt = response.data;

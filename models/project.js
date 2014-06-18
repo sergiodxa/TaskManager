@@ -1,5 +1,6 @@
 var myconnection = require('../modules/myconnection');
 var client       = require('./client');
+var users        = require('./user');
 
 // método para obtener todos los datos de un user
 exports.getSingle = function (id, callback) {
@@ -12,12 +13,16 @@ exports.getSingle = function (id, callback) {
       }
 
       if (response.length === 1) {
-        var project = response[0];
-        var clientId = project.owner;
+        var project       = response[0];
+        var clientId      = project.owner;
+        var scrumMasterId = project.scrumMaster;
         client.getSingle(clientId, function (client) {
           project.ownerName = client.name;
-        })
-        callback(project);
+          users.getSingle(scrumMasterId, function (user) {
+            project.scrumMasterName = user.fullName;
+            callback(project);
+          });
+        });
       } else {
         callback('That project doesn\'t exist');
       }
@@ -37,10 +42,16 @@ exports.getAll = function (callback) {
       // obtenemos los datos de todos los clients para saber sus nombres
       client.getAll(function (clientsData) {
         for (var i = 0; i < projects.length; ++i) {
-          var clientId = projects[i].userAsigned-1;
+          var clientId = projects[i].owner-1;
           projects[i].ownerName = clientsData[clientId].name;
         }
-        callback(projects)
+        users.getAll(function (usersData) {
+          for (var i = 0; i < projects.length; ++i) {
+            var scrumMasterId = projects[i].owner;
+            projects[i].scrumMasterName = usersData[scrumMasterId].fullName;
+          }
+          callback(projects);
+        });
       });
     });
   });
@@ -49,7 +60,7 @@ exports.getAll = function (callback) {
 // método para obtener todos los proyectos de un client
 exports.getByClient = function (id, callback) {
   myconnection(function (pool) {
-    var query = 'SELECT * FROM projects WHERE client = ' + pool.escape(id);
+    var query = 'SELECT * FROM projects WHERE owner = ' + pool.escape(id);
     pool.query(query, function (err, projects) {
       if (err) {
         callback(false);

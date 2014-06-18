@@ -41,11 +41,14 @@ exports.getAll = function (callback) {
 // método para obtener todos los usuario que sean ScrumMasters
 exports.getOnlyScrumMasters = function (callback) {
   myconnection(function (pool) {
-    var query = 'SELECT * FROM projects WHERE position = "ScrumMaster"';
+    var query = 'SELECT * FROM users WHERE position = "ScrumMaster"';
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);
         return;
+      }
+      for (var i = 0; i < response.length; ++i) {
+        response[i].fullName = response[i].firstName + ' ' + response[i].lastName;
       }
       callback(response);
     });
