@@ -13,8 +13,8 @@ var app = express();
 
 // App Config
 app.use(express.static(__dirname + '/front'));
-var puerto = 3000;
-app.listen(puerto);
+var port = 3000;
+app.listen(port);
 
 // App Routes
 app.get('/', function (req, res) {
@@ -58,4 +58,4 @@ app.post('/api/users/add', user.add);
 app.post('/api/users/edit/:id', user.edit);
 app.post('/api/users/delete/:id', user.erase);
 
-console.log('TaskManger started - App running in the port ' + puerto);
+console.log('TaskManger started - App running in the port ' + port);

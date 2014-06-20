@@ -1,6 +1,6 @@
 {
   "name": "TaskManager",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "dependencies": {
     "angular"          : "1.2.16",
     "angular-route"    : "1.2.16",
@@ -11,7 +11,7 @@
   "authors": [
     "Sergio Daniel Xalambrí <sergio@xalambri.com.ar>"
   ],
-  "description": "WebApp para controlar tareas en proyectos.",
+  "description": "WebApp to manage task in many projects.",
   "main": "app.js",
   "keywords": [
     "scrum",
