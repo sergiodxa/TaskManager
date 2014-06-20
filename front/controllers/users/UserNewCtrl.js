@@ -1,4 +1,4 @@
-function UserNewCtrl ($scope, users, session) {
+function UserNewCtrl ($scope, users, encryptor, session) {
   session.auth();
 
 
@@ -8,9 +8,10 @@ function UserNewCtrl ($scope, users, session) {
   $scope.user = {};
 
   $scope.newPassCheck = function () {
-    if ($scope.user.newPass !== '' && $scope.user.repeatPass !== '' && ($scope.user.newPass === $scope.user.repeatPass)) {
+    var newPass = encryptor.md5($scope.user.newPass);
+    if (newPass !== '' && $scope.user.repeatPass !== '' && (newPass === $scope.user.repeatPass)) {
       $scope.newPassIncorrect = false;
-    } else if ($scope.user.newPass === '') {
+    } else if (newPass === '') {
       $scope.newPassIncorrect = false;
     } else {
       $scope.newPassIncorrect = true;
@@ -19,6 +20,7 @@ function UserNewCtrl ($scope, users, session) {
 
   $scope.sendForm = function () {
     if ($scope.newPassIncorrect === false) {
+      $scope.user.newPass = encryptor.md5($scope.user.newPass);
       users.add($scope.user).then(function (response) {
         if (response.data === 'User added') {
           $scope.userCreated = true;

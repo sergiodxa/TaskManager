@@ -12,9 +12,10 @@ function UserEditCtrl ($scope, $routeParams, users, session) {
   });
 
   $scope.actualPassCheck = function () {
-    if ($scope.user.actualPass !== '' && ($scope.user.actualPass === $scope.user.pass)) {
+    var actualPass = encryptor.md5($scope.user.actualPass);
+    if (actualPass !== '' && (actualPass === $scope.user.pass)) {
       $scope.actualPassIncorrect = false;
-    } else if ($scope.user.actualPass === '') {
+    } else if (actualPass === '') {
       $scope.actualPassIncorrect = false;
     } else {
       $scope.actualPassIncorrect = true;
@@ -33,6 +34,7 @@ function UserEditCtrl ($scope, $routeParams, users, session) {
 
   $scope.sendForm = function () {
     if ($scope.actualPassIncorrect === false) {
+      $scope.user.newPass = encryptor.md5($scope.user.newPass);
       users.edit($scope.user.id, $scope.user).then(function (response) {
         if (response.data === 'User data with pass edited' || response.data === 'User data without pass edited') {
           $scope.userEditedTxt = response.data;
