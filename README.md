@@ -3,6 +3,7 @@
 * **Last change**: 6/20/2014
 * **Twitter**: [@sergiodxa](http://twitter.com/sergiodxa "@sergiodxa")
 * **Version**: 1.0.0
+
 ## English
 WebApp to manage task in many projects. You can create a client, add as many project as you want to that client, create tasks for that project and assign them to an user (a team member).
 
