@@ -22,8 +22,8 @@ function TaskNewCtrl ($scope, tasks, projects, users) {
         $scope.taskCreatedTxt = response.data;
         $scope.taskCreated = true;
         $scope.task = {};
-      } else if (response.data === 'An error has ocurred') {
-        console.log(response.data);
+      } else {
+        $scope.errorTxt = response.data;
       };
     });
   };

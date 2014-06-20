@@ -1,16 +1,18 @@
-function ClientNewCtrl ($scope, clients) {
+function ClientNewCtrl ($scope, clients, session) {
+  session.auth();
 
   $scope.clientCreated = false;
 
   $scope.client = {};
 
   $scope.sendForm = function () {
-    client.add($scope.client).then(function (response) {
-      if (response.data === 'Client edited') {
+    clients.add($scope.client).then(function (response) {
+      if (response.data === 'Client added') {
         $scope.clientCreated = true;
+        $scope.clientCreatedTxt = response.data;
         $scope.client = {};
-      } else if (response.data === 'An error has ocurred') {
-        console.log(response.data);
+      } else {
+        $scope.errorTxt = response.data;
       };
     });
   };

@@ -5,10 +5,17 @@
       <header class="panel-heading">Edit project <strong ng-bind="project.name"></strong></header>
 
       <div class="panel-body">
+          <!-- success alert -->
           <div class="alert alert-success alert-dismissable" ng-if="projectEdited">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <span ng-bind="projectEditedTxt"></span>
           </div>
+          <!-- error alert -->
+          <div class="alert alert-danger alert-dismissable" ng-if="errorText">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <span ng-bind="errorText"></span>
+          </div>
+          <!-- form -->
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" class="form-control" ng-model="project.name" placeholder="Name" required>

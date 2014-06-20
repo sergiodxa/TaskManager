@@ -8,6 +8,10 @@ var TaskManager = angular.module('TaskManager', ['ngRoute']);
 TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvider) {
 
   $routeProvider
+    .when('/login', {
+      controller : LoginCtrl,
+      templateUrl: 'views/login.html'
+    })
     .when('/clients', {
       controller : ClientListCtrl,
       templateUrl: 'views/clients/list.html'
@@ -45,7 +49,7 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       templateUrl: 'views/projects/new.html'
     })
     .when('/tasks', {
-      controller : TaskListCtrl,
+      controller : TaskByUserCtrl,
       templateUrl: 'views/tasks/list.html'
     })
     .when('/tasks/single/:id', {

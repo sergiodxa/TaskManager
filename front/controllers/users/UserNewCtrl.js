@@ -1,4 +1,6 @@
-function UserNewCtrl ($scope, users) {
+function UserNewCtrl ($scope, users, session) {
+  session.auth();
+
 
   $scope.newPassIncorrect = false;
   $scope.userCreated = false;
@@ -21,8 +23,8 @@ function UserNewCtrl ($scope, users) {
         if (response.data === 'User added') {
           $scope.userCreated = true;
           $scope.user = {};
-        } else if (response.data === 'An error has ocurred') {
-          console.log(response.data);
+        } else {
+          $scope.errorTxt = response.data;
         };
       });
     };

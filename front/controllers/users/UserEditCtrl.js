@@ -1,4 +1,6 @@
-function UserEditCtrl ($scope, $routeParams, users) {
+function UserEditCtrl ($scope, $routeParams, users, session) {
+  session.auth();
+
   var id = $routeParams.id;
 
   $scope.actualPassIncorrect = false;
@@ -38,10 +40,8 @@ function UserEditCtrl ($scope, $routeParams, users) {
           users.getSingle(id).then(function (response) {
             $scope.user = response.data;
           });
-        } else if (response.data === response.data === 'Password wrong') {
-          $scope.newPassIncorrect = true;
-        } else if (response.data === 'false') {
-          console.log('An error has ocurred');
+        } else {
+          $scope.errorTxt = response.data;
         };
       });
     };

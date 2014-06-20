@@ -37,7 +37,7 @@ exports.getAll = function (callback) {
 // método para crear un nuevo cliente
 exports.add = function (project, callback) {
   myconnection(function (pool) {
-    var query = 'INSERT INTO clients (name, email, telephone) VALUES (' + pool.escape(project.name) + ', ' + pool.escape(project.email) + ', ' + pool.escape(project.telephone) + ')';
+    var query = 'INSERT INTO clients (name, email, address, telephone) VALUES (' + pool.escape(project.name) + ', ' + pool.escape(project.email) + ', ' + pool.escape(project.address) + ', ' + pool.escape(project.telephone) + ')';
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);

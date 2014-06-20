@@ -5,10 +5,17 @@
       <header class="panel-heading">New task</header>
 
       <div class="panel-body">
+          <!-- success alert -->
           <div class="alert alert-success alert-dismissable" ng-if="taskCreated">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <span ng-bind="taskCreatedTxt"></span>
           </div>
+          <!-- error alert -->
+          <div class="alert alert-danger alert-dismissable" ng-if="errorText">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <span ng-bind="errorText"></span>
+          </div>
+          <!-- form -->
           <div class="form-group">
             <label for="taskname">Name</label>
             <input type="text" id="taskname" class="form-control" ng-model="task.name" placeholder="Task name" required>

@@ -1,4 +1,6 @@
-function ProjectDetailCtrl ($scope, $routeParams, projects) {
+function ProjectDetailCtrl ($scope, $routeParams, projects, session) {
+  session.auth();
+
   var id = $routeParams.id;
 
   projects.getSingle(id).then(function (response) {

@@ -2,10 +2,11 @@
 var express = require('express');
 
 // Controllers
-var client = require('./controllers/client');
+var client  = require('./controllers/client');
 var project = require('./controllers/project');
-var task = require('./controllers/task');
-var user = require('./controllers/user');
+var session = require('./controllers/session');
+var task    = require('./controllers/task');
+var user    = require('./controllers/user');
 
 // Start app
 var app = express();
@@ -34,6 +35,11 @@ app.get('/api/projects/by/client/:id', project.getByClient);
 app.post('/api/projects/add', project.add);
 app.post('/api/projects/edit/:id', project.edit);
 app.post('/api/projects/delete/:id', project.erase);
+
+  // Session routes
+app.get('/api/session/login', session.login);
+app.post('/api/session/auth', session.auth);
+app.post('/api/session/logout', session.logout);
 
   // Tasks routes
 app.get('/api/tasks/get/all', task.getAll);

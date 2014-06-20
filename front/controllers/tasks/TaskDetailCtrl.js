@@ -1,4 +1,6 @@
-function TaskDetailCtrl ($scope, $routeParams, tasks) {
+function TaskDetailCtrl ($scope, $routeParams, tasks, session) {
+  session.auth();
+
   var id = $routeParams.id;
 
   $scope.itsMe = true;

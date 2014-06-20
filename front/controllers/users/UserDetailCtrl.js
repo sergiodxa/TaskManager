@@ -1,4 +1,6 @@
-function UserDetailCtrl ($scope, $routeParams, users) {
+function UserDetailCtrl ($scope, $routeParams, users, session) {
+  session.auth();
+
   var id = $routeParams.id;
 
   users.getSingle(id).then(function (response) {

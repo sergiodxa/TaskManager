@@ -5,10 +5,17 @@
       <header class="panel-heading">Create new user</header>
 
       <div class="panel-body">
+          <!-- success alert -->
           <div class="alert alert-success alert-dismissable" ng-if="userCreated">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <span>User created successfully</span>
           </div>
+          <!-- error alert -->
+          <div class="alert alert-danger alert-dismissable" ng-if="errorText">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <span ng-bind="errorText"></span>
+          </div>
+          <!-- form -->
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" class="form-control" ng-model="user.userName" placeholder="Username" required>

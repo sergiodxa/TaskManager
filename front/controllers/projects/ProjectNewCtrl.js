@@ -1,4 +1,6 @@
-function ProjectNewCtrl ($scope, projects, users, clients) {
+function ProjectNewCtrl ($scope, projects, users, clients, session) {
+  session.auth();
+
 
   $scope.projectCreated = false;
 
@@ -17,8 +19,8 @@ function ProjectNewCtrl ($scope, projects, users, clients) {
       if (response.data === 'Project edited') {
         $scope.projectCreated = true;
         $scope.project = {};
-      } else if (response.data === 'An error has ocurred') {
-        console.log(response.data);
+      } else {
+        $scope.errorTxt = response.data;
       };
     });
   };

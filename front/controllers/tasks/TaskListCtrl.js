@@ -1,6 +1,7 @@
-function TaskListCtrl ($scope, tasks) {
-  var projectId = 1;
-  var userId    = 1;
+function TaskListCtrl ($scope, tasks, session) {
+  session.auth();
+
+  var userId    = localStorage.id;
   var overActive;
 
   tasks.getAll().then(function (response) {
@@ -26,26 +27,31 @@ function TaskListCtrl ($scope, tasks) {
     // obtenemos los datos de la tarea
     var targetTask   = taskList[index];
     var targetTaskId = targetTask['id'];
+    var targetTaskUserAssigned = targetTask['userAssigned'];
 
-    // le cambiamos el stateName y el userAsigned
-    targetTask.stateName   = targetState;
-    targetTask.userAsigned = userId;
+    if (parseInt(userId) === targetTaskUserAssigned) {
+      // le cambiamos el stateName y el userAsigned
+      targetTask.stateName   = targetState;
+      targetTask.userAssigned = userId;
 
-    // obtenemos el state como número
-    targetTask.state = tasks.getStateNumber(targetState);
+      // obtenemos el state como número
+      targetTask.state = tasks.getStateNumber(targetState);
 
-    // creamos un string con los datos
-    var targetTaskData = JSON.stringify(targetTask);
+      // creamos un string con los datos
+      var targetTaskData = JSON.stringify(targetTask);
 
-    tasks.edit(targetTaskId, targetTaskData).then(function (response) {
-      if (response.data === 'Task data edited') {
-        tasks.getAll().then(function (response) {
-          if (response.data !== 'error') {
-            $scope.tasks = response.data;
-          };
-        });
-      };
-    });
+      tasks.edit(targetTaskId, targetTaskData).then(function (response) {
+        if (response.data === 'Task data edited') {
+          tasks.getByProject(projectId).then(function (response) {
+            if (response.data !== 'error') {
+              $scope.tasks = response.data;
+            };
+          });
+        }
+      });
+    } else {
+      return;
+    };
   });
   $('.col-md-3').on('dragover', function(event) {
     $(this).addClass('bg-info');

@@ -8,39 +8,6 @@
   <link rel="stylesheet" href="./vendor/bootstrap/dist/css/bootstrap-theme.min.css">
   <!-- Final JS file -->
     <script src="./dist/main.js"></script>
-  <!-- Dev files -->
-    <!-- Third-party scripts -->
-    <!-- <script src="./vendor/jquery/dist/jquery.min.js"></script>
-    <script src="./vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./vendor/angular/angular.min.js"></script>
-    <script src="./vendor/angular-route/angular-route.min.js"></script> -->
-    <!-- App -->
-    <!-- <script src="./minified/app.min.js"></script> -->
-    <!-- Angular Services -->
-    <!-- <script src="./minified/ProjectService.min.js"></script>
-    <script src="./minified/TaskService.min.js"></script>
-    <script src="./minified/UserService.min.js"></script>
-    <script src="./minified/ClientService.min.js"></script> -->
-    <!-- Angular Controllers -->
-    <!-- <script src="./minified/clients/ClientDetailCtrl.min.js"></script>
-    <script src="./minified/clients/ClientEditCtrl.min.js"></script>
-    <script src="./minified/clients/ClientListCtrl.min.js"></script>
-    <script src="./minified/clients/ClientNewCtrl.min.js"></script>
-    <script src="./minified/projects/ProjectByClientCtrl.min.js"></script>
-    <script src="./minified/projects/ProjectDetailCtrl.min.js"></script>
-    <script src="./minified/projects/ProjectEditCtrl.min.js"></script>
-    <script src="./minified/projects/ProjectListCtrl.min.js"></script>
-    <script src="./minified/projects/ProjectNewCtrl.min.js"></script>
-    <script src="./minified/tasks/TaskByProjectCtrl.min.js"></script>
-    <script src="./minified/tasks/TaskByUserCtrl.min.js"></script>
-    <script src="./minified/tasks/TaskDetailCtrl.min.js"></script>
-    <script src="./minified/tasks/TaskEditCtrl.min.js"></script>
-    <script src="./minified/tasks/TaskListCtrl.min.js"></script>
-    <script src="./minified/tasks/TaskNewCtrl.min.js"></script>
-    <script src="./minified/users/UserDetailCtrl.min.js"></script>
-    <script src="./minified/users/UserEditCtrl.min.js"></script>
-    <script src="./minified/users/UserListCtrl.min.js"></script>
-    <script src="./minified/users/UserNewCtrl.min.js"></script> -->
 </head>
 <body>
 
@@ -63,6 +30,7 @@
         <li><a href="#/users">Users</a></li>
         <li><a href="#/clients">Clients</a></li>
       </ul>
+      <button type="button" class="btn btn-default navbar-btn pull-right" ng-click="logout()" ng-controller="LogoutCtrl">Logout</button>
     </div>
   </nav>
 

@@ -1,4 +1,6 @@
-function ProjectEditCtrl ($scope, $routeParams, projects, users, clients) {
+function ProjectEditCtrl ($scope, $routeParams, projects, users, clients, session) {
+  session.auth();
+
   var id = $routeParams.id;
 
   $scope.projectEdited = false;
@@ -24,7 +26,7 @@ function ProjectEditCtrl ($scope, $routeParams, projects, users, clients) {
           $scope.project = response.data;
         });
       } else {
-        console.log('An error has ocurred');
+        $scope.errorTxt = response.data;
       };
     });
   };

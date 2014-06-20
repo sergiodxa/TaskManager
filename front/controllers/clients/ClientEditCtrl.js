@@ -1,4 +1,6 @@
-function ClientEditCtrl ($scope, $routeParams, clients) {
+function ClientEditCtrl ($scope, $routeParams, clients, session) {
+  session.auth();
+
   var id = $routeParams.id;
 
   $scope.clientEdited = false;
@@ -10,13 +12,10 @@ function ClientEditCtrl ($scope, $routeParams, clients) {
   $scope.sendForm = function () {
     clients.edit($scope.client.id, $scope.client).then(function (response) {
       if (response.data === 'Client edited') {
-        $scope.clientEditedTxt = response.data;
         $scope.clientEdited = true;
-        clients.getSingle(id).then(function (response) {
-          $scope.client = response.data;
-        });
+        $scope.clientEditedTxt = response.data;
       } else {
-        console.log('An error has ocurred');
+        $scope.errorTxt = response.data;
       };
     });
   };

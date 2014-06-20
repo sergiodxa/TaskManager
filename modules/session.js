@@ -5,62 +5,70 @@
 */
 
 var myconnection = require('./myconnection.js');
+var encryptor    = require('./encryptor');
 
 exports.login = function (user, pass, callback) {
   myconnection(function (pool) {
     if (pool === false) {
       callback(false);
     } else {
-      var query = 'SELECT user, pass FROM users WHERE user = ' + pool.escape(user) + ', pass = ' + pool.escape(pass);
-
+      var query = 'SELECT id, userName, pass FROM users WHERE userName = ' + pool.escape(user) + ' AND pass = ' + pool.escape(pass);
       pool.query(query, function (err, response) {
         if (err) {
           callback(false);
         } else if (response.length === 1) {
-          // COMENTADA PARA PRUEBAS
-          //var rand = Math.floor((Math.random() * 19992) + 1);
-          var rand = 19992;
+          var id    = response[0].id;
+          var rand  = Math.floor((Math.random() * 19992) + 1);
           var token = user + '|' + rand;
+          var token = encryptor(token);
 
-          var queryToken = 'UPDATE users SET token = ' + token + ' WHERE user = ' + pool.escape(user) + ', pass = ' + pool.escape(pass);
-
+          var queryToken = 'UPDATE users SET token = ' + pool.escape(token) + ' WHERE id = ' + pool.escape(id);
           pool.query(queryToken, function (err, response) {
             if (err) {
               callback(false);
             } else {
-              callback(token);
+              var data = {
+                "id"   : id,
+                "user" : user,
+                "token": token
+              };
+              callback(data);
             };
           });
+        } else {
+          callback(false);
         };
       });
     };
   });
 };
 
-exports.auth = function (user, token, callback) {
+exports.auth = function (id, user, token, callback) {
   myconnection(function (pool) {
     if (pool === false) {
       callback(false);
     } else {
-      var query = 'SELECT user, token FROM users WHERE user = ' + pool.escape(user) + ', token = ' + pool.escape(token);
+      var query = 'SELECT id, userName, token FROM users WHERE id = ' + pool.escape(id) + ' AND userName = ' + pool.escape(user) + ' AND token = ' + pool.escape(token);
 
       pool.query(query, function (err, response) {
         if (err) {
           callback(false);
         } else if (response.length === 1) {
           callback(true);
-        };
+        } else {
+          callback(false);
+        }
       });
     };
   });
 };
 
-exports.logout = function (user, token, callback) {
+exports.logout = function (id, user, token, callback) {
   myconnection(function (pool) {
     if (pool === false) {
       callback(false);
     } else {
-      var query = 'UPDATE users SET token = NULL WHERE user = ' + pool.escape(user) + ', token = ' + pool.escape(token);
+      var query = 'UPDATE users SET token = NULL WHERE id = ' + pool.escape(id) + ' AND userName = ' + pool.escape(user) + ' AND token = ' + pool.escape(token);
 
       pool.query(query, function (err, response) {
         if (err) {

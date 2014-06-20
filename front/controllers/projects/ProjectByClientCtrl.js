@@ -1,4 +1,6 @@
-function ProjectByClientCtrl ($scope, $routeParams, projects) {
+function ProjectByClientCtrl ($scope, $routeParams, projects, session) {
+  session.auth();
+
   var clientId = $routeParams.id;
 
   projects.getByClient(clientId).then(function (response) {
