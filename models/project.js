@@ -39,20 +39,36 @@ exports.getAll = function (callback) {
         callback(false);
         return;
       }
-      // obtenemos los datos de todos los clients para saber sus nombres
-      client.getAll(function (clientsData) {
-        for (var i = 0; i < projects.length; ++i) {
-          var clientId = projects[i].owner-1;
-          projects[i].ownerName = clientsData[clientId].name;
-        }
-        users.getAll(function (usersData) {
-          for (var i = 0; i < projects.length; ++i) {
-            var scrumMasterId = projects[i].owner;
-            projects[i].scrumMasterName = usersData[scrumMasterId].fullName;
-          }
-          callback(projects);
+      if (projects.length !== 0) {
+        // obtenemos los datos de todos los clientes para saber sus nombres
+        client.getAll(function (clientsData) {
+          for (var i1 = 0; i1 < projects.length; ++i1) {
+            var clientId = parseInt(projects[i1].owner);
+            var client;
+            for (var i2 = 0; i2 < clientsData.length; ++i2) {
+              if (clientsData[i2].id === clientId) {
+                client = i2;
+              };
+            };
+            projects[i1].ownerName = clientsData[client].name;
+          };
+          users.getAll(function (usersData) {
+            for (var i1 = 0; i1 < projects.length; ++i1) {
+              var scrumMasterId = projects[i1].scrumMaster;
+              var scrumMaster;
+              for (var i2 = 0; i2 < usersData.length; ++i2) {
+                if (usersData[i2].id === scrumMasterId) {
+                  scrumMaster = i2;
+                };
+              };
+              projects[i1].scrumMasterName = usersData[scrumMaster].fullName;
+            }
+            callback(projects);
+          });
         });
-      });
+      } else {
+        callback(false);
+      }
     });
   });
 };

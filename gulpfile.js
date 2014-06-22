@@ -6,7 +6,6 @@ var gulp        = require('gulp'),
 
 gulp.task('minify', function () {
   gulp.src(['front/controllers/**/*.js','front/services/*.js','front/app.js'])
-      .pipe(watch())
       .pipe(jsmin())
       .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('front/minified'));

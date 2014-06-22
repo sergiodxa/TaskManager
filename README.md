@@ -1,15 +1,15 @@
 # TaskManager
 * **Author**: Sergio Daniel Xalambrí
-* **Last change**: 6/20/2014
+* **Last change**: 6/22/2014
 * **Twitter**: [@sergiodxa](http://twitter.com/sergiodxa "@sergiodxa")
-* **Version**: 1.0.0
+* **Version**: 1.0.2
 
 ## English
 WebApp to manage task in many projects. You can create a client, add as many project as you want to that client, create tasks for that project and assign them to an user (a team member).
 
 ### Install and use
 
-First, you need to download the repository, you can download the [ZIP](https://github.com/sergiodxa/TaskManager/archive/master.zip "ZIP") file or clone the repository in your computer using the command: 
+First, you need to download the repository, you can download the [ZIP](https://github.com/sergiodxa/TaskManager/archive/master.zip "ZIP") file or clone the repository in your computer using the command:
 
 ```
 git clone git@github.com:sergiodxa/TaskManager.git

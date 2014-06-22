@@ -1,8 +1,5 @@
 function LoginCtrl($scope, session) {
-  if (sessionStorage.login !== 'checked') {
-    sessionStorage.login = 'checked';
-    session.auth();
-  };
+  session.auth();
 
   $scope.sendForm = function () {
     session.login($scope.userName, $scope.pass).then(function (response) {

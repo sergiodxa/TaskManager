@@ -12,7 +12,7 @@ function ClientEditCtrl ($scope, $routeParams, clients, session) {
   $scope.sendForm = function () {
     clients.edit($scope.client.id, $scope.client).then(function (response) {
       if (response.data === 'Client edited') {
-        $scope.clientEdited = true;
+        $scope.clientEdited    = true;
         $scope.clientEditedTxt = response.data;
       } else {
         $scope.errorTxt = response.data;

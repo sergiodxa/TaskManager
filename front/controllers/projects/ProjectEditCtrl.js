@@ -20,8 +20,8 @@ function ProjectEditCtrl ($scope, $routeParams, projects, users, clients, sessio
   $scope.sendForm = function () {
     projects.edit($scope.project.id, $scope.project).then(function (response) {
       if (response.data === 'Project edited') {
+        $scope.projectEdited    = true;
         $scope.projectEditedTxt = response.data;
-        $scope.projectEdited = true;
         projects.getSingle(id).then(function (response) {
           $scope.project = response.data;
         });

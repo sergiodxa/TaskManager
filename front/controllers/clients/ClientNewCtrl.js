@@ -8,9 +8,9 @@ function ClientNewCtrl ($scope, clients, session) {
   $scope.sendForm = function () {
     clients.add($scope.client).then(function (response) {
       if (response.data === 'Client added') {
-        $scope.clientCreated = true;
+        $scope.clientCreated    = true;
         $scope.clientCreatedTxt = response.data;
-        $scope.client = {};
+        $scope.client           = {};
       } else {
         $scope.errorTxt = response.data;
       };
