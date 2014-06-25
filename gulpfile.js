@@ -5,23 +5,24 @@ var gulp        = require('gulp'),
     watch       = require('gulp-watch');
 
 gulp.task('minify', function () {
-  gulp.src(['front/controllers/**/*.js','front/services/*.js','front/app.js'])
+  gulp.src(['app/controllers/**/*.js','app/services/*.js','app/app.js'])
       .pipe(jsmin())
       .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest('front/minified'));
+      .pipe(gulp.dest('app/minified'));
 });
 
 gulp.task('merge', function () {
-  gulp.src(['./front/vendor/jquery/dist/jquery.min.js',
-           './front/vendor/bootstrap/dist/js/bootstrap.min.js',
-           './front/vendor/angular/angular.min.js',
-           './front/vendor/angular-route/angular-route.min.js',
-           './front/minified/app.min.js',
-           './front/minified/ClientService.min.js',
-           './front/minified/ProjectService.min.js',
-           './front/minified/TaskService.min.js',
-           './front/minified/UserService.min.js',
-           './front/minified/**/*.min.js'])
+  gulp.src(['./app/vendor/jquery/dist/jquery.min.js',
+           './app/vendor/bootstrap/dist/js/bootstrap.min.js',
+           './app/vendor/angular/angular.min.js',
+           './app/vendor/angular-route/angular-route.min.js',
+           './app/minified/app.min.js',
+           './app/minified/ClientService.min.js',
+           './app/minified/EncryptorService.js',
+           './app/minified/ProjectService.min.js',
+           './app/minified/TaskService.min.js',
+           './app/minified/UserService.min.js',
+           './app/minified/**/*.min.js'])
       .pipe(concat('main.js'))
-      .pipe(gulp.dest('front/dist'));
+      .pipe(gulp.dest('app/dist'));
 });
