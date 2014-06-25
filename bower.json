@@ -23,10 +23,10 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "front/vendor",
+    "app/vendor",
     "test",
     "tests",
-    "front/minified",
-    "front/dist"
+    "app/minified",
+    "app/dist"
   ]
 }

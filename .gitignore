@@ -28,6 +28,6 @@ node_modules/
 .lock-wscript
 
 # frontend libraries downloaded with bower
-front/dist
-front/minified
-front/vendor
+app/dist
+app/minified
+app/vendor
