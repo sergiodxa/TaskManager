@@ -31,9 +31,7 @@ TaskManager.service('session', function ($http, encryptor){
         window.location.hash = '#/tasks';
       }
     }).error(function () {
-      if (window.location.hash !== '#/login') {
-        window.location.hash = '#/login';
-      }
+      window.location.hash = '#/login';
     });
   };
 

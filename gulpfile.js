@@ -18,6 +18,8 @@ gulp.task('merge', function () {
            './app/vendor/angular-route/angular-route.min.js',
            './app/minified/app.min.js',
            './app/minified/ClientService.min.js',
+           './app/minified/EncryptorService.js',
+           './app/minified/GitHubService.js',
            './app/minified/ProjectService.min.js',
            './app/minified/TaskService.min.js',
            './app/minified/UserService.min.js',

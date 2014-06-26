@@ -122,16 +122,10 @@ exports.getByUser = function (userId, callback) {
           tasks[i] = assignStateName(tasks[i]);
         }
         project.getAll(function (projectData) {
-          for (var i1 = 0; i1 < tasks.length; ++i1) {
-            var projectId = parseInt(tasks[i1].project);
-            var project;
-            for (var i2 = 0; i2 < projectData.length; ++i2) {
-              if (projectData[i2].id === projectId) {
-                project = i2;
-              };
-            };
-            tasks[i1].projectName = projectData[project].name;
-          };
+          for (var i = 0; i < tasks.length; ++i) {
+            var projectId = tasks[i].project - 1;
+            tasks[i].projectName = projectData[projectId].name;
+          }
           callback(tasks);
         });
       });

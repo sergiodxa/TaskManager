@@ -12,13 +12,13 @@ var user    = require('./controllers/user');
 var app = express();
 
 // App Config
-app.use(express.static(__dirname + '/front'));
+app.use(express.static(__dirname + '/app'));
 var port = 3000;
 app.listen(port);
 
 // App Routes
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/front/app.html');
+  res.sendfile(__dirname + '/app/app.html');
 });
 
   // Client routes
