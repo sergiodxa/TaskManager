@@ -1,5 +1,4 @@
 var model = require('../models/user');
-var encryptor = require('../modules/encryptor');
 
 exports.getAll = function (req, res) {
   model.getAll(function (users) {
@@ -23,7 +22,6 @@ exports.getOnlyScrumMasters = function (req, res) {
 
 exports.add = function (req, res) {
   var user = JSON.parse(req.query.user);
-  user.newPass = encryptor(user.newPass);
 
   model.add(user, function (response) {
     if (response === 'User created') {

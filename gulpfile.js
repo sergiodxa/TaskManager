@@ -5,7 +5,12 @@ var gulp        = require('gulp'),
     watch       = require('gulp-watch');
 
 gulp.task('minify', function () {
+<<<<<<< HEAD
   gulp.src(['app/controllers/**/*.js','app/services/*.js','app/app.js'])
+=======
+  gulp.src(['front/controllers/**/*.js','front/services/*.js','front/app.js'])
+      .pipe(watch())
+>>>>>>> parent of c2772b2... corregido error al obtener datos de un modelo dentro de otro cuando había un desfasaje en la cantidad de filas con los id de cada una y que impedía que funcionara bien el obtener ciertos datos
       .pipe(jsmin())
       .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('app/minified'));
