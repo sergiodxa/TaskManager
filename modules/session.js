@@ -18,7 +18,7 @@ exports.login = function (user, pass, callback) {
           callback(false);
         } else if (response.length === 1) {
           var id    = response[0].id;
-          var rand  = Math.floor((Math.random() * 19992) + 1);
+          var rand  = Math.floor((Math.random() * 29992) + 1);
           var token = user + '|' + rand;
           var token = encryptor(token);
 

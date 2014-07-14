@@ -14,8 +14,18 @@
         <strong>Release date: </strong>
         <span ng-bind="project.releaseDate"></span><br>
 
+        <strong>Github link:</strong>
+        <a ng-href="{{project.github.html_url}}">{{project.github.html_url}}</a>
+
         <legend>Description:</legend>
         <div ng-bind="project.description"></div>
+
+        <strong>List of commits:</strong>
+        <ul>
+          <li ng-repeat="commit in project.github.commits_list">
+            <a ng-href="{{commit.parents[0].html_url}}" ng-bind="commit.commit.message" target="_blank"></a>
+          </li>
+        </ul>
       </div>
 
       <footer class="panel-footer">
