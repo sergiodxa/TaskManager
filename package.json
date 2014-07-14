@@ -17,8 +17,10 @@
     "gulp-watch": "^0.6.6"
   },
   "scripts": {
-    "start": "node app",
-    "test" : "jasmine-node --color --verbose --autotest specs"
+    "build"      : "gulp minify && gulp merge",
+    "postinstall": "npm run gulp && npm start",
+    "start"      : "node app",
+    "test"       : "jasmine-node --color --verbose --autotest specs"
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,8 @@
   },
   "keywords": [
     "scrum",
-    "task"
+    "task",
+    "manager"
   ],
   "author": "Sergio Daniel Xalambrí <sergio@xalambri.com.ar>",
   "license": "MIT",
