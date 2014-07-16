@@ -37,7 +37,7 @@ exports.getAll = function (callback) {
 // método para crear un nuevo cliente
 exports.add = function (project, callback) {
   myconnection(function (pool) {
-    var query = 'INSERT INTO clients (name, email, address, telephone) VALUES (' + pool.escape(project.name) + ', ' + pool.escape(project.email) + ', ' + pool.escape(project.address) + ', ' + pool.escape(project.telephone) + ')';
+    var query = 'INSERT INTO clients (clientName, email, address, telephone) VALUES (' + pool.escape(project.clientName) + ', ' + pool.escape(project.email) + ', ' + pool.escape(project.address) + ', ' + pool.escape(project.telephone) + ')';
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);
@@ -51,7 +51,7 @@ exports.add = function (project, callback) {
 // método para modificar un cliente
 exports.edit = function (id, project, callback) {
   myconnection(function (pool) {
-    var query = 'UPDATE clients SET name = ' + pool.escape(project.name) + ', email = ' + pool.escape(project.email) + ', telephone = ' + pool.escape(project.telephone) + ' WHERE id = ' + id;
+    var query = 'UPDATE clients SET clientName = ' + pool.escape(project.clientName) + ', email = ' + pool.escape(project.email) + ', telephone = ' + pool.escape(project.telephone) + ' WHERE id = ' + id;
 
     pool.query(query, function (err, response) {
       if (err) {
