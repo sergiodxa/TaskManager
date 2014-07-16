@@ -5,7 +5,7 @@ var users        = require('./user');
 // método para obtener todos los datos de un user
 exports.getSingle = function (id, callback) {
   myconnection(function (pool) {
-    var query = 'SELECT * FROM projects WHERE id = ' + id;
+    var query = 'SELECT projects.id, projectName, description, releaseDate, clientName, userName FROM projects LEFT JOIN clients ON projects.owner = clients.id LEFT JOIN users ON projects.projectLeader = users.id WHERE projects.id = ' + id + ' GROUP BY projects.id';
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);
@@ -13,16 +13,7 @@ exports.getSingle = function (id, callback) {
       }
 
       if (response.length === 1) {
-        var project       = response[0];
-        var clientId      = project.owner;
-        var scrumMasterId = project.scrumMaster;
-        client.getSingle(clientId, function (client) {
-          project.ownerName = client.name;
-          users.getSingle(scrumMasterId, function (user) {
-            project.scrumMasterName = user.fullName;
-            callback(project);
-          });
-        });
+        callback(response[0]);
       } else {
         callback('That project doesn\'t exist');
       }
@@ -33,39 +24,14 @@ exports.getSingle = function (id, callback) {
 // método para obtener los datos de todos los users
 exports.getAll = function (callback) {
   myconnection(function (pool) {
-    var query = 'SELECT * FROM projects';
+    var query = 'SELECT projects.id, projectName, description, releaseDate, owner, , clientName, userName FROM projects LEFT JOIN clients ON projects.owner = clients.id LEFT JOIN users ON projects.projectLeader = users.id GROUP BY projects.id';
     pool.query(query, function (err, projects) {
       if (err) {
         callback(false);
         return;
       }
       if (projects.length !== 0) {
-        // obtenemos los datos de todos los clientes para saber sus nombres
-        client.getAll(function (clientsData) {
-          for (var i1 = 0; i1 < projects.length; ++i1) {
-            var clientId = parseInt(projects[i1].owner);
-            var client;
-            for (var i2 = 0; i2 < clientsData.length; ++i2) {
-              if (clientsData[i2].id === clientId) {
-                client = i2;
-              };
-            };
-            projects[i1].ownerName = clientsData[client].name;
-          };
-          users.getAll(function (usersData) {
-            for (var i1 = 0; i1 < projects.length; ++i1) {
-              var scrumMasterId = projects[i1].scrumMaster;
-              var scrumMaster;
-              for (var i2 = 0; i2 < usersData.length; ++i2) {
-                if (usersData[i2].id === scrumMasterId) {
-                  scrumMaster = i2;
-                };
-              };
-              projects[i1].scrumMasterName = usersData[scrumMaster].fullName;
-            }
-            callback(projects);
-          });
-        });
+        callback(projects);
       } else {
         callback(false);
       }
@@ -95,7 +61,7 @@ exports.getByClient = function (id, callback) {
 // método para crear un nuevo user
 exports.add = function (project, callback) {
   myconnection(function (pool) {
-    var query = 'INSERT INTO projects (name, owner, scrumMaster, description, releaseDate) VALUES (' + pool.escape(project.name) + ', ' + pool.escape(project.owner) + ', ' + pool.escape(project.scrumMaster) + ', ' + pool.escape(project.description) + ', ' + pool.escape(project.releaseDate) + ')';
+    var query = 'INSERT INTO projects (projectName, owner, scrumMaster, description, releaseDate) VALUES (' + pool.escape(project.name) + ', ' + pool.escape(project.owner) + ', ' + pool.escape(project.scrumMaster) + ', ' + pool.escape(project.description) + ', ' + pool.escape(project.releaseDate) + ')';
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);
@@ -109,7 +75,7 @@ exports.add = function (project, callback) {
 // método para modificar un user
 exports.edit = function (id, project, callback) {
   myconnection(function (pool) {
-    var query = 'UPDATE projects SET name = ' + pool.escape(project.name) + ', owner = ' + pool.escape(project.owner) + ', scrumMaster = ' + pool.escape(project.scrumMaster) + ', description = ' + pool.escape(project.description) + ' WHERE id = ' + id;
+    var query = 'UPDATE projects SET projectName = ' + pool.escape(project.name) + ', owner = ' + pool.escape(project.owner) + ', scrumMaster = ' + pool.escape(project.scrumMaster) + ', description = ' + pool.escape(project.description) + ' WHERE id = ' + id;
 
     pool.query(query, function (err, response) {
       if (err) {

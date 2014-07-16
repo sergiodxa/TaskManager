@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build"      : "gulp minify && gulp merge",
-    "postinstall": "npm run gulp && npm start",
+    "postinstall": "bower install && npm run build && npm start",
     "start"      : "node app",
     "test"       : "jasmine-node --color --verbose --autotest specs"
   },
