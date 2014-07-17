@@ -2,7 +2,7 @@
   <article class="col-md-8 col-md-offset-2">
     <form role="form" ng-submit="sendForm()" class="panel panel-default">
 
-      <header class="panel-heading">Edit project <strong ng-bind="project.name"></strong></header>
+      <header class="panel-heading">Edit project <strong ng-bind="project.projectName"></strong></header>
 
       <div class="panel-body">
           <!-- success alert -->
@@ -23,12 +23,12 @@
           <div class="form-group">
             <label for="owner">Owner</label>
             <select name="owner" id="owner" class="form-control" required ng-model="task.owner">
-              <option ng-repeat="client in clients" ng-value="{{client.id}}">{{client.name}}</option>
+              <option ng-repeat="client in clients" ng-value="{{client.id}}">{{client.clientName}}</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="scrummaster">Scrum Master</label>
-            <select name="scrummaster" id="scrummaster" class="form-control" required ng-model="task.scrumMaster">
+            <label for="projectleader">Project Leader</label>
+            <select name="projectleader" id="projectleader" class="form-control" required ng-model="task.projectLeader">
               <option ng-repeat="user in users" ng-value="{{user.id}}">{{user.fullName}}</option>
             </select>
           </div>
@@ -39,10 +39,6 @@
           <div class="form-group">
             <label for="release-date">Release Date</label>
             <input type="text" id="release-date" class="form-control" ng-model="project.releaseDate" placeholder="Release date" required>
-          </div>
-          <div class="form-group">
-            <label for="github">Github url</label>
-            <input type="text" id="github" class="form-control" ng-model="project.githubUrl" placeholder="Github url" required>
           </div>
       </div>
 
