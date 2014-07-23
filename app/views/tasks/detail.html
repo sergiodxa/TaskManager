@@ -4,7 +4,7 @@
 
       <header class="panel-heading">
         <h1 class="panel-title">
-          <span ng-bind="task.name"></span>
+          <span ng-bind="task.taskName"></span>
           <div class="label" ng-class="{'label-danger': task.stateName == 'to do', 'label-primary': task.stateName == 'in progress', 'label-warning': task.stateName == 'in testing', 'label-success': task.stateName == 'completed'}" ng-bind="task.stateName"></div>
         </h1>
       </header>

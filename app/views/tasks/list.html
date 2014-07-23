@@ -9,13 +9,13 @@
       </a>
     </legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'to do'}" class="panel panel-danger" draggable="true" data-index="{{$index}}">
-      <header ng-bind="task.name" class="panel-heading text-center"></header>
+      <header ng-bind="task.taskName" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a><br>
-        <span ng-if="task.userAssigned !== 0">
+        <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a><br>
+        <span ng-if="task.userAssigned !== null">
           <strong>Assigned to:</strong>
-          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.userAssignedName"></a><br>
+          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a><br>
         </span>
         <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
       </div>
@@ -34,13 +34,13 @@
   <section class="col-md-3" data-state="in progress">
     <legend class="text-center">In progress</legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'in progress'}" class="panel panel-primary" draggable="true" data-index="{{$index}}">
-      <header ng-bind="task.name" class="panel-heading text-center"></header>
+      <header ng-bind="task.taskName" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
         <br>
         <strong>Doing: </strong>
-        <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.userAssignedName"></a><br>
+        <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a><br>
         <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
       </div>
       <footer class="panel-footer">
@@ -58,13 +58,13 @@
   <section class="col-md-3" data-state="in testing">
     <legend class="text-center">In testing</legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'in testing'}" class="panel panel-warning" draggable="true" data-index="{{$index}}">
-      <header ng-bind="task.name" class="panel-heading text-center"></header>
+      <header ng-bind="task.taskName" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
         <br>
         <strong>Testing: </strong>
-        <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.userAssignedName"></a><br>
+        <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a><br>
         <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
       </div>
       <footer class="panel-footer">
@@ -85,10 +85,10 @@
   <section class="col-md-3" data-state="completed">
     <legend class="text-center">Completed</legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'completed'}" class="panel panel-success" draggable="true" data-index="{{$index}}">
-      <header ng-bind="task.name" class="panel-heading text-center"></header>
+      <header ng-bind="task.taskName" class="panel-heading text-center"></header>
       <div class="panel-body">
         <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
         <br>
         <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
         <span ng-if="task.requiredTime != NULL"><br>

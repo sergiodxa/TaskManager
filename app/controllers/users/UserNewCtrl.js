@@ -7,7 +7,7 @@ function UserNewCtrl ($scope, users, encryptor, session) {
   $scope.user = {};
 
   $scope.newPassCheck = function () {
-    if ($scope.user.newPass !== '' && $scope.user.repeatPass !== '' && ($scope.user.newPass !== $scope.user.repeatPass)) {
+    if ($scope.user.newPass !== '' && $scope.user.repeatPass !== '' && ($scope.user.newPass === $scope.user.repeatPass)) {
       $scope.newPassIncorrect = false;
     } else if ($scope.user.newPass === '') {
       $scope.newPassIncorrect = false;
