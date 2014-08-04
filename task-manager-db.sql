@@ -108,7 +108,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','81dc9bdb52d04dc20036dbd8313ed055 ','1b3baa06922f5984f5b11ea3f1064b40','Sergio','Xalambrí','sergio@xalambri.com.ar','FullStack JS Developer');
+INSERT INTO `users` VALUES (1,'admin','81dc9bdb52d04dc20036dbd8313ed055 ','','Sergio','Xalambrí','sergio@xalambri.com.ar','FullStack JS Developer');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
