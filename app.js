@@ -67,61 +67,7 @@ app.post('/api/users/delete/:id', user.erase);
 
 // Socket.io events
 io.on('connection', function (socket) {
-  var clientModel  = require('./models/client');
-  var projectModel = require('./models/project');
-  var taskModel    = require('./models/task');
-  var userModel    = require('./models/user');
-
-  socket.on('get clients', function () {
-    clientModel.getAll(function (clientsData) {
-      socket.emit('return clients', clientsData);
-    });
-  });
-
-  socket.on('get client', function (id) {
-    clientModel.getSingle(id, function (clientData) {
-      socket.emit('return client', clientData);
-    });
-  });
-
-  socket.on('edit client', function (data) {
-    clientModel.edit(data.id, data.data, function (response) {
-      if (response === 'Client edited') {
-        socket.emit('client edited', 'Client edited');
-        clientModel.getAll(function (clientsData) {
-          socket.broadcast.emit('return clients', clientsData);
-        });
-      } else {
-        socket.emit('edit client failed', 'An error has ocurred');
-      }
-    });
-  });
-
-  socket.on('delete client', function (id) {
-    clientModel.erase(id, function (response) {
-      if (response === 'Client deleted') {
-        socket.emit('client deleted', 'Client deleted');
-        clientModel.getAll(function (clientsData) {
-          socket.broadcast.emit('return clients', clientsData);
-        });
-      } else if (response === false) {
-        socket.emit('delete client failed', 'Error');
-      }
-    });
-  });
-
-  socket.on('add client', function (data) {
-    clientModel.add(data, function (response) {
-      if (response === 'Client added') {
-        socket.emit('client added', 'Client added');
-        clientModel.getAll(function (clientsData) {
-          socket.broadcast.emit('return clients', clientsData);
-        });
-      } else if (response === false) {
-        socket.emit('add client failed', 'An error has ocurred');
-      }
-    });
-  });
+  client.io(socket);
 });
 
 console.log('TaskManger started - App running in the port ' + port);
