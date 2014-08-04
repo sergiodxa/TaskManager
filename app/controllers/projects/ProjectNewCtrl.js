@@ -1,7 +1,6 @@
 function ProjectNewCtrl ($scope, projects, users, clients, session) {
   session.auth();
 
-
   $scope.projectCreated = false;
 
   $scope.project = {};
@@ -16,7 +15,7 @@ function ProjectNewCtrl ($scope, projects, users, clients, session) {
 
   $scope.sendForm = function () {
     projects.add($scope.project).then(function (response) {
-      if (response.data === 'Project edited') {
+      if (response.data === 'Project created') {
         $scope.projectCreated = true;
         $scope.project = {};
       } else {

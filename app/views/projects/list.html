@@ -8,14 +8,14 @@
   <article ng-repeat="project in projects" class="col-md-6">
     <div class="panel panel-default">
 
-      <header ng-bind="project.name" class="panel-heading text-center"></header>
+      <header ng-bind="project.projectName" class="panel-heading text-center"></header>
 
       <div class="panel-body">
         <strong>Project owner: </strong>
-        <a ng-href="#/clients/single/{{project.owner}}" ng-bind="project.ownerName"></a><br>
+        <a ng-href="#/clients/single/{{project.owner}}" ng-bind="project.clientName"></a><br>
 
-        <strong>Scrum Master: </strong>
-        <a ng-href="#/users/single/{{project.scrumMaster}}" ng-bind="project.scrumMasterName"></a><br>
+        <strong>Project Leader: </strong>
+        <a ng-href="#/users/single/{{project.projectLeader}}" ng-bind="project.userName"></a><br>
 
         <strong>Release date: </strong>
         <span ng-bind="project.releaseDate"></span><br>

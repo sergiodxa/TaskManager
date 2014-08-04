@@ -2,7 +2,7 @@
   <article class="col-md-8 col-md-offset-2">
     <form role="form" ng-submit="sendForm()" class="panel panel-default">
 
-      <header class="panel-heading">Edit task <strong ng-bind="task.name"></strong></header>
+      <header class="panel-heading">Edit task <strong ng-bind="task.taskName"></strong></header>
 
       <div class="panel-body">
           <!-- success alert -->
@@ -18,7 +18,7 @@
           <!-- form -->
           <div class="form-group">
             <label for="taskname">Name</label>
-            <input type="text" id="taskname" class="form-control" ng-model="task.name" placeholder="taskname" required>
+            <input type="text" id="taskname" class="form-control" ng-model="task.taskName" placeholder="taskname" required>
           </div>
           <div class="form-group">
             <label for="description">Description</label>

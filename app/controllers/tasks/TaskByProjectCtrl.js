@@ -7,6 +7,11 @@ function TaskByProjectCtrl ($scope, $routeParams, tasks, session) {
 
   tasks.getByProject(projectId).then(function (response) {
     if (response.data !== 'error') {
+      for (var i = 0; i < response.data.length; ++i) {
+        if (response.data[i].fullName == 'null null') {
+          response.data[i].fullName = 'Not assigned'
+        }
+      }
       $scope.tasks = response.data;
     }
   });
@@ -31,7 +36,7 @@ function TaskByProjectCtrl ($scope, $routeParams, tasks, session) {
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
     if (parseInt(userId) === targetTaskUserAssigned) {
-      // le cambiamos el stateName y el userAsigned
+      // le cambiamos el stateName y el userAssigned
       targetTask.stateName   = targetState;
       targetTask.userAssigned = userId;
 

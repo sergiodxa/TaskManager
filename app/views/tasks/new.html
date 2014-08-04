@@ -18,7 +18,7 @@
           <!-- form -->
           <div class="form-group">
             <label for="taskname">Name</label>
-            <input type="text" id="taskname" class="form-control" ng-model="task.name" placeholder="Task name" required>
+            <input type="text" id="taskname" class="form-control" ng-model="task.taskName" placeholder="Task name" required>
           </div>
           <div class="form-group">
             <label for="description">Description</label>
@@ -27,7 +27,7 @@
           <div class="form-group">
             <label for="project">Project</label>
             <select name="project" id="project" class="form-control" required ng-model="task.project">
-              <option ng-repeat="project in projects" ng-value="{{project.id}}">{{project.name}}</option>
+              <option ng-repeat="project in projects" ng-value="{{project.id}}">{{project.projectName}}</option>
             </select>
           </div>
           <div class="form-group">

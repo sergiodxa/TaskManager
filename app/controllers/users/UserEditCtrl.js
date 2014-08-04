@@ -1,4 +1,4 @@
-function UserEditCtrl ($scope, $routeParams, users, session) {
+function UserEditCtrl ($scope, $routeParams, encryptor, users, session) {
   session.auth();
 
   var id = $routeParams.id;
@@ -34,7 +34,9 @@ function UserEditCtrl ($scope, $routeParams, users, session) {
 
   $scope.sendForm = function () {
     if ($scope.actualPassIncorrect === false) {
-      $scope.user.newPass = encryptor.md5($scope.user.newPass);
+      if ($scope.user.newPass) {
+        $scope.user.newPass = encryptor.md5($scope.user.newPass);
+      }
       users.edit($scope.user.id, $scope.user).then(function (response) {
         if (response.data === 'User data with pass edited' || response.data === 'User data without pass edited') {
           $scope.userEditedTxt = response.data;

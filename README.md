@@ -1,34 +1,32 @@
 # TaskManager
 * **Author**: Sergio Daniel Xalambrí
-* **Last change**: 6/20/2014
+* **Last change**: 8/04/2014
 * **Twitter**: [@sergiodxa](http://twitter.com/sergiodxa "@sergiodxa")
-* **Version**: 1.0.0
+* **Version**: 2.0.0
 
 ## English
 WebApp to manage task in many projects. You can create a client, add as many project as you want to that client, create tasks for that project and assign them to an user (a team member).
 
 ### Install and use
 
-First, you need to download the repository, you can download the [ZIP](https://github.com/sergiodxa/TaskManager/archive/master.zip "ZIP") file or clone the repository in your computer using the command: 
+First, you need to download the repository, you can download the [ZIP](https://github.com/sergiodxa/TaskManager/archive/master.zip "ZIP") file or clone the repository in your computer using the command:
 
 ```
 git clone git@github.com:sergiodxa/TaskManager.git
 ```
 
-Later you need to install dependencies using the next commands:
+Later you need to install dependencies using the next command:
 
 ```
 npm install
-bower install
 ```
 
-This is going to install the dependencies of the backend (with npm) and frontend (with bower).
+This is going to install the dependencies of the backend (with npm) and frontend (with bower) and run bower's tasks to minify and merge all the JavaScript.
 
-Once you done this you need minify and merge the AngularJS's controllers and services, you can do this using the commands:
+You can run bowers' tasks manually using the command
 
 ```
-gulp minify
-gulp merge
+npm run build
 ```
 
 When you end this you can start the WebApp with the follow command:
@@ -56,20 +54,18 @@ Primero, necesita bajar el repositorio, puede descargar el [ZIP](https://github.
 git clone git@github.com:sergiodxa/TaskManager.git
 ```
 
-Luego necesita instalar las dependencias usando los siguiente comandos:
+Luego necesita instalar las dependencias usando el siguiente comando:
 
 ```
 npm install
-bower install
 ```
 
-Esto va a instalar las dependecias del backend (usando npm) y frontend (usando bower).
+Esto va a instalar las dependecias del backend (usando npm) y frontend (usando bower) y ejecutar las tareas de bower para minificar y unir los archivos de JavaScript.
 
-Una vez esto listo necesitas minificar y unir los controladores y servicios de AngularJS, puede hacerlo usando el comando:
+Puedes ejecutar las tareas de bower manualmente usando el siguiente comando:
 
 ```
-gulp minify
-gulp merge
+npm run build
 ```
 
 Cuando termine esto puede iniciar la aplicación web con el siguiente comando:
