@@ -11,8 +11,8 @@ exports.getSingle = function (id, callback) {
       }
 
       if (response.length === 1) {
-        var project = response[0];
-        callback(project);
+        var client = response[0];
+        callback(client);
       } else {
         callback('That client doesn\'t exist');
       }
@@ -35,9 +35,9 @@ exports.getAll = function (callback) {
 };
 
 // método para crear un nuevo cliente
-exports.add = function (project, callback) {
+exports.add = function (client, callback) {
   myconnection(function (pool) {
-    var query = 'INSERT INTO clients (clientName, email, address, telephone) VALUES (' + pool.escape(project.clientName) + ', ' + pool.escape(project.email) + ', ' + pool.escape(project.address) + ', ' + pool.escape(project.telephone) + ')';
+    var query = 'INSERT INTO clients (clientName, email, address, telephone) VALUES (' + pool.escape(client.clientName) + ', ' + pool.escape(client.email) + ', ' + pool.escape(client.address) + ', ' + pool.escape(client.telephone) + ')';
     pool.query(query, function (err, response) {
       if (err) {
         callback(false);
@@ -49,9 +49,9 @@ exports.add = function (project, callback) {
 };
 
 // método para modificar un cliente
-exports.edit = function (id, project, callback) {
+exports.edit = function (id, client, callback) {
   myconnection(function (pool) {
-    var query = 'UPDATE clients SET clientName = ' + pool.escape(project.clientName) + ', email = ' + pool.escape(project.email) + ', telephone = ' + pool.escape(project.telephone) + ' WHERE id = ' + id;
+    var query = 'UPDATE clients SET clientName = ' + pool.escape(client.clientName) + ', email = ' + pool.escape(client.email) + ', telephone = ' + pool.escape(client.telephone) + ' WHERE id = ' + id;
 
     pool.query(query, function (err, response) {
       if (err) {

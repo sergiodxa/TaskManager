@@ -21,6 +21,7 @@ gulp.task('merge', function () {
            './app/minified/EncryptorService.js',
            './app/minified/GitHubService.js',
            './app/minified/ProjectService.min.js',
+           './app/minified/SocketService.min.js',
            './app/minified/TaskService.min.js',
            './app/minified/UserService.min.js',
            './app/minified/**/*.min.js'])

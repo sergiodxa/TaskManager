@@ -9,7 +9,8 @@
     "github": "^0.2.0",
     "jade": "*",
     "less": "1.7.*",
-    "mysql": "2.3.*"
+    "mysql": "2.3.*",
+    "socket.io": "^1.0.6"
   },
   "devDependencies": {
     "gulp": "^3.8.0",
@@ -19,10 +20,10 @@
     "gulp-watch": "^0.6.6"
   },
   "scripts": {
-    "build"      : "gulp minify && gulp merge",
+    "build": "gulp minify && gulp merge",
     "postinstall": "bower install && npm run build",
-    "start"      : "node app",
-    "test"       : "jasmine-node --color --verbose --autotest specs"
+    "start": "node app",
+    "test": "jasmine-node --color --verbose --autotest specs"
   },
   "repository": {
     "type": "git",
