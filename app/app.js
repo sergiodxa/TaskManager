@@ -91,11 +91,3 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
     .otherwise({ redirectTo: '/tasks' });
 
 }]);
-
-$(window).on('offline', function (event) {
-  console.log('evento offline disparado');
-});
-
-$(window).on('online', function (event) {
-  console.log('evento online disparado');
-});
