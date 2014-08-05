@@ -1,7 +1,8 @@
-function UserListCtrl ($scope, users, session) {
+function UserListCtrl ($scope, users, session, socket) {
   session.auth();
 
-  users.getAll().then(function (response) {
-    $scope.users = response.data;
+  socket.emit('get users');
+  socket.on('return users', function (response) {
+    $scope.users = response;
   });
 };

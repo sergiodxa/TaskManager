@@ -12,7 +12,7 @@ function ClientNewCtrl ($scope, clients, session, socket) {
   socket.on('client added', function(response) {
     $scope.clientCreated = true;
     $scope.clientCreatedTxt = response;
-    $scope.cleint = {};
+    $scope.project = {};
   });
 
   socket.on('add client failed', function(response) {

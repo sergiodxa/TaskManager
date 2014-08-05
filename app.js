@@ -68,6 +68,8 @@ app.post('/api/users/delete/:id', user.erase);
 // Socket.io events
 io.on('connection', function (socket) {
   client.io(socket);
+  project.io(socket);
+  user.io(socket);
 });
 
 console.log('TaskManger started - App running in the port ' + port);

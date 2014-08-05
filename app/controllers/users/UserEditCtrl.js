@@ -1,4 +1,4 @@
-function UserEditCtrl ($scope, $routeParams, encryptor, users, session) {
+function UserEditCtrl ($scope, $routeParams, encryptor, users, session, socket) {
   session.auth();
 
   var id = $routeParams.id;
@@ -7,8 +7,9 @@ function UserEditCtrl ($scope, $routeParams, encryptor, users, session) {
   $scope.newPassIncorrect = false;
   $scope.userEdited = false;
 
-  users.getSingle(id).then(function (response) {
-    $scope.user = response.data;
+  socket.emit('get user', id);
+  socket.on('return user', function (response) {
+    $scope.user = response;
   });
 
   $scope.actualPassCheck = function () {
@@ -37,17 +38,24 @@ function UserEditCtrl ($scope, $routeParams, encryptor, users, session) {
       if ($scope.user.newPass) {
         $scope.user.newPass = encryptor.md5($scope.user.newPass);
       }
-      users.edit($scope.user.id, $scope.user).then(function (response) {
-        if (response.data === 'User data with pass edited' || response.data === 'User data without pass edited') {
-          $scope.userEditedTxt = response.data;
-          $scope.userEdited = true;
-          users.getSingle(id).then(function (response) {
-            $scope.user = response.data;
-          });
-        } else {
-          $scope.errorTxt = response.data;
-        };
+      socket.emit('edit user', {
+        id: $scope.user.id,
+        data: $scope.user
       });
     };
   };
+
+  socket.on('user with pass edited', function (response) {
+    $scope.userEdited = true;
+    $scope.userEditedTxt = response;
+  });
+
+  socket.on('user without pass edited', function (response) {
+    $scope.userEdited = true;
+    $scope.userEditedTxt = response;
+  });
+
+  socket.on('edit user failed', function (response) {
+    $scope.errorTxt = response;
+  });
 };

@@ -1,4 +1,4 @@
-function ProjectByClientCtrl ($scope, $routeParams, projects, session) {
+function ProjectByClientCtrl ($scope, $routeParams, projects, session, socket) {
   session.auth();
 
   var clientId = $routeParams.id;
@@ -6,5 +6,10 @@ function ProjectByClientCtrl ($scope, $routeParams, projects, session) {
   projects.getByClient(clientId).then(function (response) {
     console.log(response);
     $scope.projects = response.data;
+  });
+
+  socket.emit('get projects by client');
+  socket.on('return projects by client', function (response) {
+    $scope.projects = response;
   });
 };
