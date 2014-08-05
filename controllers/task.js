@@ -78,3 +78,68 @@ exports.erase = function (req, res) {
     }
   })
 };
+
+exports.io = function (socket) {
+  socket.on('get tasks', function () {
+    model.getAll(function (tasksData) {
+      socket.emit('return tasks', tasksData);
+    });
+  });
+
+  socket.on('get task', function (id) {
+    model.getSingle(id, function (taskData) {
+      socket.emit('return task', taskData);
+    });
+  });
+
+  socket.on('get tasks by user', function (userId) {
+    model.getByUser(userId, function (taskData) {
+      socket.emit('return tasks by user', taskData);
+    });
+  });
+
+  socket.on('get tasks by project', function (projectId) {
+    model.getByProject(projectId, function (taskData) {
+      socket.emit('return tasks by project', taskData);
+    });
+  });
+
+  socket.on('add task', function (data) {
+    model.add(data, function (response) {
+      if (response === 'task created') {
+        socket.emit('task added', 'task created');
+        model.getAll(function (tasksData) {
+          socket.broadcast.emit('return tasks', tasksData);
+        });
+      } else if (response === false) {
+        socket.emit('add task failed', 'An error has ocurred');
+      }
+    });
+  });
+
+  socket.on('edit task', function (data) {
+    model.edit(data.id, data.data, function (response) {
+      if (response === 'Task data edited') {
+        socket.emit('task edited', response);
+        model.getAll(function (tasksData) {
+          socket.broadcast.emit('return tasks', tasksData);
+        });
+      } else if (response === false) {
+        res.send('An error has ocurred');
+      };
+    });
+  });
+
+  socket.on('delete task', function (id) {
+    model.erase(id, function (response) {
+      if (response === 'task deleted') {
+        socket.emit('task deleted', 'task deleted');
+        model.getAll(function (tasksData) {
+          socket.broadcast.emit('return tasks', tasksData);
+        });
+      } else if (response === false) {
+        socket.emit('delete task failed', 'Error');
+      }
+    });
+  });
+}

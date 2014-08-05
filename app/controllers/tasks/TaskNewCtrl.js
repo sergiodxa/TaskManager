@@ -1,15 +1,18 @@
-function TaskNewCtrl ($scope, tasks, projects, users) {
+function TaskNewCtrl ($scope, session, socket) {
+  session.auth();
 
   $scope.taskCreated = false;
   $scope.task = {};
 
-  projects.getAll().then(function (response) {
-    $scope.projects = response.data;
+  socket.emit('get users');
+  socket.on('return users', function (response) {
+    $scope.users = response;
   });
 
-  users.getAll().then(function (response) {
-    $scope.users = response.data;
-  })
+  socket.emit('get projects');
+  socket.on('return projects', function (response) {
+    $scope.projects = response;
+  });
 
   $scope.sendForm = function () {
     $scope.task.estimatedTime = parseInt($scope.task.estimatedTime);
@@ -17,14 +20,16 @@ function TaskNewCtrl ($scope, tasks, projects, users) {
     $scope.task.requiredTime = null;
     $scope.task.state = 1;
     $scope.task.userAssigned = parseInt($scope.task.userAssigned);
-    tasks.add($scope.task).then(function (response) {
-      if (response.data === 'Task added') {
-        $scope.taskCreatedTxt = response.data;
-        $scope.taskCreated = true;
-        $scope.task = {};
-      } else {
-        $scope.errorTxt = response.data;
-      };
-    });
+    socket.emit('add task', $scope.task);
   };
+
+  socket.on('task added', function(response) {
+    $scope.taskCreated = true;
+    $scope.taskCreatedTxt = response;
+    $scope.task = {};
+  });
+
+  socket.on('add task failed', function(response) {
+    $scope.errorTxt = response;
+  });
 };

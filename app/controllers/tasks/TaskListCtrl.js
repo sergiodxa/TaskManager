@@ -1,4 +1,4 @@
-function TaskListCtrl ($scope, tasks, session) {
+function TaskListCtrl ($scope, tasks, session, socket) {
   session.auth();
 
   var userId    = localStorage.id;

@@ -1,4 +1,4 @@
-function TaskByProjectCtrl ($scope, $routeParams, tasks, session) {
+function TaskByProjectCtrl ($scope, $routeParams, tasks, session, socket) {
   session.auth();
 
   var projectId = $routeParams.id;

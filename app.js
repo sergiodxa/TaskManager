@@ -70,6 +70,7 @@ io.on('connection', function (socket) {
   client.io(socket);
   project.io(socket);
   user.io(socket);
+  task.io(socket);
 });
 
 console.log('TaskManger started - App running in the port ' + port);

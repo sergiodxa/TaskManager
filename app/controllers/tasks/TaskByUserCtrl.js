@@ -1,4 +1,4 @@
-function TaskByUserCtrl ($scope, $routeParams, tasks, session) {
+function TaskByUserCtrl ($scope, $routeParams, tasks, session, socket) {
   session.auth();
 
   var userId     = $routeParams.id || localStorage.id;
