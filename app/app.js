@@ -72,6 +72,10 @@ TaskManager.config(['$routeProvider', '$locationProvider', function ($routeProvi
       controller : TaskNewCtrl,
       templateUrl: 'views/tasks/new.html'
     })
+    .when('/tasks/all', {
+      controller: TaskListCtrl,
+      templateUrl: 'views/tasks/list.html'
+    })
     .when('/users', {
       controller : UserListCtrl,
       templateUrl: 'views/users/list.html'
