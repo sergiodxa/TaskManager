@@ -20,18 +20,6 @@ function TaskEditCtrl ($scope, $routeParams, session, socket) {
   });
 
   $scope.sendForm = function () {
-    tasks.edit(id, $scope.task).then(function (response) {
-      console.log(response.data);
-      if (response.data === 'Task data edited') {
-        $scope.taskEditedTxt = response.data;
-        $scope.taskEdited = true;
-      } else {
-        $scope.errorTxt = response.data;
-      };
-    });
-  };
-
-  $scope.sendForm = function () {
     socket.emit('edit task', $scope.task);
   };
 

@@ -5,9 +5,10 @@ function TaskByUserCtrl ($scope, $routeParams, tasks, session, socket) {
   var userActive = localStorage.id;
   var overActive;
 
-  tasks.getByUser(userId).then(function (response) {
-    if (response.data !== 'error') {
-      $scope.tasks = response.data;
+  socket.emit('get tasks by user', userId);
+  socket.on('return tasks by user', function (response) {
+    if (response[0].userAssigned == userId) {
+      $scope.tasks = response;
     }
   });
 
@@ -37,18 +38,10 @@ function TaskByUserCtrl ($scope, $routeParams, tasks, session, socket) {
       // obtenemos el state como número
       targetTask.state = tasks.getStateNumber(targetState);
 
-      // creamos un string con los datos
-      var targetTaskData = JSON.stringify(targetTask);
-
-      tasks.edit(targetTaskId, targetTaskData).then(function (response) {
-        if (response.data === 'Task data edited') {
-          tasks.getByUser(userId).then(function (response) {
-            if (response.data !== 'error') {
-              $scope.tasks = response.data;
-            };
-          });
-        };
-      });
+      socket.emit('edit task', targetTask);
+      setTimeout(function () {
+        socket.emit('get tasks by user', userId);
+      }, 100);
     });
     $('.col-md-3').on('dragover', function(event) {
       $(this).addClass('bg-info');

@@ -106,10 +106,16 @@ exports.io = function (socket) {
 
   socket.on('add task', function (data) {
     model.add(data, function (response) {
-      if (response === 'task created') {
-        socket.emit('task added', 'task created');
+      if (response === 'Task added') {
+        socket.emit('task added', 'Task created');
         model.getAll(function (tasksData) {
           socket.broadcast.emit('return tasks', tasksData);
+        });
+        model.getByProject(data.project, function (tasksData) {
+          socket.broadcast.emit('return tasks by project', tasksData);
+        });
+        model.getByUser(data.userAssigned, function (tasksData) {
+          socket.broadcast.emit('return tasks by user', tasksData);
         });
       } else if (response === false) {
         socket.emit('add task failed', 'An error has ocurred');
@@ -118,11 +124,17 @@ exports.io = function (socket) {
   });
 
   socket.on('edit task', function (data) {
-    model.edit(data.id, data.data, function (response) {
+    model.edit(data.id, data, function (response) {
       if (response === 'Task data edited') {
         socket.emit('task edited', response);
         model.getAll(function (tasksData) {
           socket.broadcast.emit('return tasks', tasksData);
+        });
+        model.getByProject(data.project, function (tasksData) {
+          socket.broadcast.emit('return tasks by project', tasksData);
+        });
+        model.getByUser(data.userAssigned, function (tasksData) {
+          socket.broadcast.emit('return tasks by user', tasksData);
         });
       } else if (response === false) {
         res.send('An error has ocurred');
@@ -130,12 +142,18 @@ exports.io = function (socket) {
     });
   });
 
-  socket.on('delete task', function (id) {
-    model.erase(id, function (response) {
-      if (response === 'task deleted') {
-        socket.emit('task deleted', 'task deleted');
+  socket.on('delete task', function (data) {
+    model.erase(data.id, function (response) {
+      if (response === 'Task deleted') {
+        socket.emit('task deleted', response);
         model.getAll(function (tasksData) {
           socket.broadcast.emit('return tasks', tasksData);
+        });
+        model.getByProject(data.project, function (tasksData) {
+          socket.broadcast.emit('return tasks by project', tasksData);
+        });
+        model.getByUser(data.userAssigned, function (tasksData) {
+          socket.broadcast.emit('return tasks by user', tasksData);
         });
       } else if (response === false) {
         socket.emit('delete task failed', 'Error');

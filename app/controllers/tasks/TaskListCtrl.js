@@ -4,10 +4,9 @@ function TaskListCtrl ($scope, tasks, session, socket) {
   var userId    = localStorage.id;
   var overActive;
 
-  tasks.getAll().then(function (response) {
-    if (response.data !== 'error') {
-      $scope.tasks = response.data;
-    };
+  socket.emit('get tasks');
+  socket.on('return tasks', function (response) {
+    $scope.tasks = response;
   });
 
   // Drag&Drop

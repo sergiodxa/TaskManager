@@ -5,14 +5,10 @@ function TaskByProjectCtrl ($scope, $routeParams, tasks, session, socket) {
   var userId    = localStorage.id;
   var overActive;
 
-  tasks.getByProject(projectId).then(function (response) {
-    if (response.data !== 'error') {
-      for (var i = 0; i < response.data.length; ++i) {
-        if (response.data[i].fullName == 'null null') {
-          response.data[i].fullName = 'Not assigned'
-        }
-      }
-      $scope.tasks = response.data;
+  socket.emit('get tasks by project', projectId);
+  socket.on('return tasks by project', function (response) {
+    if (response[0].project == projectId) {
+      $scope.tasks = response;
     }
   });
 
@@ -35,29 +31,17 @@ function TaskByProjectCtrl ($scope, $routeParams, tasks, session, socket) {
     var targetTaskId = targetTask['id'];
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
-    if (parseInt(userId) === targetTaskUserAssigned) {
-      // le cambiamos el stateName y el userAssigned
-      targetTask.stateName   = targetState;
-      targetTask.userAssigned = userId;
+    // le cambiamos el stateName y el userAssigned
+    targetTask.stateName   = targetState;
+    targetTask.userAssigned = userId;
 
-      // obtenemos el state como número
-      targetTask.state = tasks.getStateNumber(targetState);
+    // obtenemos el state como número
+    targetTask.state = tasks.getStateNumber(targetState);
 
-      // creamos un string con los datos
-      var targetTaskData = JSON.stringify(targetTask);
-
-      tasks.edit(targetTaskId, targetTaskData).then(function (response) {
-        if (response.data === 'Task data edited') {
-          tasks.getByProject(projectId).then(function (response) {
-            if (response.data !== 'error') {
-              $scope.tasks = response.data;
-            };
-          });
-        }
-      });
-    } else {
-      return;
-    };
+    socket.emit('edit task', targetTask);
+    setTimeout(function () {
+      socket.emit('get tasks by project', projectId);
+    }, 100);
   });
   $('.col-md-3').on('dragover', function(event) {
     $(this).addClass('bg-info');
