@@ -1,4 +1,16 @@
-var model = require('../models/task');
+var model        = require('../models/task');
+var modelUser    = require('../models/user');
+var modelProject = require('../models/project');
+var nodemailer   = require('nodemailer');
+
+// create reusable transporter object using SMTP transport
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'sergiodxa@gmail.com',
+        pass: ''
+    }
+});
 
 exports.getAll = function (req, res) {
   model.getAll(function (tasks) {
@@ -60,6 +72,24 @@ exports.edit = function (req, res) {
 
   model.edit(id, task, function (response) {
     if (response === 'Task data edited') {
+      modelProject.getSingle(data.project, function (projectData) {
+        modelUser.getSingle(projectData.projectLeader, function (userData) {
+          var mailOptions = {
+              from: 'TaskManager <taskmanager@company.com>',
+              to: userData.email,
+              subject: 'Task changed',
+              text: 'The task: "' + data.taskName + '" changed to "' + data.stateName +'"',
+                html: 'The task: <strong>' + data.taskName + '</strong> changed to <em>' + data.stateName + '</em>.<br><a href="http://localhost:3000/#/tasks/single/' + data.id + '" target="_blank">Check here</a>'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+              if(error){
+                  console.log(error);
+              }else{
+                  console.log('Message sent: ' + info.response);
+              }
+          });
+        });
+      });
       res.send(response);
     } else if (response === false) {
       res.send('An error has ocurred');
@@ -136,6 +166,26 @@ exports.io = function (socket) {
         model.getByUser(data.userAssigned, function (tasksData) {
           socket.broadcast.emit('return tasks by user', tasksData);
         });
+
+        modelProject.getSingle(data.project, function (projectData) {
+          modelUser.getSingle(projectData.projectLeader, function (userData) {
+            var mailOptions = {
+              from: 'TaskManager',
+              to: userData.email,
+              subject: 'Task changed',
+              text: 'The task: "' + data.taskName + '" changed to "' + data.stateName +'"',
+              html: 'The task: <strong>' + data.taskName + '</strong> changed to <em>' + data.stateName + '</em>.<br><a href="http://localhost:3000/#/tasks/single/' + data.id + '" target="_blank">Check here</a>'
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+              if(error){
+                console.log(error);
+              }else{
+                console.log('Message sent: ' + info.response);
+              }
+            });
+          });
+        });
+
       } else if (response === false) {
         res.send('An error has ocurred');
       };
