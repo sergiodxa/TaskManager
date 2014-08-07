@@ -31,10 +31,12 @@ function TaskByProjectCtrl ($scope, $routeParams, tasks, session, socket) {
     var targetTaskId = targetTask['id'];
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
-    // le cambiamos el stateName y el userAssigned
-    targetTask.stateName   = targetState;
-    targetTask.userAssigned = userId;
+    if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
+      targetTask.userAssigned = userId;
+    }
 
+    // le cambiamos el stateName y el userAsigned
+    targetTask.stateName   = targetState;
     // obtenemos el state como número
     targetTask.state = tasks.getStateNumber(targetState);
 

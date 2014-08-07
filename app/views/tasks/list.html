@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row tasks">
 
   <!-- tareas pendientes -->
-  <section class="column-auto-hand" data-state="to do">
+  <section class="column-12-hand column-auto-lap" data-state="to do">
     <legend class="task-state text-center">
       To do
       <a ng-href="#/tasks/add/" class="task-state-add">
@@ -16,7 +16,7 @@
       <ul class="task-data">
         <li class="task-data-item">
           <strong>Project: </strong>
-          <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
         </li>
         <li class="task-data-item" ng-if="task.userAssigned !== null">
           <strong>Assigned to: </strong>
@@ -37,7 +37,7 @@
   </section>
 
   <!-- tareas en progreso -->
-  <section class="column-auto-hand" data-state="in progress">
+  <section class="column-12-hand column-auto-lap" data-state="in progress">
     <legend class="task-state text-center">In progress</legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'in progress'}" class="task box" draggable="true" data-index="{{$index}}">
       <span title="Open" class="octicon octicon-issue-opened pull-right"></span>
@@ -47,7 +47,7 @@
       <ul class="task-data">
         <li class="task-data-item">
           <strong>Project: </strong>
-          <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
         </li>
         <li class="task-data-item" ng-if="task.userAssigned !== null">
           <strong>Doing: </strong>
@@ -68,7 +68,7 @@
   </section>
 
   <!-- tareas en pruebas -->
-  <section class="column-auto-hand" data-state="in testing">
+  <section class="column-12-hand column-auto-lap" data-state="in testing">
     <legend class="task-state text-center">In testing</legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'in testing'}" class="task box" draggable="true" data-index="{{$index}}">
       <span title="Open" class="octicon octicon-issue-opened pull-right"></span>
@@ -78,7 +78,7 @@
       <ul class="task-data">
         <li class="task-data-item">
           <strong>Project: </strong>
-          <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
         </li>
         <li class="task-data-item" ng-if="task.userAssigned !== null">
           <strong>Testing: </strong>
@@ -99,7 +99,7 @@
   </section>
 
   <!-- tareas completas -->
-  <section class="column-auto-hand" data-state="completed">
+  <section class="column-12-hand column-auto-lap" data-state="completed">
     <legend class="task-state text-center">Completed</legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'completed'}" class="task box" draggable="true" data-index="{{$index}}">
       <span title="Closed" class="octicon octicon-issue-closed pull-right"></span>
@@ -109,7 +109,7 @@
       <ul class="task-data">
         <li class="task-data-item">
           <strong>Project: </strong>
-          <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
         </li>
         <li class="task-data-item">
           <strong>Estimated time: </strong>

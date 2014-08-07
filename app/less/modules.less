@@ -1,27 +1,78 @@
+/*
+  Los módulos son pequeñas piezas del sitio que puedes reutilizar. En este archivo puedes cargar (import) todos los módulos que haces y ponerlos en archivo separado en una carpeta modules.
+
+  Si un módulo posee más de 50 líneas (incluyendo llaves de cierre en líneas a parte) se debe colocar en un archivo separado cuyo nombre debe empezar con el prefijo modulo-, ej: modulo-navbar.less, luego deberá ser cargado con @import antes que cualquier otro módulo definido en este archivo.
+*/
 a {
   color: #428bca;
   text-decoration: none;
 }
 
+.tasks {
+  .border-radius(5px);
+  background: #95A5A6;
+  border: 15px solid #34495E;
+  padding: 30px 15px;
+  section {
+    @media only screen and (min-width: 48em) {
+      border-right: 1px solid #fff;
+      &:last-of-type { border-right: none; }
+    }
+    &:nth-child(odd) {
+      .task {
+        &:nth-child(odd) { .rotate(-3deg); }
+        &:nth-child(even) { .rotate(3deg); }
+      }
+    }
+    &:nth-child(even) {
+      .task {
+        &:nth-child(odd) { .rotate(3deg); }
+        &:nth-child(even) { .rotate(-3deg); }
+      }
+    }
+    &[data-state="to do"] {
+      .task {
+        background: #F35F6D;
+      }
+    }
+    &[data-state="in progress"] {
+      .task {
+        background: #FCF0AD;
+      }
+    }
+    &[data-state="in testing"] {
+      .task {
+        background: #FAA457;
+      }
+    }
+    &[data-state="completed"] {
+      .task {
+        background: #CDDD73;
+      }
+    }
+  }
+}
 .task {
   .box-shadow(0px 4px 6px #333);
-  .rotate(-.5deg);
-  background: #fefabc;
   color: #000;
   font-family: @ff-postit;
+  margin: 15px auto;
   padding: 15px;
-  margin: 5px 0;
-  width: 95%;
-  &:first-of-type { margin-top: 0; }
-  &:last-of-type { margin-bottom: 0; }
+  width: 80%;
   &-state {
-    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid #ccc;
+    color: #fff;
+    font-weight: bold;
     position: relative;
+    text-shadow: 1px 1px black;
+    text-transform: uppercase;
     &-add {
+      bottom: 100%;
+      color: #fff;
       font-size: 1.25rem;
       position: absolute;
-      top: 0;
-      right: 0;
+      left: 0;
+      &:hover { color: #dfdfdf; }
     }
   }
   &-title {
@@ -35,6 +86,5 @@ a {
     list-style-type: none;
     padding-left: 0;
   }
-  &-issue {
-  }
+  &-issue {}
 }

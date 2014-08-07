@@ -1,6 +1,47 @@
+/*
+  Este es el archivo principal de LESS, en este archivo cargas (import) los archivo fonts, variables, base, mixins y modules y luego compilas este archivo para obtener el CSS final.
+
+  =========================
+
+  Reglas de codeo:
+
+  Todo el código en el sitio debe seguir las siguientes reglas:
+  * Usar tabulación suave (con espacios) de dos espacios, es la única forma de garantizar que se vea igual en cualquier programa.
+  * Cuando agrupas selectores, manten los selectores individuales en una línea aparte.
+  * Agrega un espacio antes de abrir las llaves para mayor legibilidad.
+  * Pon las llaves de cierre en una nueva línea.
+  * Agrega un espacio luego de : para cada declaración.
+  * Cada declaración debe estar en su propia línea para encontrar mejor cualquier error. Si un estilo tiene solo una propiedad déjalo en una línea.
+  * Termina todas las declaraciones con punto y coma. La última declaración es opcional, pero el código es más propenso a errores sin el.
+  * Los valores de las declaraciones separadas por coma deben tener un espacio luego de cada coma.
+  * No incluye espacio después de las comas en los valores de rgb(), rgba(), hsl(), hsla() o rect(). Esto ayuda a diferenciar multiples valores de color (coma, sin espacio) de múltiples valores de declaraciones (coma con espacio). Además, no agregues el 0 en valores menores este (ej: .5 en vez de 0.5).
+  * Pon todos los valores hexadecimales en minúsculas, ej: #fff. Las letras minúsculas son mucho más fácil de encontrar cuando buscamos en un documento.
+  * Usa valores abreviado para los valores hexadecimales siempre que puedas (ej: #fff en vez de #ffffff).
+  * Agregar comillas (dobles) a los valores en selectores, ej: input[type="text"]. En algunos casos son opcionales, pero es una buena práctica para mantener la consistencia.
+  * Evita agregar la unidad a valores de 0, ej: margin: 0; en vez de margin: 0px;.
+  * Ordena todas las declaraciones alfabeticamente en cada estilo.
+  * Coloca los media queries dentro del estilos al cual se aplica.
+  * En caso que un estilo tenga una sola declaración, coloca todo en una línea por cuestiones de legibilidad y editado veloz.
+  * Usa declaraciones abreviadas solo cuando de verdad necesitas setear todos los valores.
+  * Evita anidar innecesariamente. Solo porque puedas anidar, no quiere decir que siempre debas hacerlo.
+  * Asegurate que tu código sea descriptivo, bien comentado y fácil de entender por otros.
+  * Mantén los nombre de las clases en minúsculas y usa guiones (no guiones bajos o camelCase) para separar palabras. Los guiones sirven como cortes naturales en clases relacionadas (ej: .btn y .btn-error).
+  * Evita usar excesiva y arbitrariamente escritura abreviada. .btn es bueno para boton, pero .s no significa nada.
+  * Manten las clases tan cortas y concisas como sea posible.
+  * Usa nombre con significado; usar nombres basados en la estructura o el propósito en vez de en la presentación.
+  * Agrega prefijos a las clases basado en el padre más cercano o en la clase base.
+  * Usa clases .js-* para acceder vía JS, pero mantenlas fuera de tu CSS.
+  * Usa clases genéricas en vez de etiquetas para optimizar el renderizado.
+  * Manten los selectores cortos y limita el número de elemento en cada selector a tres.
+  * Coloca clases dentro de otras solo cuando sea necesario (ej: cuando no estas usando una clase con prefijo).
+  * Organiza las secciones de tu código por componentes.
+  * Usa espacio en blanco para separar secciones del código en documentos largos.
+  * Si el documento es muy largo agregar un índice con título estilo "1. Titulo" para poder encontrar facilmente cada parte.
+
+*/
+
 @import 'fonts.less';
 @import 'variables.less';
 @import 'mixins.less';
 @import 'base.less';
-@import 'flex-grid.less';
 @import 'modules.less';

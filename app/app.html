@@ -29,12 +29,35 @@
 
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#/tasks">TaskBoard</a></li>
-        <li><a href="#/projects">Projects</a></li>
-        <li><a href="#/users">Users</a></li>
-        <li><a href="#/clients">Clients</a></li>
+        <li>
+          <a href="#/tasks">
+            <span class="octicon octicon-dashboard"></span>
+            TaskBoard
+          </a>
+        </li>
+        <li>
+          <a href="#/projects">
+            <span class="octicon octicon-repo"></span>
+            Projects
+          </a>
+        </li>
+        <li>
+          <a href="#/users">
+            <span class="octicon octicon-person"></span>
+            Users
+          </a>
+        </li>
+        <li>
+          <a href="#/clients">
+            <span class="octicon octicon-organization"></span>
+            Clients
+          </a>
+        </li>
       </ul>
-      <button type="button" class="btn btn-default navbar-btn pull-right" ng-click="logout()" ng-controller="LogoutCtrl">Logout</button>
+      <button type="button" class="btn btn-default navbar-btn pull-right" ng-click="logout()" ng-controller="LogoutCtrl">
+        Logout
+        <span class="octicon octicon-sign-out"></span>
+      </button>
     </div>
   </nav>
 

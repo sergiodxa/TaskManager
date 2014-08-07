@@ -28,10 +28,12 @@ function TaskListCtrl ($scope, tasks, session, socket) {
     var targetTaskId = targetTask['id'];
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
+    if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
+      targetTask.userAssigned = userId;
+    }
+
     // le cambiamos el stateName y el userAsigned
     targetTask.stateName   = targetState;
-    targetTask.userAssigned = userId;
-
     // obtenemos el state como número
     targetTask.state = tasks.getStateNumber(targetState);
 
@@ -40,7 +42,7 @@ function TaskListCtrl ($scope, tasks, session, socket) {
       socket.emit('get tasks');
     }, 100);
   });
-  $('.[data-state]').on('dragover', function(event) {
+  $('[data-state]').on('dragover', function(event) {
     $(this).addClass('bg-info');
     overActive = $(this);
   });

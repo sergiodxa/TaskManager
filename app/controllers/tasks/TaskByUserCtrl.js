@@ -31,10 +31,12 @@ function TaskByUserCtrl ($scope, $routeParams, tasks, session, socket) {
       var targetTask   = taskList[index];
       var targetTaskId = targetTask['id'];
 
+      if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
+        targetTask.userAssigned = userId;
+      }
+
       // le cambiamos el stateName y el userAsigned
       targetTask.stateName   = targetState;
-      targetTask.userAsigned = userActive;
-
       // obtenemos el state como número
       targetTask.state = tasks.getStateNumber(targetState);
 
