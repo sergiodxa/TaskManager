@@ -14,7 +14,7 @@ function TaskByUserCtrl ($scope, $routeParams, tasks, session, socket) {
 
   // Drag&Drop
   if (userActive === userId) {
-    $('.col-md-3').on('dragend', '.panel', function(event) {
+    $('[data-state]').on('dragend', '[draggable]', function(event) {
       var taskList    = []; // creamos un array vacío
       var stateName   = $(this).parent().attr('data-state'); // obtenemos el stateName de la columna inicial
       var index       = $(this).attr('data-index'); // obtenemos la posición de la tarea dentro de la columna
@@ -43,11 +43,11 @@ function TaskByUserCtrl ($scope, $routeParams, tasks, session, socket) {
         socket.emit('get tasks by user', userId);
       }, 100);
     });
-    $('.col-md-3').on('dragover', function(event) {
+    $('[data-state]').on('dragover', function(event) {
       $(this).addClass('bg-info');
       overActive = $(this);
     });
-    $('.col-md-3').on('dragleave', function(event) {
+    $('[data-state]').on('dragleave', function(event) {
       $(this).removeClass('bg-info');
     });
   }

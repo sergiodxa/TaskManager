@@ -1,0 +1,15 @@
+.box-shadow(@val) {
+  -webkit-box-shadow: @val;
+  -moz-box-shadow: @val;
+  box-shadow: @val;
+}
+.transform(@val) {
+  -webkit-transform: @val;
+  -moz-transform: @val;
+  -ms-transform: @val;
+  -o-transform: @val;
+  transform: @val;
+}
+.rotate(@deg) {
+  .transform(rotate(@deg));
+}
