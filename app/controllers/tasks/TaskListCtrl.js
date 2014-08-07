@@ -43,10 +43,10 @@ function TaskListCtrl ($scope, tasks, session, socket) {
     }, 100);
   });
   $('[data-state]').on('dragover', function(event) {
-    $(this).addClass('bg-info');
+    $(this).addClass('active');
     overActive = $(this);
   });
   $('[data-state]').on('dragleave', function(event) {
-    $(this).removeClass('bg-info');
+    $(this).removeClass('active');
   });
 };
