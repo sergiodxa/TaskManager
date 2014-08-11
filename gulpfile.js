@@ -5,7 +5,7 @@ var gulp        = require('gulp'),
     watch       = require('gulp-watch');
 
 gulp.task('minify', function () {
-  gulp.src(['app/controllers/**/*.js','app/services/*.js','app/app.js'])
+  gulp.src(['app/controllers/**/*.js','app/services/*.js','app/directives/*.js','app/app.js'])
       .pipe(jsmin())
       .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('app/minified'));

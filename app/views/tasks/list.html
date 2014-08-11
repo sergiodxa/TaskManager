@@ -5,7 +5,7 @@
     <legend class="task-state text-center">
       To do
       <a ng-href="#/tasks/add/" class="task-state-add">
-        <span class="octicon octicon-plus"></span> Add task
+        <octicon type="plus"></octicon> Add task
       </a>
     </legend>
     <article ng-repeat="task in tasks | filter: {stateName: 'to do'}" class="task box" draggable="true" data-index="{{$index}}">
@@ -30,7 +30,7 @@
 
       <div class="task-actions">
         <a ng-href="#/tasks/single/{{task.id}}" class="task-issue">
-          <span class="octicon octicon-info"></span> View details
+          <octicon type="info"></octicon> View details
         </a>
       </div>
     </article>
@@ -61,7 +61,7 @@
 
       <div class="task-actions">
         <a ng-href="#/tasks/single/{{task.id}}" class="task-issue">
-          <span class="octicon octicon-info"></span> View details
+          <octicon type="info"></octicon> View details
         </a>
       </div>
     </article>
@@ -92,7 +92,7 @@
 
       <div class="task-actions">
         <a ng-href="#/tasks/single/{{task.id}}" class="task-issue">
-          <span class="octicon octicon-info"></span> View details
+          <octicon type="info"></octicon> View details
         </a>
       </div>
     </article>
@@ -123,7 +123,7 @@
 
       <div class="task-actions">
         <a ng-href="#/tasks/single/{{task.id}}" class="task-issue">
-          <span class="octicon octicon-info"></span> View details
+          <octicon type="info"></octicon> View details
         </a>
       </div>
     </article>

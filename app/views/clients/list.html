@@ -1,25 +1,25 @@
 <section class="row">
-  <legend class="text-center">
+  <legend class="text-center column-12-hand">
     Clients
     <a ng-href="#/clients/add/" class="btn btn-sm btn-link pull-right">
-      <span class="glyphicon glyphicon-plus"></span> Add client
+      <octicon type="plus"></octicon> Add client
     </a>
   </legend>
-  <article ng-repeat="client in clients" class="col-md-6">
+  <article ng-repeat="client in clients" class="column-12-hand column-6-lap">
     <div class="panel panel-default">
 
       <header ng-bind="client.clientName" class="panel-heading text-center"></header>
 
       <div class="panel-body">
-        <span class="octicon octicon-mail"></span>
+        <octicon type="mail"></octicon>
         <strong>Email: </strong>
         <a ng-href="mailto:{{client.email}}" ng-bind="client.email"></a>
         <br>
-        <span class="octicon octicon-location"></span>
+        <octicon type="location"></octicon>
         <strong>Address: </strong>
         <span ng-bind="client.address"></span>
         <br>
-        <span class="octicon octicon-device-mobile"></span>
+        <octicon type="device-mobile"></octicon>
         <strong>Telephone: </strong>
         <span ng-bind="client.telephone"></span>
       </div>

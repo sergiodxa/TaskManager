@@ -5,17 +5,19 @@
       <header ng-bind="project.projectName" class="panel-heading"></header>
 
       <div class="panel-body">
-        <a ng-if="project.githubRepo !== null" ng-href="{{project.githubRepo}}" target="_blank" class="pull-right octicon octicon-logo-github"></a>
+        <a ng-if="project.githubRepo !== null" ng-href="{{project.githubRepo}}" target="_blank" class="pull-right">
+          <octicon type="logo-github"></octicon>
+        </a>
 
-        <span class="octicon octicon-organization"></span>
+        <octicon type="organization"></octicon>
         <strong>Project owner: </strong>
         <a ng-href="#/clients/single/{{project.owner}}" ng-bind="project.clientName"></a>
         <br>
-        <span class="octicon octicon-person"></span>
+        <octicon type="person"></octicon>
         <strong>Project Leader: </strong>
         <a ng-href="#/users/single/{{project.projectLeader}}" ng-bind="project.fullName"></a>
         <br>
-        <span class="octicon octicon-rocket"></span>
+        <octicon type="rocket"></octicon>
         <strong>Release date: </strong>
         <span ng-bind="project.releaseDate"></span>
         <br>

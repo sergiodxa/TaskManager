@@ -1,27 +1,29 @@
 <section class="row">
-  <legend class="text-center">
+  <legend class="text-center column-12-hand">
     Projects
     <a ng-href="#/projects/add/" class="btn btn-sm btn-link pull-right">
-      <span class="glyphicon glyphicon-plus"></span> Add project
+      <octicon type="plus"></octicon> Add project
     </a>
   </legend>
-  <article ng-repeat="project in projects" class="col-md-6">
+  <article ng-repeat="project in projects" class="column-12-hand column-6-lap">
     <div class="panel panel-default">
 
       <header ng-bind="project.projectName" class="panel-heading text-center"></header>
 
       <div class="panel-body">
-        <a ng-if="project.githubRepo !== null" ng-href="{{project.githubRepo}}" target="_blank" class="pull-right octicon octicon-logo-github"></a>
+        <a ng-if="project.githubRepo !== null" ng-href="{{project.githubRepo}}" target="_blank" class="pull-right">
+          <octicon type="logo-github"></octicon>
+        </a>
         
-        <span class="octicon octicon-organization"></span>
+        <octicon type="organization"></octicon>
         <strong>Project owner: </strong>
         <a ng-href="#/clients/single/{{project.owner}}" ng-bind="project.clientName"></a>
         <br>
-        <span class="octicon octicon-person"></span>
+        <octicon type="person"></octicon>
         <strong>Project Leader: </strong>
         <a ng-href="#/users/single/{{project.projectLeader}}" ng-bind="project.fullName"></a>
         <br>
-        <span class="octicon octicon-rocket"></span>
+        <octicon type="rocket"></octicon>
         <strong>Release date: </strong>
         <span ng-bind="project.releaseDate"></span>
       </div>
