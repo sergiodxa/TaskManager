@@ -1,42 +1,44 @@
 <section class="row">
-  <article class="col-md-8 col-md-offset-2">
-    <div class="panel" ng-class="{'panel-danger': task.stateName == 'to do', 'panel-primary': task.stateName == 'in progress', 'panel-warning': task.stateName == 'in testing', 'panel-success': task.stateName == 'completed'}">
-
-      <header class="panel-heading">
-        <h1 class="panel-title">
-          <span ng-bind="task.taskName"></span>
-          <div class="label" ng-class="{'label-danger': task.stateName == 'to do', 'label-primary': task.stateName == 'in progress', 'label-warning': task.stateName == 'in testing', 'label-success': task.stateName == 'completed'}" ng-bind="task.stateName"></div>
-        </h1>
-      </header>
-
-      <div class="panel-body">
-        <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
-        <br>
-        <strong>Assigned to: </strong>
-        <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a>
-        <br>
-        <strong>Estimated time: </strong>
-        <span ng-bind="task.estimatedTime"></span>
-        <span ng-if="task.requiredTime != NULL">
-          <br>
+  <article class="column-12-hand section-item">
+    <div class="box">
+      <span class="pull-right" ng-if="task.stateName != 'completed'
+      ">
+        <octicon type="issue-opened"></octicon>
+      </span>
+      <span class="pull-right" ng-if="task.stateName == 'completed'
+      ">
+        <octicon type="issue-closed"></octicon>
+      </span>
+      <h2 class="section-item-name" ng-bind="task.taskName"></h2>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="repo"></octicon>
+          <strong>Project: </strong>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="person"></octicon>
+          <strong>Assigned to: </strong>
+          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="clock"></octicon>
+          <strong>Estimated time: </strong>
+          <span ng-bind="task.estimatedTime"></span>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="clock"></octicon>
           <strong>Required time: </strong>
           <span ng-bind="task.requiredTime"></span>
-        </span>
-
-        <legend>Description:</legend>
-        <div ng-bind="task.description"></div>
-      </div>
-
-      <footer class="panel-footer" ng-if="itsMe">
-        <a class="btn btn-sm btn-block btn-default" ng-href="#/tasks/edit/{{task.id}}">
-          <span class="glyphicon glyphicon-pencil"></span> Edit task
-        </a>
-        <button class="btn btn-sm btn-block btn-danger" ng-click="deleteTask()">
-          <span class="glyphicon glyphicon-remove"></span> Delete task
-        </button>
-      </footer>
-
+        </li>
+      </ul>
+      <div class="section-item-description" ng-bind="task.description"></div>
+      <a ng-href="#/tasks/edit/{{task.id}}" class="btn btn-info btn-block">
+        <octicon type="pencil"></octicon> Edit task
+      </a>
+      <a ng-click="deleteTask()" class="btn btn-danger btn-block">
+        <octicon type="x"></octicon> Delete client
+      </a>
     </div>
   </article>
 </section>
