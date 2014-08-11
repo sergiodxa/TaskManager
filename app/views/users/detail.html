@@ -1,33 +1,31 @@
 <section class="row">
-  <article class="col-md-8 col-md-offset-2">
-    <div class="panel panel-default">
-
-      <header ng-bind="user.fullName" class="panel-heading"></header>
-
-      <div class="panel-body">
-        <figure class="pull-right">
-          <img ng-src="./img/avatars/{{user.userName}}.jpg" alt="" class="img-rounded circle img-responsive">
-        </figure>
-        <octicon type="mail"></octicon>
-        <strong>Email: </strong>
-        <a ng-href="mailto:{{user.email}}" ng-bind="user.email"></a>
-        <br>
-        <strong>Position: </strong>
-        <span ng-bind="user.position"></span>
-      </div>
-
-      <footer class="panel-footer">
-        <a ng-href="#/tasks/by/user/{{user.id}}" class="btn btn-sm btn-block btn-default">
-          <span class="glyphicon glyphicon-tasks"></span> View tasks
-        </a>
-        <a ng-href="#/users/edit/{{user.id}}" class="btn btn-sm btn-block btn-default">
-          <span class="glyphicon glyphicon-pencil"></span> Edit user
-        </a>
-        <button ng-click="deleteUser()" class="btn btn-sm btn-block btn-danger">
-          <span class="glyphicon glyphicon-remove"></span> Delete user
-        </button>
-      </footer>
-
+  <article class="column-12-hand section-item">
+    <div class="box">
+      <h2 class="section-item-name" ng-bind="user.fullName"></h2>
+      <figure class="pull-right">
+        <img ng-src="./img/avatars/{{user.userName}}.jpg" alt="" class="img-rounded circle img-responsive">
+      </figure>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="mail"></octicon>
+          <strong>Email: </strong>
+          <a ng-href="mailto:{{user.email}}" ng-bind="user.email"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="jersey"></octicon>
+          <strong>Position: </strong>
+          <span ng-bind="user.position"></span>
+        </li>
+      </ul>
+      <a ng-href="#/tasks/by/user/{{user.id}}" class="btn btn-info btn-block">
+        <octicon type="dashboard"></octicon> View tasks
+      </a>
+      <a ng-href="#/users/edit/{{user.id}}" class="btn btn-primary btn-block">
+        <octicon type="pencil"></octicon> Edit user
+      </a>
+      <a ng-click="deleteUser()" class="btn btn-danger btn-block">
+        <octicon type="x"></octicon> Delete user
+      </a>
     </div>
   </article>
 </section>

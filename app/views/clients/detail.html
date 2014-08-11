@@ -1,35 +1,33 @@
 <section class="row">
-  <article class="col-md-8 col-md-offset-2">
-    <div class="panel panel-default">
-
-      <header ng-bind="client.clientName" class="panel-heading"></header>
-
-      <div class="panel-body">
-        <octicon type="mail"></octicon>
-        <strong>Email: </strong>
-        <a ng-href="mailto:{{client.email}}" ng-bind="client.email"></a>
-        <br>
-        <octicon type="location"></octicon>
-        <strong>Address: </strong>
-        <span ng-bind="client.address"></span>
-        <br>
-        <octicon type="device-mobile"></octicon>
-        <strong>Telephone: </strong>
-        <span ng-bind="client.telephone"></span>
-      </div>
-
-      <footer class="panel-footer">
-        <a ng-href="#/tasks/by/client/{{client.id}}" class="btn btn-sm btn-block btn-default">
-          <span class="glyphicon glyphicon-tasks"></span> View tasks
-        </a>
-        <a ng-href="#/clients/edit/{{client.id}}" class="btn btn-sm btn-block btn-default">
-          <span class="glyphicon glyphicon-pencil"></span> Edit client
-        </a>
-        <button ng-click="deleteClient()" class="btn btn-sm btn-block btn-danger">
-          <span class="glyphicon glyphicon-remove"></span> Delete client
-        </button>
-      </footer>
-
+  <article class="column-12-hand section-item">
+    <div class="box">
+      <h2 class="section-item-name" ng-bind="client.clientName"></h2>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="mail"></octicon>
+          <strong>Email: </strong>
+          <a ng-href="mailto:{{client.email}}" ng-bind="client.email"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="location"></octicon>
+          <strong>Address: </strong>
+          <span ng-bind="client.address"></span>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="device-mobile"></octicon>
+          <strong>Telephone: </strong>
+          <span ng-bind="client.telephone"></span>
+        </li>
+      </ul>
+      <a ng-href="#/projects/by/client/{{client.id}}" class="btn btn-info btn-block">
+        <octicon type="dashboard"></octicon> View projects
+      </a>
+      <a ng-href="#/clients/edit/{{user.id}}" class="btn btn-primary btn-block">
+        <octicon type="pencil"></octicon> Edit user
+      </a>
+      <a ng-click="deleteUser()" class="btn btn-danger btn-block">
+        <octicon type="x"></octicon> Delete client
+      </a>
     </div>
   </article>
 </section>

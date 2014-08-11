@@ -1,38 +1,36 @@
 <section class="row">
-  <legend class="text-center column-12-hand">
+  <legend class="section-title text-center column-12-hand">
     Clients
-    <a ng-href="#/clients/add/" class="btn btn-sm btn-link pull-right">
+    <a ng-href="#/clients/add/" class="btn btn-primary pull-right">
       <octicon type="plus"></octicon> Add client
     </a>
   </legend>
-  <article ng-repeat="client in clients" class="column-12-hand column-6-lap">
-    <div class="panel panel-default">
-
-      <header ng-bind="client.clientName" class="panel-heading text-center"></header>
-
-      <div class="panel-body">
-        <octicon type="mail"></octicon>
-        <strong>Email: </strong>
-        <a ng-href="mailto:{{client.email}}" ng-bind="client.email"></a>
-        <br>
-        <octicon type="location"></octicon>
-        <strong>Address: </strong>
-        <span ng-bind="client.address"></span>
-        <br>
-        <octicon type="device-mobile"></octicon>
-        <strong>Telephone: </strong>
-        <span ng-bind="client.telephone"></span>
-      </div>
-
-      <footer class="panel-footer">
-        <a ng-href="#/clients/single/{{client.id}}" class="btn btn-sm btn-block btn-default">
-          <span class="glyphicon glyphicon-list-alt"></span> View details
-        </a>
-        <a ng-href="#/projects/by/client/{{client.id}}" class="btn btn-sm btn-block btn-default">
-          <span class="glyphicon glyphicon-tasks"></span> View projects
-        </a>
-      </footer>
-
+  <article ng-repeat="client in clients" class="column-12-hand column-6-lap section-item">
+    <div class="box">
+      <h2 class="section-item-name" ng-bind="client.clientName"></h2>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="mail"></octicon>
+          <strong>Email: </strong>
+          <a ng-href="mailto:{{client.email}}" ng-bind="client.email"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="location"></octicon>
+          <strong>Address: </strong>
+          <span ng-bind="client.address"></span>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="device-mobile"></octicon>
+          <strong>Telephone: </strong>
+          <span ng-bind="client.telephone"></span>
+        </li>
+      </ul>
+      <a ng-href="#/clients/single/{{client.id}}" class="btn btn-info btn-block">
+        <octicon type="info"></octicon> View details
+      </a>
+      <a ng-href="#/projects/by/client/{{client.id}}" class="btn btn-info btn-block">
+        <octicon type="dashboard"></octicon> View tasks
+      </a>
     </div>
   </article>
 </section>
