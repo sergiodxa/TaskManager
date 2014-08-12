@@ -1,4 +1,4 @@
-function UserNewCtrl ($scope, users, encryptor, session, socket) {
+function UserNewCtrl ($scope, users, session, socket) {
   session.auth();
 
   $scope.newPassIncorrect = false;
@@ -18,7 +18,6 @@ function UserNewCtrl ($scope, users, encryptor, session, socket) {
 
   $scope.sendForm = function () {
     if ($scope.newPassIncorrect === false) {
-      $scope.user.newPass = encryptor.md5($scope.user.newPass);
       socket.emit('add user', $scope.user);
     };
   };

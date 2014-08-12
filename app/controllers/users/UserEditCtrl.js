@@ -1,4 +1,4 @@
-function UserEditCtrl ($scope, $routeParams, encryptor, users, session, socket) {
+function UserEditCtrl ($scope, $routeParams, users, session, socket) {
   session.auth();
 
   var id = $routeParams.id;
@@ -13,10 +13,7 @@ function UserEditCtrl ($scope, $routeParams, encryptor, users, session, socket) 
   });
 
   $scope.actualPassCheck = function () {
-    var actualPass = encryptor.md5($scope.user.actualPass);
-    if (actualPass !== '' && (actualPass === $scope.user.pass)) {
-      $scope.actualPassIncorrect = false;
-    } else if (actualPass === '') {
+    if (($scope.user.actualPass !== '') && ($scope.user.actualPass === $scope.user.pass)) {
       $scope.actualPassIncorrect = false;
     } else {
       $scope.actualPassIncorrect = true;
@@ -35,9 +32,6 @@ function UserEditCtrl ($scope, $routeParams, encryptor, users, session, socket) 
 
   $scope.sendForm = function () {
     if ($scope.actualPassIncorrect === false) {
-      if ($scope.user.newPass) {
-        $scope.user.newPass = encryptor.md5($scope.user.newPass);
-      }
       socket.emit('edit user', {
         id: $scope.user.id,
         data: $scope.user

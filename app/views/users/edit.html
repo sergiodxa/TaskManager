@@ -1,66 +1,73 @@
 <section class="row">
-  <article class="col-md-8 col-md-offset-2">
-    <form role="form" ng-submit="sendForm()" class="panel panel-default">
+  <article class="column-12-hand">
+    <form role="form" ng-submit="sendForm()">
+      <h2 class="form-title">
+        Edit user <strong ng-bind="user.fullName"></strong>
+      </h2>
+<!-- success alert -->
+      <div class="alert alert-success" ng-if="userEdited">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="userEditedTxt"></span>
+      </div>
+<!-- error alert -->
+      <div class="alert alert-danger" ng-if="errorText">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="errorText"></span>
+      </div>
+<!-- user name -->
+      <label>
+        <span>User name</span>
+        <input type="text" id="username" ng-model="user.userName" placeholder="User name" required>
+      </label>
+<!-- user email -->
+      <label>
+        <span>Email</span>
+        <input type="text" id="email" ng-model="user.email" placeholder="Email" required>
+      </label>
+<!-- user first name -->
+      <label>
+        <span>First name</span>
+        <input type="text" id="first-name" ng-model="user.firstName" placeholder="First name" required>
+      </label>
+<!-- user last name -->
+      <label>
+        <span>Last name</span>
+        <input type="text" id="last-name" ng-model="user.lastName" placeholder="Last name" required>
+      </label>
+<!-- user last name -->
+      <label>
+        <span>Position</span>
+        <input type="text" id="position" ng-model="user.position" placeholder="Position" required>
+      </label>
 
-      <header class="panel-heading">Edit user <strong ng-bind="user.fullName"></strong></header>
-
-      <div class="panel-body">
-          <!-- success alert -->
-          <div class="alert alert-success alert-dismissable" ng-if="userEdited">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span ng-bind="userEditedTxt"></span>
-          </div>
-          <!-- error alert -->
-          <div class="alert alert-danger alert-dismissable" ng-if="errorText">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span ng-bind="errorText"></span>
-          </div>
-          <!-- form -->
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" class="form-control" ng-model="user.userName" placeholder="Username" required readonly>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" class="form-control" ng-model="user.email" placeholder="Email" required>
-          </div>
-          <div class="form-group">
-            <label for="first-name">First name</label>
-            <input type="text" id="first-name" class="form-control" ng-model="user.firstName" placeholder="First name" required>
-          </div>
-          <div class="form-group">
-            <label for="last-name">Last name</label>
-            <input type="text" id="last-name" class="form-control" ng-model="user.lastName" placeholder="Last name" required>
-          </div>
-          <div class="form-group">
-            <label for="position">Position:</label>
-            <input type="text" id="position" class="form-control" ng-model="user.position" placeholder="Position" required>
-          </div>
-          <legend>Change password</legend>
-          <div class="form-group">
-            <label for="password">Actual password</label>
-            <input type="password" id="password" class="form-control" ng-model="user.actualPass" ng-change="actualPassCheck()" placeholder="Actual password">
-          </div>
-          <div ng-if="actualPassIncorrect" class="alert alert-warning">
-              Actual password incorrect!
-          </div>
-          <div class="form-group">
-            <label for="new-pass">New password</label>
-            <input type="password" id="new-pass" class="form-control" ng-model="user.newPass" placeholder="New password" ng-change="newPassCheck()" >
-          </div>
-          <div class="form-group">
-            <label for="repeat-pass">Repeat password</label>
-            <input type="password" id="repeat-pass" class="form-control" ng-model="user.repeatPass" placeholder="Repeat password" ng-change="newPassCheck()" >
-          </div>
-          <div ng-if="newPassIncorrect" class="alert alert-danger">
-              The passwords are incorrect!
-          </div>
+      <legend>Change password</legend>
+<!-- user actual password -->
+      <label>
+        <span>Actual password</span>
+        <input type="password" id="password" ng-model="user.actualPass" placeholder="Actual password" ng-change="actualPassCheck()">
+      </label>
+<!-- actual password wrong alert -->
+      <div ng-if="actualPassIncorrect" class="alert alert-warning">
+          Actual password incorrect!
+      </div>
+<!-- user new password -->
+      <label>
+        <span>New password</span>
+        <input type="password" id="new-pass" ng-model="user.newPass" placeholder="New password" ng-change="newPassCheck()">
+      </label>
+<!-- user new password repeated -->
+      <label>
+        <span>Repeat password</span>
+        <input type="password" id="repeat-pass" ng-model="user.repeatPass" placeholder="Repeat password" ng-change="newPassCheck()">
+      </label>
+<!-- alert new and repeated password don't match -->
+      <div ng-if="newPassIncorrect" class="alert alert-danger">
+          The passwords are incorrect!
       </div>
 
-      <footer class="panel-footer">
-        <button type="submit" class="btn btn-sm btn-block btn-primary">Submit</button>
-      </footer>
-
+      <button type="submit" class="btn btn-primary btn-block">
+        Edit user
+      </button>
     </form>
   </article>
 </section>

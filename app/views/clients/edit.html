@@ -1,47 +1,48 @@
 <section class="row">
-  <article class="col-md-8 col-md-offset-2">
-    <form role="form" ng-submit="sendForm()" class="panel panel-default">
-
-      <header class="panel-heading">Edit client <strong ng-bind="client.name"></strong></header>
-
-      <div class="panel-body">
-          <!-- success alert -->
-          <div class="alert alert-success alert-dismissable" ng-if="clientEdited">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span ng-bind="clientEditedTxt"></span>
-          </div>
-          <!-- error alert -->
-          <div class="alert alert-danger alert-dismissable" ng-if="errorText">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span ng-bind="errorText"></span>
-          </div>
-          <!-- form -->
-          <div class="alert alert-danger alert-dismissable" ng-if="errorText">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span ng-bind="errorText"></span>
-          </div>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" class="form-control" ng-model="client.clientName" placeholder="Name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" class="form-control" required ng-model="client.email" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="address">Address</label>
-            <input type="address" id="address" class="form-control" required ng-model="client.address" placeholder="Address">
-          </div>
-          <div class="form-group">
-            <label for="telephone">Telephone</label>
-            <input type="number" id="telephone" class="form-control" required ng-model="client.telephone" placeholder="Telephone">
-          </div>
+  <article class="column-12-hand">
+    <form role="form" ng-submit="sendForm()">
+      <h2 class="form-title">
+        Edit client <strong ng-bind="client.name"></strong>
+      </h2>
+<!-- success alert -->
+      <div class="alert alert-success" ng-if="clientEdited">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="clientEditedTxt"></span>
       </div>
+<!-- error alert -->
+      <div class="alert alert-danger" ng-if="errorText">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="errorText"></span>
+      </div>
+<!-- client name -->
+      <label>
+        <span>Client name</span>
+        <input type="text" id="clientname" ng-model="client.clientName" placeholder="Client name" required>
+      </label>
+<!-- client email -->
+      <label>
+        <span>Email</span>
+        <input type="text" id="email" ng-model="client.email" placeholder="Email" required>
+      </label>
+<!-- client first name -->
+      <label>
+        <span>Address</span>
+        <input type="text" id="address" ng-model="client.address" placeholder="Address" required>
+      </label>
+<!-- client last name -->
+      <label>
+        <span>Telephone</span>
+        <input type="text" id="telephone" ng-model="client.telephone" placeholder="Telephone" required>
+      </label>
+<!-- client last name -->
+      <label>
+        <span>Position</span>
+        <input type="text" id="position" ng-model="client.position" placeholder="Position" required>
+      </label>
 
-      <footer class="panel-footer">
-        <button type="submit" class="btn btn-sm btn-block btn-primary">Submit</button>
-      </footer>
-
+      <button type="submit" class="btn btn-primary btn-block">
+        Edit client
+      </button>
     </form>
   </article>
 </section>
