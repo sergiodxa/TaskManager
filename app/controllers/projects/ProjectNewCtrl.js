@@ -1,4 +1,4 @@
-function ProjectNewCtrl ($scope, projects, users, clients, session, socket) {
+function ProjectNewCtrl ($scope, session, socket) {
   session.auth();
 
   $scope.projectCreated = false;

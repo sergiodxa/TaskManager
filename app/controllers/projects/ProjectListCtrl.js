@@ -1,4 +1,4 @@
-function ProjectListCtrl ($scope, projects, session, socket) {
+function ProjectListCtrl ($scope, session, socket) {
   session.auth();
 
   socket.emit('get projects');

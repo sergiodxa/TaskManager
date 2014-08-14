@@ -1,4 +1,4 @@
-function ProjectEditCtrl ($scope, $routeParams, projects, users, clients, session, socket) {
+function ProjectEditCtrl ($scope, $routeParams, users, clients, session, socket) {
   session.auth();
 
   var id = $routeParams.id;

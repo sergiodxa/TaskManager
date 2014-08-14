@@ -1,11 +1,7 @@
-function ProjectDetailCtrl ($scope, $routeParams, projects, session, socket) {
+function ProjectDetailCtrl ($scope, $routeParams, session, socket) {
   session.auth();
 
   var id = $routeParams.id;
-
-  projects.getSingle(id).then(function (response) {
-    $scope.project = response.data;
-  });
 
   socket.emit('get project', id);
   socket.on('return project', function (response) {
