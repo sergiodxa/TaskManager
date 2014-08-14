@@ -1,23 +1,19 @@
-function TaskByProjectCtrl ($scope, $routeParams, tasks, session) {
+function TaskByProjectCtrl ($scope, $routeParams, tasks, session, socket) {
   session.auth();
 
   var projectId = $routeParams.id;
   var userId    = localStorage.id;
   var overActive;
 
-  tasks.getByProject(projectId).then(function (response) {
-    if (response.data !== 'error') {
-      for (var i = 0; i < response.data.length; ++i) {
-        if (response.data[i].fullName == 'null null') {
-          response.data[i].fullName = 'Not assigned'
-        }
-      }
-      $scope.tasks = response.data;
+  socket.emit('get tasks by project', projectId);
+  socket.on('return tasks by project', function (response) {
+    if (response[0].project == projectId) {
+      $scope.tasks = response;
     }
   });
 
   // Drag&Drop
-  $('.col-md-3').on('dragend', '.panel', function(event) {
+  $('[data-state]').on('dragend', '[draggable]', function(event) {
     var taskList    = []; // creamos un array vacío
     var stateName   = $(this).parent().attr('data-state'); // obtenemos el stateName de la columna inicial
     var index       = $(this).attr('data-index'); // obtenemos la posición de la tarea dentro de la columna
@@ -35,35 +31,25 @@ function TaskByProjectCtrl ($scope, $routeParams, tasks, session) {
     var targetTaskId = targetTask['id'];
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
-    if (parseInt(userId) === targetTaskUserAssigned) {
-      // le cambiamos el stateName y el userAssigned
-      targetTask.stateName   = targetState;
+    if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
       targetTask.userAssigned = userId;
+    }
 
-      // obtenemos el state como número
-      targetTask.state = tasks.getStateNumber(targetState);
+    // le cambiamos el stateName y el userAsigned
+    targetTask.stateName   = targetState;
+    // obtenemos el state como número
+    targetTask.state = tasks.getStateNumber(targetState);
 
-      // creamos un string con los datos
-      var targetTaskData = JSON.stringify(targetTask);
-
-      tasks.edit(targetTaskId, targetTaskData).then(function (response) {
-        if (response.data === 'Task data edited') {
-          tasks.getByProject(projectId).then(function (response) {
-            if (response.data !== 'error') {
-              $scope.tasks = response.data;
-            };
-          });
-        }
-      });
-    } else {
-      return;
-    };
+    socket.emit('edit task', targetTask);
+    setTimeout(function () {
+      socket.emit('get tasks by project', projectId);
+    }, 100);
   });
-  $('.col-md-3').on('dragover', function(event) {
-    $(this).addClass('bg-info');
+  $('[data-state]').on('dragover', function(event) {
+    $(this).addClass('active');
     overActive = $(this);
   });
-  $('.col-md-3').on('dragleave', function(event) {
-    $(this).removeClass('bg-info');
+  $('[data-state]').on('dragleave', function(event) {
+    $(this).removeClass('active');
   });
 };

@@ -1,17 +1,20 @@
-function TaskDetailCtrl ($scope, $routeParams, tasks, session) {
+function TaskDetailCtrl ($scope, $routeParams, session, socket) {
   session.auth();
 
   var id = $routeParams.id;
 
   $scope.itsMe = true;
 
-  tasks.getSingle(id).then(function (response) {
-    $scope.task = response.data;
+  socket.emit('get task', id);
+  socket.on('return task', function (response) {
+    $scope.task = response;
   });
 
   $scope.deleteTask = function () {
-    tasks.erase(id).then(function (response) {
-      window.location = "#/tasks";
-    });
+    socket.emit('delete task', $scope.task);
   };
+
+  socket.on('task deleted', function () {
+    window.location = '#/tasks';
+  })
 };

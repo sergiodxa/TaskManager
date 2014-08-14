@@ -1,73 +1,74 @@
 <section class="row">
-  <article class="col-md-8 col-md-offset-2">
-    <form role="form" ng-submit="sendForm()" class="panel panel-default">
-
-      <header class="panel-heading">New task</header>
-
-      <div class="panel-body">
-          <!-- success alert -->
-          <div class="alert alert-success alert-dismissable" ng-if="taskCreated">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span ng-bind="taskCreatedTxt"></span>
-          </div>
-          <!-- error alert -->
-          <div class="alert alert-danger alert-dismissable" ng-if="errorText">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span ng-bind="errorText"></span>
-          </div>
-          <!-- form -->
-          <div class="form-group">
-            <label for="taskname">Name</label>
-            <input type="text" id="taskname" class="form-control" ng-model="task.taskName" placeholder="Task name" required>
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" class="form-control" ng-model="task.description" placeholder="Description" required rows="4"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="project">Project</label>
-            <select name="project" id="project" class="form-control" required ng-model="task.project">
-              <option ng-repeat="project in projects" ng-value="{{project.id}}">{{project.projectName}}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="user">User assigned</label>
-            <select name="user" id="user" class="form-control" required ng-model="task.userAssigned">
-              <option ng-repeat="user in users" ng-value="{{user.id}}">{{user.fullName}}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="priority">Priority:</label>
-            <input type="number" id="priority" class="form-control" ng-model="task.priority" placeholder="Priority" required>
-          </div>
-          <div class="form-group">
-            <label for="estimated-time">Estimated time</label>
-            <select name="estimated-time" id="estimated-time" class="form-control" ng-model="task.estimatedTime" required>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="4">4</option>
-              <option value="6">6</option>
-              <option value="8">8</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="required-time">Required time</label>
-            <select name="required-time" id="required-time" class="form-control" ng-model="task.requiredTime" required>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="4">4</option>
-              <option value="6">6</option>
-              <option value="8">8</option>
-            </select>
-          </div>
+  <article class="column-12-hand">
+    <form role="form" ng-submit="sendForm()">
+      <h2 class="form-title">
+        New task
+      </h2>
+<!-- success alert -->
+      <div class="alert alert-success" ng-if="taskCreated">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="taskCreatedTxt"></span>
       </div>
+<!-- error alert -->
+      <div class="alert alert-danger" ng-if="errorText">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="errorText"></span>
+      </div>
+<!-- task name -->
+      <label>
+        <span>Name</span>
+        <input type="text" id="taskname" ng-model="task.taskName" placeholder="Taskname" required>
+      </label>
+<!-- task description -->
+      <label>
+        <span>Description</span>
+        <textarea id="description" ng-model="task.description" placeholder="Description" required rows="4"></textarea>
+      </label>
+<!-- task project -->
+      <label>
+        <span>Project</span>
+        <select name="project" id="project" required ng-model="task.project">
+          <option ng-repeat="project in projects" ng-value="{{project.id}}">{{project.projectName}}</option>
+        </select>
+      </label>
+<!-- task user assigned -->
+      <label>
+        <span>User assigned</span>
+        <select name="user" id="user" required ng-model="task.userAssigned">
+          <option ng-repeat="user in users" ng-value="{{user.id}}">{{user.fullName}}</option>
+        </select>
+      </label>
+<!-- task priority -->
+      <label>
+        <span>Priority:</span>
+        <input type="number" id="priority" ng-model="task.priority" placeholder="Priority" required>
+      </label>
+<!-- task estimated time -->
+      <label>
+        <span>Estimated time</span>
+        <select name="estimated-time" id="estimated-time" ng-model="task.estimatedTime" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+        </select>
+      </label>
+<!-- task required time -->
+      <label>
+        <span>Required time</span>
+        <select name="required-time" id="required-time" ng-model="task.requiredTime" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+        </select>
+      </label>
 
-      <footer class="panel-footer">
-        <button type="submit" class="btn btn-sm btn-block btn-primary">
-          Submit
-        </button>
-      </footer>
-
+      <button type="submit" class="btn btn-primary btn-block">
+        Add task
+      </button>
     </form>
   </article>
 </section>

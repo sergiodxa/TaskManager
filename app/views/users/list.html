@@ -1,29 +1,31 @@
 <section class="row">
-  <legend class="text-center">
+  <legend class="section-title text-center column-12-hand">
     Users
-    <a ng-href="#/users/add/" class="btn btn-sm btn-link pull-right">
-      <span class="glyphicon glyphicon-plus"></span> Add user
+    <a ng-href="#/users/add/" class="btn btn-primary pull-right">
+      <octicon type="plus"></octicon> Add user
     </a>
   </legend>
-  <article ng-repeat="user in users" class="col-md-6">
-    <div class="panel panel-default">
-
-      <header ng-bind="user.fullName" class="panel-heading text-center"></header>
-
-      <div class="panel-body">
-        <strong>Email: </strong>
-        <a ng-href="mailto:{{user.email}}" ng-bind="user.email"></a>
-      </div>
-
-      <footer class="panel-footer">
-        <a ng-href="#/users/single/{{user.id}}" class="btn btn-sm btn-block btn-default">
-          <span class="glyphicon glyphicon-list-alt"></span> View details
-        </a>
-        <a ng-href="#/tasks/by/user/{{user.id}}" class="btn btn-sm btn-block btn-default">
-          <span class="glyphicon glyphicon-tasks"></span> View tasks
-        </a>
-      </footer>
-
+  <article ng-repeat="user in users" class="column-12-hand column-6-lap section-item">
+    <div class="box">
+      <h2 class="section-item-name" ng-bind="user.fullName"></h2>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="mail"></octicon>
+          <strong>Email: </strong>
+          <a ng-href="mailto:{{user.email}}" ng-bind="user.email"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="jersey"></octicon>
+          <strong>Position: </strong>
+          <span ng-bind="user.position"></span>
+        </li>
+      </ul>
+      <a ng-href="#/users/single/{{user.id}}" class="btn btn-info btn-block">
+        <octicon type="info"></octicon> View details
+      </a>
+      <a ng-href="#/tasks/by/user/{{user.id}}" class="btn btn-info btn-block">
+        <octicon type="dashboard"></octicon> View tasks
+      </a>
     </div>
   </article>
 </section>

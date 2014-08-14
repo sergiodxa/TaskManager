@@ -1,15 +1,18 @@
-function UserDetailCtrl ($scope, $routeParams, users, session) {
+function UserDetailCtrl ($scope, $routeParams, users, session, socket) {
   session.auth();
 
   var id = $routeParams.id;
 
-  users.getSingle(id).then(function (response) {
-    $scope.user = response.data;
+  socket.emit('get user', id);
+  socket.on('return user', function (response) {
+    $scope.user = response;
   });
 
   $scope.deleteUser = function () {
-    users.erase(id).then(function (response) {
-      window.location = "#/users";
-    });
+    socket.emit('delete user', id);
   };
+
+  socket.on('user deleted', function (response) {
+    window.location = '#/users';
+  });
 };

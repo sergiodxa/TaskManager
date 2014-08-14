@@ -1,19 +1,20 @@
-function TaskByUserCtrl ($scope, $routeParams, tasks, session) {
+function TaskByUserCtrl ($scope, $routeParams, tasks, session, socket) {
   session.auth();
 
   var userId     = $routeParams.id || localStorage.id;
   var userActive = localStorage.id;
   var overActive;
 
-  tasks.getByUser(userId).then(function (response) {
-    if (response.data !== 'error') {
-      $scope.tasks = response.data;
+  socket.emit('get tasks by user', userId);
+  socket.on('return tasks by user', function (response) {
+    if (response[0].userAssigned == userId) {
+      $scope.tasks = response;
     }
   });
 
   // Drag&Drop
   if (userActive === userId) {
-    $('.col-md-3').on('dragend', '.panel', function(event) {
+    $('[data-state]').on('dragend', '[draggable]', function(event) {
       var taskList    = []; // creamos un array vacío
       var stateName   = $(this).parent().attr('data-state'); // obtenemos el stateName de la columna inicial
       var index       = $(this).attr('data-index'); // obtenemos la posición de la tarea dentro de la columna
@@ -30,32 +31,26 @@ function TaskByUserCtrl ($scope, $routeParams, tasks, session) {
       var targetTask   = taskList[index];
       var targetTaskId = targetTask['id'];
 
+      if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
+        targetTask.userAssigned = userId;
+      }
+
       // le cambiamos el stateName y el userAsigned
       targetTask.stateName   = targetState;
-      targetTask.userAsigned = userActive;
-
       // obtenemos el state como número
       targetTask.state = tasks.getStateNumber(targetState);
 
-      // creamos un string con los datos
-      var targetTaskData = JSON.stringify(targetTask);
-
-      tasks.edit(targetTaskId, targetTaskData).then(function (response) {
-        if (response.data === 'Task data edited') {
-          tasks.getByUser(userId).then(function (response) {
-            if (response.data !== 'error') {
-              $scope.tasks = response.data;
-            };
-          });
-        };
-      });
+      socket.emit('edit task', targetTask);
+      setTimeout(function () {
+        socket.emit('get tasks by user', userId);
+      }, 100);
     });
-    $('.col-md-3').on('dragover', function(event) {
-      $(this).addClass('bg-info');
+    $('[data-state]').on('dragover', function(event) {
+      $(this).addClass('active');
       overActive = $(this);
     });
-    $('.col-md-3').on('dragleave', function(event) {
-      $(this).removeClass('bg-info');
+    $('[data-state]').on('dragleave', function(event) {
+      $(this).removeClass('active');
     });
   }
 };

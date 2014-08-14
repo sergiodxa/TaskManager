@@ -1,8 +1,6 @@
 TaskManager.service('session', function ($http, encryptor){
 
   this.login = function (user, pass) {
-    var pass = encryptor.md5(pass);
-
     return $http({
       method: 'GET',
       url   : '/api/session/login',

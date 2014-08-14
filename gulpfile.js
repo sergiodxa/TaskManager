@@ -5,7 +5,7 @@ var gulp        = require('gulp'),
     watch       = require('gulp-watch');
 
 gulp.task('minify', function () {
-  gulp.src(['app/controllers/**/*.js','app/services/*.js','app/app.js'])
+  gulp.src(['app/controllers/**/*.js','app/services/*.js','app/directives/*.js','app/app.js'])
       .pipe(jsmin())
       .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('app/minified'));
@@ -21,6 +21,7 @@ gulp.task('merge', function () {
            './app/minified/EncryptorService.js',
            './app/minified/GitHubService.js',
            './app/minified/ProjectService.min.js',
+           './app/minified/SocketService.min.js',
            './app/minified/TaskService.min.js',
            './app/minified/UserService.min.js',
            './app/minified/**/*.min.js'])

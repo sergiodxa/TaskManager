@@ -1,0 +1,53 @@
+/*
+  En este archivo se guardan todas las variables usadas en el sitio, ya sean valores en pixeles o colores.
+
+  Estandar para nombres:
+
+  Fuentes:
+    Se escribe ff- y el tipo de fuente, ej: ff-normal o ff-condensed, también se puede poner el nombre de la fuente si es específico.
+
+  Colores:
+    Se escribe color- y el nombre del color.
+
+  Tamaños:
+    Para guardar medidas en pixeles para media queries, se escriben nombre del tamaño (usando 2 letras) -device-size o el nombre del dispositivo al que pertenecen, ejemplo xs-device-size o iphone4-device-size.
+
+  Valores default:
+    Para guardar valores que se utilizan por defecto en base.less, se escriben default- y el tipo de propiedad que configuran por default, ej: default-font-size.
+*/
+
+@default-font-size: 14px; // Tamaño de fuente por defecto
+@default-font-family: @ff-normal; // Familia de fuente por defecto
+
+// Fuentes
+@ff-condensed: 'Open Sans Condensed', Arial, sans-serif; // Fuente Oswald de Google Fonts
+@ff-normal: 'PT Sans', 'Open Sans', Arial, sans-serif; // Fuente Arial normal
+@ff-postit: 'Gloria Hallelujah', cursive; // Fuente hand para los post-it
+
+// Grid System
+@columns: 12; // Cantidad de columnas
+@xs-device-size: 320px; // Tamaño inicial para dispositivos extra pequeños
+@sm-device-size: 640px; // Tamaño inicial para dispositivos pequeños
+@md-device-size: 960px; // Tamaño inicial para dispositivos medianos
+@lg-device-size: 1200px; // Tamaño inicial para dispositivos grandes
+
+// Device sizes específicos
+@asus-galaxy7-l-device-size: 533px; // asus galaxy 7 landscape
+@asus-galaxy7-p-device-size: 320px; // asus galaxy 7 portrait
+@galaxy-s4-l-device-size: 640px; // samsung galaxy s3/4 landscape
+@galaxy-s4-p-device-size: 360px; // samsung galaxy s3/4 portrait
+@ipad-l-device-size: 1024px; // iad landscape
+@ipad-p-device-size: 768px; // ipad portrait
+@iphone-l-device-size: 480px; // iphone 3/4 landscape
+@iphone-p-device-size: 320px; // iphone 3/4/5 portrait
+@iphone5-l-device-size: 568px; // iphone 5 landscape
+@kindle-l-device-size: 1024px; // kindle landscape
+@kindle-p-device-size: 600px; // kindle portrait
+@nexus4-l-device-size: 600px; // nexus 4 landscape
+@nexus4-p-device-size: 384px; // nexus 4 portrait
+@tv-1080-l-device-size: 1080px; // video 1080p landscape
+@tv-1080-p-device-size: 1920px; // video 1080p portrait
+@tv-480-l-device-size: 480px; // video 480p landscape
+@tv-480-p-device-size: 640px; // video 480p portrait
+@tv-720-l-device-size: 720px; // video 720p landscape
+@tv-720-p-device-size: 1280px; // video 720p portrait

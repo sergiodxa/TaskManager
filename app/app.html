@@ -4,34 +4,56 @@
   <meta charset="utf-8">
   <title>TaskManager</title>
   <!-- Bootstrap Stylesheet -->
-  <link rel="stylesheet" href="./vendor/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./vendor/bootstrap/dist/css/bootstrap-theme.min.css">
+  <!--<link rel="stylesheet" href="./vendor/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./vendor/bootstrap/dist/css/bootstrap-theme.min.css">-->
+  <!-- Octicons -->
+  <link rel="stylesheet" href="./vendor/octicons/octicons/octicons.css">
+  <!-- Final CSS file -->
+  <link rel="stylesheet" href="./css/main.min.css">
   <!-- Final JS file -->
-    <script src="./dist/main.js"></script>
+  <script src="./socket.io/socket.io.js"></script>
+  <script src="./dist/main.js"></script>
 </head>
 <body>
 
-  <nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#/">TaskManager</a>
-    </div>
-
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="#/tasks">TaskBoard</a></li>
-        <li><a href="#/projects">Projects</a></li>
-        <li><a href="#/users">Users</a></li>
-        <li><a href="#/clients">Clients</a></li>
-      </ul>
-      <button type="button" class="btn btn-default navbar-btn pull-right" ng-click="logout()" ng-controller="LogoutCtrl">Logout</button>
-    </div>
+  <nav class="navbar">
+    <a href="#/" class="navbar-brand">TaskManager</a>
+    <ul class="navbar-list">
+      <li class="navbar-list-item">
+        <a href="#/tasks/all" class="navbar-list-item-link">
+          <octicon type="dashboard"></octicon>
+          TaskBoard
+        </a>
+      </li>
+      <li class="navbar-list-item">
+        <a href="#/tasks" class="navbar-list-item-link">
+          <octicon type="dashboard"></octicon>
+          My TaskBoard
+        </a>
+      </li>
+      <li class="navbar-list-item">
+        <a href="#/projects" class="navbar-list-item-link">
+          <octicon type="repo"></octicon>
+          Projects
+        </a>
+      </li>
+      <li class="navbar-list-item">
+        <a href="#/users" class="navbar-list-item-link">
+          <octicon type="person"></octicon>
+          Users
+        </a>
+      </li>
+      <li class="navbar-list-item">
+        <a href="#/clients" class="navbar-list-item-link">
+          <octicon type="organization"></octicon>
+          Clients
+        </a>
+      </li>
+    </ul>
+    <button type="button" class="btn btn-primary pull-right" ng-click="logout()" ng-controller="LogoutCtrl">
+      Logout
+      <octicon type="sign-out"></octicon>
+    </button>
   </nav>
 
   <div class="container" ng-view></div>

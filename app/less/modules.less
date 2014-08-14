@@ -1,0 +1,25 @@
+/*
+  Los módulos son pequeñas piezas del sitio que puedes reutilizar. En este archivo puedes cargar (import) todos los módulos que haces y ponerlos en archivo separado en una carpeta modules.
+
+  Si un módulo posee más de 50 líneas (incluyendo llaves de cierre en líneas a parte) se debe colocar en un archivo separado cuyo nombre debe empezar con el prefijo modulo-, ej: modulo-navbar.less, luego deberá ser cargado con @import antes que cualquier otro módulo definido en este archivo.
+*/
+
+@import 'module-buttons.less';
+@import 'module-form.less';
+@import 'module-navbar.less';
+@import 'module-section.less';
+@import 'module-tasks.less';
+a {
+  color: #3498DB;
+  text-decoration: none;
+  &:hover {
+    color: #2980B9;
+    text-decoration: underline;
+  }
+}
+
+.container {
+  .center-block();
+  max-width: 1200px;
+  width: 95%;
+}

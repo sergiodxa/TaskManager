@@ -50,3 +50,56 @@ exports.erase = function (req, res) {
     }
   })
 };
+
+exports.io = function (socket) {
+  socket.on('get clients', function () {
+    model.getAll(function (clientsData) {
+      socket.emit('return clients', clientsData);
+    });
+  });
+
+  socket.on('get client', function (id) {
+    model.getSingle(id, function (clientData) {
+      socket.emit('return client', clientData);
+    });
+  });
+
+  socket.on('edit client', function (data) {
+    model.edit(data.id, data.data, function (response) {
+      if (response === 'Client edited') {
+        socket.emit('client edited', 'Client edited');
+        model.getAll(function (clientsData) {
+          socket.broadcast.emit('return clients', clientsData);
+        });
+      } else {
+        socket.emit('edit client failed', 'An error has ocurred');
+      }
+    });
+  });
+
+  socket.on('delete client', function (id) {
+    model.erase(id, function (response) {
+      if (response === 'Client deleted') {
+        socket.emit('client deleted', 'Client deleted');
+        model.getAll(function (clientsData) {
+          socket.broadcast.emit('return clients', clientsData);
+        });
+      } else if (response === false) {
+        socket.emit('delete client failed', 'Error');
+      }
+    });
+  });
+
+  socket.on('add client', function (data) {
+    model.add(data, function (response) {
+      if (response === 'Client added') {
+        socket.emit('client added', 'Client added');
+        model.getAll(function (clientsData) {
+          socket.broadcast.emit('return clients', clientsData);
+        });
+      } else if (response === false) {
+        socket.emit('add client failed', 'An error has ocurred');
+      }
+    });
+  });
+};

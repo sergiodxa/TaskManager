@@ -1,108 +1,131 @@
-<div class="row">
+<div class="row tasks">
 
   <!-- tareas pendientes -->
-  <section class="col-md-3" data-state="to do">
-    <legend class="text-center">
+  <section class="column-12-hand column-auto-lap" data-state="to do">
+    <legend class="task-state text-center">
       To do
-      <a ng-href="#/tasks/add/" class="btn btn-sm btn-link pull-right">
-        <span class="glyphicon glyphicon-plus"></span> Add task
+      <a ng-href="#/tasks/add/" class="task-state-add">
+        <octicon type="plus"></octicon> Add task
       </a>
     </legend>
-    <article ng-repeat="task in tasks | filter: {stateName: 'to do'}" class="panel panel-danger" draggable="true" data-index="{{$index}}">
-      <header ng-bind="task.taskName" class="panel-heading text-center"></header>
-      <div class="panel-body">
-        <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a><br>
-        <span ng-if="task.userAssigned !== null">
-          <strong>Assigned to:</strong>
-          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a><br>
-        </span>
-        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
-      </div>
-      <footer class="panel-footer">
-        <a ng-href="#/tasks/single/{{task.id}}" class="btn btn-sm btn-block btn-danger">
-          <span class="glyphicon glyphicon-list-alt"></span> View details
+    <article ng-repeat="task in tasks | filter: {stateName: 'to do'}" class="task box" draggable="true" data-index="{{$index}}">
+      <span title="Open" class="octicon octicon-issue-opened pull-right"></span>
+
+      <h3 ng-bind="task.taskName" class="task-title"></h3>
+
+      <ul class="task-data">
+        <li class="task-data-item">
+          <strong>Project: </strong>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        </li>
+        <li class="task-data-item" ng-if="task.userAssigned !== null">
+          <strong>Assigned to: </strong>
+          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a>
+        </li>
+        <li class="task-data-item">
+          <strong>Estimated time: </strong>
+          <span ng-bind="task.estimatedTime"></span> hours
+        </li>
+      </ul>
+
+      <div class="task-actions">
+        <a ng-href="#/tasks/single/{{task.id}}" class="task-issue">
+          <octicon type="info"></octicon> View details
         </a>
-        <button class="btn btn-sm btn-block btn-danger" ng-if="itsMe">
-          Start task <span class="glyphicon glyphicon-chevron-right"></span>
-        </button>
-      </footer>
+      </div>
     </article>
   </section>
 
   <!-- tareas en progreso -->
-  <section class="col-md-3" data-state="in progress">
-    <legend class="text-center">In progress</legend>
-    <article ng-repeat="task in tasks | filter: {stateName: 'in progress'}" class="panel panel-primary" draggable="true" data-index="{{$index}}">
-      <header ng-bind="task.taskName" class="panel-heading text-center"></header>
-      <div class="panel-body">
-        <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
-        <br>
-        <strong>Doing: </strong>
-        <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a><br>
-        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
-      </div>
-      <footer class="panel-footer">
-        <a ng-href="#/tasks/single/{{task.id}}" class="btn btn-sm btn-block btn-primary">
-          <span class="glyphicon glyphicon-list-alt"></span> View details
+  <section class="column-12-hand column-auto-lap" data-state="in progress">
+    <legend class="task-state text-center">In progress</legend>
+    <article ng-repeat="task in tasks | filter: {stateName: 'in progress'}" class="task box" draggable="true" data-index="{{$index}}">
+      <span title="Open" class="octicon octicon-issue-opened pull-right"></span>
+
+      <h3 ng-bind="task.taskName" class="task-title"></h3>
+
+      <ul class="task-data">
+        <li class="task-data-item">
+          <strong>Project: </strong>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        </li>
+        <li class="task-data-item" ng-if="task.userAssigned !== null">
+          <strong>Doing: </strong>
+          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a>
+        </li>
+        <li class="task-data-item">
+          <strong>Estimated time: </strong>
+          <span ng-bind="task.estimatedTime"></span> hours
+        </li>
+      </ul>
+
+      <div class="task-actions">
+        <a ng-href="#/tasks/single/{{task.id}}" class="task-issue">
+          <octicon type="info"></octicon> View details
         </a>
-        <button class="btn btn-sm btn-block btn-primary" ng-if="itsMe">
-          Pass to tests <span class="glyphicon glyphicon-chevron-right"></span>
-        </button>
-      </footer>
+      </div>
     </article>
   </section>
 
   <!-- tareas en pruebas -->
-  <section class="col-md-3" data-state="in testing">
-    <legend class="text-center">In testing</legend>
-    <article ng-repeat="task in tasks | filter: {stateName: 'in testing'}" class="panel panel-warning" draggable="true" data-index="{{$index}}">
-      <header ng-bind="task.taskName" class="panel-heading text-center"></header>
-      <div class="panel-body">
-        <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
-        <br>
-        <strong>Testing: </strong>
-        <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a><br>
-        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
-      </div>
-      <footer class="panel-footer">
-        <a ng-href="#/tasks/single/{{task.id}}" class="btn btn-sm btn-block btn-warning">
-          <span class="glyphicon glyphicon-list-alt"></span> View details
+  <section class="column-12-hand column-auto-lap" data-state="in testing">
+    <legend class="task-state text-center">In testing</legend>
+    <article ng-repeat="task in tasks | filter: {stateName: 'in testing'}" class="task box" draggable="true" data-index="{{$index}}">
+      <span title="Open" class="octicon octicon-issue-opened pull-right"></span>
+
+      <h3 ng-bind="task.taskName" class="task-title"></h3>
+
+      <ul class="task-data">
+        <li class="task-data-item">
+          <strong>Project: </strong>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        </li>
+        <li class="task-data-item" ng-if="task.userAssigned !== null">
+          <strong>Testing: </strong>
+          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a>
+        </li>
+        <li class="task-data-item">
+          <strong>Estimated time: </strong>
+          <span ng-bind="task.estimatedTime"></span> hours
+        </li>
+      </ul>
+
+      <div class="task-actions">
+        <a ng-href="#/tasks/single/{{task.id}}" class="task-issue">
+          <octicon type="info"></octicon> View details
         </a>
-        <button class="btn btn-sm btn-block btn-warning" ng-if="itsMe">
-           <span class="glyphicon glyphicon-chevron-left"></span> Return to in progress
-        </button>
-        <button class="btn btn-sm btn-block btn-warning" ng-if="itsMe">
-          Complete <span class="glyphicon glyphicon-chevron-right"></span>
-        </button>
-      </footer>
+      </div>
     </article>
   </section>
 
   <!-- tareas completas -->
-  <section class="col-md-3" data-state="completed">
-    <legend class="text-center">Completed</legend>
-    <article ng-repeat="task in tasks | filter: {stateName: 'completed'}" class="panel panel-success" draggable="true" data-index="{{$index}}">
-      <header ng-bind="task.taskName" class="panel-heading text-center"></header>
-      <div class="panel-body">
-        <strong>Project: </strong>
-        <a ng-href="#/projects/single/{{task.projectName}}" ng-bind="task.projectName"></a>
-        <br>
-        <strong>Estimated time: </strong><span ng-bind="task.estimatedTime"></span> hours
-        <span ng-if="task.requiredTime != NULL"><br>
-          <strong>Required time: </strong><span ng-bind="task.requiredTime"></span> hours
-        </span>
-      </div>
-      <footer class="panel-footer">
-        <a ng-href="#/tasks/single/{{task.id}}" class="btn btn-sm btn-block btn-success">
-          <span class="glyphicon glyphicon-list-alt"></span> View details
+  <section class="column-12-hand column-auto-lap" data-state="completed">
+    <legend class="task-state text-center">Completed</legend>
+    <article ng-repeat="task in tasks | filter: {stateName: 'completed'}" class="task box" draggable="true" data-index="{{$index}}">
+      <span title="Closed" class="octicon octicon-issue-closed pull-right"></span>
+
+      <h3 ng-bind="task.taskName" class="task-title"></h3>
+
+      <ul class="task-data">
+        <li class="task-data-item">
+          <strong>Project: </strong>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        </li>
+        <li class="task-data-item">
+          <strong>Estimated time: </strong>
+          <span ng-bind="task.estimatedTime"></span> hours
+        </li>
+        <li class="task-data-item" ng-if="task.requiredTime != NULL">
+          <strong>Required time: </strong>
+          <span ng-bind="task.requiredTime"></span> hours
+        </li>
+      </ul>
+
+      <div class="task-actions">
+        <a ng-href="#/tasks/single/{{task.id}}" class="task-issue">
+          <octicon type="info"></octicon> View details
         </a>
-        <button class="btn btn-sm btn-block btn-success" ng-if="itsMe">
-          Return to test <span class="glyphicon glyphicon-chevron-left"></span>
-        </button>
-      </footer>
+      </div>
     </article>
   </section>
 

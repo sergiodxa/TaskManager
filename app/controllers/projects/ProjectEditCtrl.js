@@ -1,33 +1,38 @@
-function ProjectEditCtrl ($scope, $routeParams, projects, users, clients, session) {
+function ProjectEditCtrl ($scope, $routeParams, users, clients, session, socket) {
   session.auth();
 
   var id = $routeParams.id;
 
   $scope.projectEdited = false;
-
-  projects.getSingle(id).then(function (response) {
-    $scope.project = response.data;
+  
+  socket.emit('get project', id);
+  socket.on('return project', function (response) {
+    $scope.project = response;
   });
 
-  users.getOnlyScrumMasters().then(function (response) {
-    $scope.users = response.data;
+  socket.emit('get users');
+  socket.on('return users', function (response) {
+    $scope.users = response;
   });
 
-  clients.getAll().then(function (response) {
-    $scope.clients = response.data;
+  socket.emit('get clients');
+  socket.on('return clients', function (response) {
+    $scope.clients = response;
   });
 
   $scope.sendForm = function () {
-    projects.edit($scope.project.id, $scope.project).then(function (response) {
-      if (response.data === 'Project edited') {
-        $scope.projectEditedTxt = response.data;
-        $scope.projectEdited = true;
-        projects.getSingle(id).then(function (response) {
-          $scope.project = response.data;
-        });
-      } else {
-        $scope.errorTxt = response.data;
-      };
+    socket.emit('edit project', {
+      id: $scope.project.id,
+      data: $scope.project
     });
   };
+
+  socket.on('project edited', function(response) {
+    $scope.projectEdited = true;
+    $scope.projectEditedTxt = response;
+  });
+
+  socket.on('edit project failed', function(response) {
+    $scope.errorTxt = response;
+  });
 };

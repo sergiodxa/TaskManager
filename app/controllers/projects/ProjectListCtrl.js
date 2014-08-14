@@ -1,7 +1,8 @@
-function ProjectListCtrl ($scope, projects, session) {
+function ProjectListCtrl ($scope, session, socket) {
   session.auth();
 
-  projects.getAll().then(function (response) {
-    $scope.projects = response.data;
+  socket.emit('get projects');
+  socket.on('return projects', function (response) {
+    $scope.projects = response;
   });
 };
