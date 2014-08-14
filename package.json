@@ -1,13 +1,11 @@
 {
   "name": "TaskManager",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "WebApp to manage task in many projects.",
   "main": "app.js",
   "dependencies": {
     "bower": "1.3.*",
     "express": "4.3.*",
-    "github": "^0.2.0",
-    "jade": "*",
     "less": "1.7.*",
     "mysql": "2.3.*",
     "socket.io": "^1.0.6",

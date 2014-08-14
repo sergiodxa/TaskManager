@@ -1,8 +1,7 @@
 # TaskManager
 * **Author**: Sergio Daniel Xalambrí
-* **Last change**: 8/04/2014
 * **Twitter**: [@sergiodxa](http://twitter.com/sergiodxa "@sergiodxa")
-* **Version**: 2.0.0
+* **Version**: 2.1.0
 
 ## English
 WebApp to manage task in many projects. You can create a client, add as many project as you want to that client, create tasks for that project and assign them to an user (a team member).
@@ -23,7 +22,7 @@ npm install
 
 This is going to install the dependencies of the backend (with npm) and frontend (with bower) and run bower's tasks to minify and merge all the JavaScript.
 
-You can run bowers' tasks manually using the command
+You can run bowers's tasks manually using the command
 
 ```
 npm run build

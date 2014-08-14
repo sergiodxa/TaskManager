@@ -8,8 +8,7 @@ Location: Buenos Aires, Argentina.
 
 /* SITE */
 
-Last update: 8/04/2014
 Standards: HTML5, CSS3, Responsive Web Design
 Frontend Libraries: AngularJS, Bootstrap & jQuery.
-Backend Libraries: Bower, ExpressJS, Gulp, Jasmine, MySQL & NodeJS
+Backend Libraries: Socket.io, NodeMailer, Bower, ExpressJS, Gulp, Jasmine, MySQL & NodeJS
 Software: Sublime Text 2 & Sublime Text 3
