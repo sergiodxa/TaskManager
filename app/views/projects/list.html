@@ -15,12 +15,12 @@
         <li class="section-item-data-item">
           <octicon type="organization"></octicon>
           <strong>Project owner: </strong>
-          <a ng-href="#/clients/single/{{project.owner}}" ng-bind="project.clientName"></a>
+          <a ng-href="#/clients/single/{{project.owner._id}}" ng-bind="project.owner.clientName"></a>
         </li>
         <li class="section-item-data-item">
           <octicon type="person"></octicon>
           <strong>Project Leader: </strong>
-          <a ng-href="#/users/single/{{project.projectLeader}}" ng-bind="project.fullName"></a>
+          <a ng-href="#/users/single/{{project.projectLeader._id}}">{{project.projectLeader.firstName}} {{project.projectLeader.lastName}}</a>
         </li>
         <li class="section-item-data-item">
           <octicon type="rocket"></octicon>
@@ -28,10 +28,10 @@
           <span ng-bind="project.releaseDate"></span>
         </li>
       </ul>
-      <a ng-href="#/projects/single/{{project.id}}" class="btn btn-info btn-block">
+      <a ng-href="#/projects/single/{{project._id}}" class="btn btn-info btn-block">
         <octicon type="info"></octicon> View details
       </a>
-      <a ng-href="#/tasks/by/project/{{project.id}}" class="btn btn-info btn-block">
+      <a ng-href="#/tasks/by/project/{{project._id}}" class="btn btn-info btn-block">
         <octicon type="dashboard"></octicon> View tasks
       </a>
     </div>

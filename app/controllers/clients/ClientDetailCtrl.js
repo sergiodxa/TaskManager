@@ -1,4 +1,4 @@
-function ClientDetailCtrl ($scope, $routeParams, clients, session, socket) {
+function ClientDetailCtrl ($scope, $routeParams, session, socket) {
   session.auth();
 
   var id = $routeParams.id;

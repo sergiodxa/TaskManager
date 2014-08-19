@@ -1,4 +1,4 @@
-function TaskByProjectCtrl ($scope, $routeParams, tasks, session, socket) {
+function TaskByProjectCtrl ($scope, $routeParams, session, socket) {
   session.auth();
 
   var projectId = $routeParams.id;
@@ -28,7 +28,7 @@ function TaskByProjectCtrl ($scope, $routeParams, tasks, session, socket) {
 
     // obtenemos los datos de la tarea
     var targetTask   = taskList[index];
-    var targetTaskId = targetTask['id'];
+    var targetTaskId = targetTask['_id'];
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
     if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
@@ -40,7 +40,7 @@ function TaskByProjectCtrl ($scope, $routeParams, tasks, session, socket) {
     // obtenemos el state como número
     targetTask.state = tasks.getStateNumber(targetState);
 
-    socket.emit('edit task', targetTask);
+    socket.emit('edit task', { id: targetTask._id, data: targetTask });
     setTimeout(function () {
       socket.emit('get tasks by project', projectId);
     }, 100);

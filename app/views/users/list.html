@@ -7,7 +7,7 @@
   </legend>
   <article ng-repeat="user in users" class="column-12-hand column-6-lap section-item">
     <div class="box">
-      <h2 class="section-item-name" ng-bind="user.fullName"></h2>
+      <h2 class="section-item-name">{{user.firstName}} {{user.lastName}}</h2>
       <ul class="section-item-data">
         <li class="section-item-data-item">
           <octicon type="mail"></octicon>
@@ -20,10 +20,10 @@
           <span ng-bind="user.position"></span>
         </li>
       </ul>
-      <a ng-href="#/users/single/{{user.id}}" class="btn btn-info btn-block">
+      <a ng-href="#/users/single/{{user._id}}" class="btn btn-info btn-block">
         <octicon type="info"></octicon> View details
       </a>
-      <a ng-href="#/tasks/by/user/{{user.id}}" class="btn btn-info btn-block">
+      <a ng-href="#/tasks/by/user/{{user._id}}" class="btn btn-info btn-block">
         <octicon type="dashboard"></octicon> View tasks
       </a>
     </div>

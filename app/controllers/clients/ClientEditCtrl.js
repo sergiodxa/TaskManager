@@ -1,4 +1,4 @@
-function ClientEditCtrl ($scope, $routeParams, clients, session, socket) {
+function ClientEditCtrl ($scope, $routeParams, session, socket) {
   session.auth();
 
   var id = $routeParams.id;
@@ -12,7 +12,7 @@ function ClientEditCtrl ($scope, $routeParams, clients, session, socket) {
 
   $scope.sendForm = function () {
     socket.emit('edit client', {
-      id: $scope.client.id,
+      id: $scope.client._id,
       data: $scope.client
     });
   };

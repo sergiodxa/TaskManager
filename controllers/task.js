@@ -79,12 +79,12 @@ exports.edit = function (req, res) {
               to: userData.email,
               subject: 'Task changed',
               text: 'The task: "' + data.taskName + '" changed to "' + data.stateName +'"',
-                html: 'The task: <strong>' + data.taskName + '</strong> changed to <em>' + data.stateName + '</em>.<br><a href="http://localhost:3000/#/tasks/single/' + data.id + '" target="_blank">Check here</a>'
+              html: 'The task: <strong>' + data.taskName + '</strong> changed to <em>' + data.stateName + '</em>.<br><a href="http://localhost:3000/#/tasks/single/' + data.id + '" target="_blank">Check here</a>'
           };
           transporter.sendMail(mailOptions, function(error, info){
-              if(error){
+              if (error){
                   console.log(error);
-              }else{
+              } else {
                   console.log('Message sent: ' + info.response);
               }
           });

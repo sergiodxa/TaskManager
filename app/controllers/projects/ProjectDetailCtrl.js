@@ -8,6 +8,7 @@ function ProjectDetailCtrl ($scope, $routeParams, session, socket) {
     $scope.project = response;
   });
 
+
   $scope.deleteProject = function () {
     socket.emit('delete project', id);
   };

@@ -2,7 +2,7 @@
   <article class="column-12-hand">
     <form role="form" ng-submit="sendForm()">
       <h2 class="form-title">
-        Edit user <strong ng-bind="user.fullName"></strong>
+        Edit user <strong>{{user.firstName}} {{user.lastName}}</strong>
       </h2>
 <!-- success alert -->
       <div class="alert alert-success" ng-if="userEdited">

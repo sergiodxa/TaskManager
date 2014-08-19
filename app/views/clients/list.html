@@ -25,11 +25,11 @@
           <span ng-bind="client.telephone"></span>
         </li>
       </ul>
-      <a ng-href="#/clients/single/{{client.id}}" class="btn btn-info btn-block">
+      <a ng-href="#/clients/single/{{client._id}}" class="btn btn-info btn-block">
         <octicon type="info"></octicon> View details
       </a>
-      <a ng-href="#/projects/by/client/{{client.id}}" class="btn btn-info btn-block">
-        <octicon type="dashboard"></octicon> View tasks
+      <a ng-href="#/projects/by/client/{{client._id}}" class="btn btn-info btn-block">
+        <octicon type="dashboard"></octicon> View projects
       </a>
     </div>
   </article>

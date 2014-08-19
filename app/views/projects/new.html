@@ -23,14 +23,14 @@
       <label>
         <span>Owner</span>
         <select name="owner" id="owner" required ng-model="project.owner">
-          <option ng-repeat="client in clients" ng-value="{{client.id}}">{{client.clientName}}</option>
+          <option ng-repeat="client in clients" value="{{client._id}}">{{client.clientName}}</option>
         </select>
       </label>
 <!-- project project leader -->
       <label>
         <span>Project Leader</span>
         <select name="projectleader" id="projectleader" required ng-model="project.projectLeader">
-          <option ng-repeat="user in users" ng-value="{{user.id}}">{{user.fullName}}</option>
+          <option ng-repeat="user in users" value="{{user._id}}">{{user.fullName}}</option>
         </select>
       </label>
 <!-- project description -->

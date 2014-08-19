@@ -11,7 +11,7 @@ function TaskDetailCtrl ($scope, $routeParams, session, socket) {
   });
 
   $scope.deleteTask = function () {
-    socket.emit('delete task', $scope.task);
+    socket.emit('delete task', $scope.task._id);
   };
 
   socket.on('task deleted', function () {

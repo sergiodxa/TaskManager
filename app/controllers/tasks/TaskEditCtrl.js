@@ -20,7 +20,7 @@ function TaskEditCtrl ($scope, $routeParams, session, socket) {
   });
 
   $scope.sendForm = function () {
-    socket.emit('edit task', $scope.task);
+    socket.emit('edit task', { id: id, data: $scope.task });
   };
 
   socket.on('task edited', function(response) {

@@ -1,4 +1,4 @@
-function ClientListCtrl ($scope, clients, session, socket) {
+function ClientListCtrl ($scope, session, socket) {
   session.auth();
 
   socket.emit('get clients');

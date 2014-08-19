@@ -1,4 +1,4 @@
-function TaskListCtrl ($scope, tasks, session, socket) {
+function TaskListCtrl ($scope, session, socket) {
   session.auth();
 
   var userId    = localStorage.id;
@@ -25,7 +25,7 @@ function TaskListCtrl ($scope, tasks, session, socket) {
 
     // obtenemos los datos de la tarea
     var targetTask   = taskList[index];
-    var targetTaskId = targetTask['id'];
+    var targetTaskId = targetTask['_id'];
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
     if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
@@ -37,7 +37,7 @@ function TaskListCtrl ($scope, tasks, session, socket) {
     // obtenemos el state como número
     targetTask.state = tasks.getStateNumber(targetState);
 
-    socket.emit('edit task', targetTask);
+    socket.emit('edit task', { id: targetTask._id, data: targetTask });
     setTimeout(function () {
       socket.emit('get tasks');
     }, 100);

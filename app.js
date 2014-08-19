@@ -1,5 +1,6 @@
 // Dependencies
-var express = require('express');
+var express  = require('express');
+var mongoose = require('mongoose');
 
 // Controllers
 var client  = require('./controllers/client');
@@ -7,6 +8,11 @@ var project = require('./controllers/project');
 var session = require('./controllers/session');
 var task    = require('./controllers/task');
 var user    = require('./controllers/user');
+
+var CtrlClient  = require('./controllers/CtrlClient');
+var CtrlProject = require('./controllers/CtrlProject');
+var CtrlTask    = require('./controllers/CtrlTask');
+var CtrlUser    = require('./controllers/CtrlUser');
 
 // Start app
 var app = express();
@@ -18,6 +24,9 @@ var port = Number(process.env.PORT || 3000);
 var serverListen = app.listen(port, function() {
   console.log('Running on ' + port);
 });
+
+// Mongoose connect
+mongoose.connect('mongodb://localhost/taskmanager');
 
 // Socket.io initialized
 var io = require('socket.io').listen(serverListen);
@@ -67,10 +76,10 @@ app.post('/api/users/delete/:id', user.erase);
 
 // Socket.io events
 io.on('connection', function (socket) {
-  client.io(socket);
-  project.io(socket);
-  user.io(socket);
-  task.io(socket);
+  CtrlClient.io(socket);
+  CtrlProject.io(socket);
+  CtrlTask.io(socket);
+  CtrlUser.io(socket);
 });
 
 console.log('TaskManger started - App running in the port ' + port);

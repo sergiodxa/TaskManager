@@ -1,4 +1,4 @@
-function ClientNewCtrl ($scope, clients, session, socket) {
+function ClientNewCtrl ($scope, session, socket) {
   session.auth();
 
   $scope.clientCreated = false;

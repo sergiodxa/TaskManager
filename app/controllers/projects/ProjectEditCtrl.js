@@ -1,12 +1,13 @@
-function ProjectEditCtrl ($scope, $routeParams, users, clients, session, socket) {
+function ProjectEditCtrl ($scope, $routeParams, session, socket) {
   session.auth();
 
   var id = $routeParams.id;
+  console.log(id);
 
   $scope.projectEdited = false;
   
-  socket.emit('get project', id);
-  socket.on('return project', function (response) {
+  socket.emit('get project without populate', id);
+  socket.on('return project without populate', function (response) {
     $scope.project = response;
   });
 
@@ -22,7 +23,7 @@ function ProjectEditCtrl ($scope, $routeParams, users, clients, session, socket)
 
   $scope.sendForm = function () {
     socket.emit('edit project', {
-      id: $scope.project.id,
+      id: $scope.project._id,
       data: $scope.project
     });
   };

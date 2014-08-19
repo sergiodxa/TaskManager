@@ -28,14 +28,14 @@
       <label>
         <span>Project</span>
         <select name="project" id="project" required ng-model="task.project">
-          <option ng-repeat="project in projects" ng-value="{{project.id}}">{{project.projectName}}</option>
+          <option ng-repeat="project in projects" ng-value="{{project._id}}">{{project.projectName}}</option>
         </select>
       </label>
 <!-- task user assigned -->
       <label>
         <span>User assigned</span>
         <select name="user" id="user" required ng-model="task.userAssigned">
-          <option ng-repeat="user in users" ng-value="{{user.id}}">{{user.fullName}}</option>
+          <option ng-repeat="user in users" ng-value="{{user._id}}">{{user.fullName}}</option>
         </select>
       </label>
 <!-- task priority -->

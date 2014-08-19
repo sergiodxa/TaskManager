@@ -33,7 +33,7 @@ function UserEditCtrl ($scope, $routeParams, users, session, socket) {
   $scope.sendForm = function () {
     if ($scope.actualPassIncorrect === false) {
       socket.emit('edit user', {
-        id: $scope.user.id,
+        id: id,
         data: $scope.user
       });
     };

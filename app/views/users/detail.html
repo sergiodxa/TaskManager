@@ -1,7 +1,7 @@
 <section class="row">
   <article class="column-12-hand section-item">
     <div class="box">
-      <h2 class="section-item-name" ng-bind="user.fullName"></h2>
+      <h2 class="section-item-name">{{user.firstName}} {{user.lastName}}</h2>
       <figure class="pull-right">
         <img ng-src="./img/avatars/{{user.userName}}.jpg" alt="" class="img-rounded circle img-responsive">
       </figure>
@@ -17,10 +17,10 @@
           <span ng-bind="user.position"></span>
         </li>
       </ul>
-      <a ng-href="#/tasks/by/user/{{user.id}}" class="btn btn-info btn-block">
+      <a ng-href="#/tasks/by/user/{{user._id}}" class="btn btn-info btn-block">
         <octicon type="dashboard"></octicon> View tasks
       </a>
-      <a ng-href="#/users/edit/{{user.id}}" class="btn btn-primary btn-block">
+      <a ng-href="#/users/edit/{{user._id}}" class="btn btn-primary btn-block">
         <octicon type="pencil"></octicon> Edit user
       </a>
       <a ng-click="deleteUser()" class="btn btn-danger btn-block">
