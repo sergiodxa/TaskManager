@@ -29,7 +29,6 @@ exports.io = function (socket) {
         if (err) {
           console.error(err);
         } else {
-          console.log(res);
           socket.emit('return project', res);
         };
       }
@@ -60,12 +59,11 @@ exports.io = function (socket) {
         if (err) {
           console.error(err);
         } else {
-          console.log(res);
           socket.emit('return project without populate' , res);
         };
       }
     );
-  });  
+  });
 
   // event for add a new project
   socket.on('add project', function (data) {
@@ -84,32 +82,70 @@ exports.io = function (socket) {
         socket.emit('add project failed', 'An error has ocurred');
       } else {
         socket.emit('project added', 'Project added');
-        Project.find(function (err, res) {
-          if (err) {
-            console.error(err);
-          } else {
-            socket.broadcast.emit('return projects', res);
+
+        Project
+          .find()
+          .populate('owner')
+          .populate('projectLeader', '-pass')
+          .exec(function (err, res) {
+            if (err) {
+              console.error(err);
+            } else {
+              socket.broadcast.emit('return projects', res);
+            }
           }
-        });
+        );
+        Project
+          .find({ owner: mongoose.Types.ObjectId(data.owner) })
+          .populate('owner')
+          .populate('projectLeader', '-pass')
+          .exec(function (err, res) {
+            if (err) {
+              console.error(err);
+            } else {
+              socket.broadcast.emit('return projects by client', res);
+            }
+          }
+        );
       };
     });
   });
 
   // event for edit a project
   socket.on('edit project', function (data) {
+console.log(data.data.owner);
     Project.findByIdAndUpdate(mongoose.Types.ObjectId(data.id), data.data, function (err, res) {
       if (err) {
         console.error(err);
         socket.emit('edit project failed', 'An error has ocurred');
       } else {
         socket.emit('project edited', 'Project edited');
-        Project.find(function (err, res) {
-          if (err) {
-            console.error(err);
-          } else {
-            socket.broadcast.emit('return projects', res);
+
+        Project
+          .find()
+          .populate('owner')
+          .populate('projectLeader', '-pass')
+          .exec(function (err, res) {
+            if (err) {
+              console.error(err);
+            } else {
+              socket.broadcast.emit('return projects', res);
+            }
           }
-        });
+        );
+
+        Project
+          .find({ owner: mongoose.Types.ObjectId(data.data.owner) })
+          .populate('owner')
+          .populate('projectLeader', '-pass')
+          .exec(function (err, res) {
+            if (err) {
+              console.error(err);
+            } else {
+              socket.broadcast.emit('return projects by client', res);
+            }
+          }
+        );
       };
     });
   });
@@ -122,13 +158,32 @@ exports.io = function (socket) {
         socket.emit('delete project failed', 'Error');
       } else {
         socket.emit('project deleted', 'Project deleted');
-        Project.find(function (err, res) {
-          if (err) {
-            console.error(err);
-          } else {
-            socket.broadcast.emit('return projects', res);
+
+        Project
+          .find()
+          .populate('owner')
+          .populate('projectLeader', '-pass')
+          .exec(function (err, res) {
+            if (err) {
+              console.error(err);
+            } else {
+              socket.broadcast.emit('return projects', res);
+            }
           }
-        });
+        );
+
+        Project
+          .find({ owner: mongoose.Types.ObjectId(data.owner) })
+          .populate('owner')
+          .populate('projectLeader', '-pass')
+          .exec(function (err, res) {
+            if (err) {
+              console.error(err);
+            } else {
+              socket.broadcast.emit('return projects by client', res);
+            }
+          }
+        );
       };
     });
   });
