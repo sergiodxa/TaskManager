@@ -16,10 +16,10 @@ function TaskNewCtrl ($scope, session, socket) {
 
   $scope.sendForm = function () {
     $scope.task.estimatedTime = parseInt($scope.task.estimatedTime);
-    $scope.task.project = parseInt($scope.task.project);
+    $scope.task.project = $scope.task.project;
     $scope.task.requiredTime = null;
     $scope.task.state = 1;
-    $scope.task.userAssigned = parseInt($scope.task.userAssigned);
+    $scope.task.userAssigned = $scope.task.userAssigned;
     socket.emit('add task', $scope.task);
   };
 

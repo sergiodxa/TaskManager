@@ -2,6 +2,7 @@ function TaskListCtrl ($scope, session, socket) {
   session.auth();
 
   var userId    = localStorage.id;
+  userId = '53f33ed375f1edf40d3a1330';
   var overActive;
 
   socket.emit('get tasks');
@@ -12,31 +13,30 @@ function TaskListCtrl ($scope, session, socket) {
   // Drag&Drop
   $('[data-state]').on('dragend', '[draggable]', function(event) {
     var taskList    = []; // creamos un array vacío
-    var stateName   = $(this).parent().attr('data-state'); // obtenemos el stateName de la columna inicial
+    var state       = $(this).parent().attr('data-state'); // obtenemos el stateName de la columna inicial
     var index       = $(this).attr('data-index'); // obtenemos la posición de la tarea dentro de la columna
     var targetState = $(overActive).attr('data-state'); // obtenemos el stateName objetivo
 
     // recorremos todas las tareas para buscar las que tengan el stateName inicial
-    for (task in $scope.tasks) {
-      if ($scope.tasks[task].stateName === stateName) {
-        taskList.push($scope.tasks[task]);
+    for (var i = 0; i < $scope.tasks.length; i++) {
+      if ($scope.tasks[i].state === state) {
+        taskList.push($scope.tasks[i]);
       };
     };
 
     // obtenemos los datos de la tarea
     var targetTask   = taskList[index];
+    console.log('ok');
     var targetTaskId = targetTask['_id'];
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
-    if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
+    if (targetTask.state === '1' && targetTask.userAssigned === null) {
       targetTask.userAssigned = userId;
     }
 
-    // le cambiamos el stateName y el userAsigned
-    targetTask.stateName   = targetState;
     // obtenemos el state como número
-    targetTask.state = tasks.getStateNumber(targetState);
-
+    targetTask.state = targetState;
+    console.log(targetTask);
     socket.emit('edit task', { id: targetTask._id, data: targetTask });
     setTimeout(function () {
       socket.emit('get tasks');

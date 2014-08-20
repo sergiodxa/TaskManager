@@ -1,7 +1,7 @@
 <div class="row tasks">
 
   <!-- tareas pendientes -->
-  <section class="column-12-hand column-auto-lap" data-state="to do">
+  <section class="column-12-hand column-auto-lap" data-state="1">
     <legend class="task-state text-center">
       To do
       <a ng-href="#/tasks/add/" class="task-state-add">
@@ -37,7 +37,7 @@
   </section>
 
   <!-- tareas en progreso -->
-  <section class="column-12-hand column-auto-lap" data-state="in progress">
+  <section class="column-12-hand column-auto-lap" data-state="2">
     <legend class="task-state text-center">In progress</legend>
     <article ng-repeat="task in tasks | filter: {state: 2}" class="task box" draggable="true" data-index="{{$index}}">
       <span title="Open" class="octicon octicon-issue-opened pull-right"></span>
@@ -68,7 +68,7 @@
   </section>
 
   <!-- tareas en pruebas -->
-  <section class="column-12-hand column-auto-lap" data-state="in testing">
+  <section class="column-12-hand column-auto-lap" data-state="3">
     <legend class="task-state text-center">In testing</legend>
     <article ng-repeat="task in tasks | filter: {state: 3}" class="task box" draggable="true" data-index="{{$index}}">
       <span title="Open" class="octicon octicon-issue-opened pull-right"></span>
@@ -99,7 +99,7 @@
   </section>
 
   <!-- tareas completas -->
-  <section class="column-12-hand column-auto-lap" data-state="completed">
+  <section class="column-12-hand column-auto-lap" data-state="4">
     <legend class="task-state text-center">Completed</legend>
     <article ng-repeat="task in tasks | filter: {state: 4}" class="task box" draggable="true" data-index="{{$index}}">
       <span title="Closed" class="octicon octicon-issue-closed pull-right"></span>

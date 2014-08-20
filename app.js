@@ -32,7 +32,7 @@ mongoose.connect('mongodb://localhost/taskmanager');
 var io = require('socket.io').listen(serverListen);
 
 // App Routes
-app.get('/', function (req, res) {  
+app.get('/', function (req, res) {
   res.sendfile(__dirname + '/app/app.html');
 });
 
@@ -74,12 +74,21 @@ app.post('/api/users/add', user.add);
 app.post('/api/users/edit/:id', user.edit);
 app.post('/api/users/delete/:id', user.erase);
 
+// Connected users
+var connectedUsers = {}
+
 // Socket.io events
 io.on('connection', function (socket) {
-  CtrlClient.io(socket);
-  CtrlProject.io(socket);
-  CtrlTask.io(socket);
-  CtrlUser.io(socket);
+  connectedUsers[socket.id] = Math.random();
+
+  CtrlClient.io(socket, connectedUsers);
+  CtrlProject.io(socket, connectedUsers);
+  CtrlTask.io(socket, connectedUsers);
+  CtrlUser.io(socket, connectedUsers);
+
+  socket.on('disconnect', function () {
+    delete connectedUsers[socket.id];
+  });
 });
 
 console.log('TaskManger started - App running in the port ' + port);
