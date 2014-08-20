@@ -10,7 +10,7 @@ function ProjectDetailCtrl ($scope, $routeParams, session, socket) {
 
 
   $scope.deleteProject = function () {
-    socket.emit('delete project', id);
+    socket.emit('delete project', { id: id, data: $scope.project });
   };
 
   socket.on('project deleted', function (response) {

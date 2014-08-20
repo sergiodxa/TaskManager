@@ -151,8 +151,8 @@ console.log(data.data.owner);
   });
 
   // event for erase a project
-  socket.on('delete project', function (id) {
-    Project.findByIdAndRemove(mongoose.Types.ObjectId(id), function (err, res) {
+  socket.on('delete project', function (data) {
+    Project.findByIdAndRemove(mongoose.Types.ObjectId(data.id), function (err, res) {
       if (err) {
         console.error(err);
         socket.emit('delete project failed', 'Error');
@@ -173,7 +173,7 @@ console.log(data.data.owner);
         );
 
         Project
-          .find({ owner: mongoose.Types.ObjectId(data.owner) })
+          .find({ owner: mongoose.Types.ObjectId(data.data.owner._id) })
           .populate('owner')
           .populate('projectLeader', '-pass')
           .exec(function (err, res) {
