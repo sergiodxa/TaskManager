@@ -31,12 +31,18 @@ function UserEditCtrl ($scope, $routeParams, users, session, socket) {
   };
 
   $scope.sendForm = function () {
-    if ($scope.actualPassIncorrect === false) {
+    if ($scope.actualPassIncorrect === false && $scope.newPassIncorrect === false) {
+      $scope.user.pass = $scope.user.newPass;
       socket.emit('edit user', {
         id: id,
         data: $scope.user
       });
-    };
+    } else {
+      socket.emit('edit user', {
+        id: id,
+        data: $scope.user
+      });
+    }
   };
 
   socket.on('user with pass edited', function (response) {

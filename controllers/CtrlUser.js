@@ -9,17 +9,6 @@ exports.io = function (socket) {
       if (err) {
         console.error(err);
       } else {
-        for (var i = 0; i < res.length; i++) {
-          res[i] = {
-            _id      : res[i]._id,
-            userName : res[i].userName,
-            email    : res[i].email,
-            firstName: res[i].firstName,
-            lastName : res[i].lastName,
-            fullName : res[i].firstName + ' ' + res[i].lastName,
-            position : res[i].position
-          };
-        }
         socket.emit('return users', res);
       }
     });
@@ -31,9 +20,6 @@ exports.io = function (socket) {
       if (err) {
         console.error(err);
       } else {
-        if (res) {
-          res.fullName = res.firstName + ' ' + res.lastName;
-        }
         socket.emit('return user', res);
       };
     });
