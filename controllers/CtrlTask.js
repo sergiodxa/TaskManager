@@ -48,7 +48,7 @@ exports.io = function (socket) {
   //event for get all task by user
   socket.on('get tasks by user', function (userId) {
     Task
-      .find({ userAssigned: mongoose.Types.ObjectId(userId) })
+      .find({ userAssigned: userId })
       .populate('project')
       .populate('userAssigned', '-pass')
       .exec(function (err, res) {

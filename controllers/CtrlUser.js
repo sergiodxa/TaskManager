@@ -5,24 +5,46 @@ exports.io = function (socket) {
 
   // event for get all users
   socket.on('get users', function () {
-    User.find(function (err, res) {
-      if (err) {
-        console.error(err);
-      } else {
-        socket.emit('return users', res);
+    User
+      .find()
+      .select('-pass')
+      .exec(function (err, res) {
+        if (err) {
+          console.error(err);
+        } else {
+          socket.emit('return users', res);
+        }
       }
-    });
+    );
   });
 
   // event for get a single user
   socket.on('get user', function (id) {
-    User.findById(mongoose.Types.ObjectId(id), function (err, res) {
-      if (err) {
-        console.error(err);
-      } else {
-        socket.emit('return user', res);
-      };
-    });
+    User
+      .findById(mongoose.Types.ObjectId(id))
+      .select('-pass')
+      .exec(function (err, res) {
+        if (err) {
+          console.error(err);
+        } else {
+          socket.emit('return user', res);
+        };
+      }
+    );
+  });
+
+  // event for get user with password
+  socket.on('get user with pass', function (id) {
+    User
+      .findById(mongoose.Types.ObjectId(id))
+      .exec(function (err, res) {
+        if (err) {
+          console.error(res);
+        } else {
+          socket.emit('return user with pass', res);
+        }
+      }
+    );
   });
 
   // event for add a new user

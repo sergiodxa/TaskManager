@@ -7,8 +7,8 @@ function UserEditCtrl ($scope, $routeParams, users, session, socket) {
   $scope.newPassIncorrect = false;
   $scope.userEdited = false;
 
-  socket.emit('get user', id);
-  socket.on('return user', function (response) {
+  socket.emit('get user with pass', id);
+  socket.on('return user with pass', function (response) {
     $scope.user = response;
   });
 
