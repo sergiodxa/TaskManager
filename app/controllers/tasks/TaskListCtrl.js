@@ -19,25 +19,31 @@ function TaskListCtrl ($scope, session, socket) {
 
     // recorremos todas las tareas para buscar las que tengan el stateName inicial
     for (var i = 0; i < $scope.tasks.length; i++) {
-      if ($scope.tasks[i].state === state) {
+      if ($scope.tasks[i].state === parseInt(state)) {
         taskList.push($scope.tasks[i]);
       };
     };
 
     // obtenemos los datos de la tarea
     var targetTask   = taskList[index];
-    console.log('ok');
     var targetTaskId = targetTask['_id'];
     var targetTaskUserAssigned = targetTask['userAssigned'];
 
-    if (targetTask.state === '1' && targetTask.userAssigned === null) {
+    targetTask.project = targetTask.project._id;
+
+    if ((targetTask.state === '1' && targetTask.userAssigned === null) || targetTask.userAssigned === null) {
       targetTask.userAssigned = userId;
+    } else {
+      targetTask.userAssigned = targetTask.userAssigned._id;
     }
 
     // obtenemos el state como número
     targetTask.state = targetState;
-    console.log(targetTask);
+
+    delete targetTask["$$hashKey"];
+
     socket.emit('edit task', { id: targetTask._id, data: targetTask });
+
     setTimeout(function () {
       socket.emit('get tasks');
     }, 100);

@@ -7,7 +7,7 @@ function TaskByUserCtrl ($scope, $routeParams, session, socket) {
 
   socket.emit('get tasks by user', userId);
   socket.on('return tasks by user', function (response) {
-    if (response[0].userAssigned == userId) {
+    if (response[0].userAssigned._id == userId) {
       $scope.tasks = response;
     }
   });
@@ -16,31 +16,37 @@ function TaskByUserCtrl ($scope, $routeParams, session, socket) {
   if (userActive === userId) {
     $('[data-state]').on('dragend', '[draggable]', function(event) {
       var taskList    = []; // creamos un array vacío
-      var stateName   = $(this).parent().attr('data-state'); // obtenemos el stateName de la columna inicial
+      var state       = $(this).parent().attr('data-state'); // obtenemos el stateName de la columna inicial
       var index       = $(this).attr('data-index'); // obtenemos la posición de la tarea dentro de la columna
       var targetState = $(overActive).attr('data-state'); // obtenemos el stateName objetivo
 
       // recorremos todas las tareas para buscar las que tengan el stateName inicial
-      for (task in $scope.tasks) {
-        if ($scope.tasks[task].stateName === stateName) {
-          taskList.push($scope.tasks[task]);
+      for (var i = 0; i < $scope.tasks.length; i++) {
+        if ($scope.tasks[i].state === parseInt(state)) {
+          taskList.push($scope.tasks[i]);
         };
       };
 
       // obtenemos los datos de la tarea
       var targetTask   = taskList[index];
       var targetTaskId = targetTask['_id'];
+      var targetTaskUserAssigned = targetTask['userAssigned'];
 
-      if (targetTask.stateName === 'to do' && targetTask.userAssigned === null) {
+     targetTask.project = targetTask.project._id;
+
+      if ((targetTask.state === '1' && targetTask.userAssigned === null) || targetTask.userAssigned === null) {
         targetTask.userAssigned = userId;
+      } else {
+        targetTask.userAssigned = targetTask.userAssigned._id;
       }
 
-      // le cambiamos el stateName y el userAsigned
-      targetTask.stateName   = targetState;
       // obtenemos el state como número
-      targetTask.state = tasks.getStateNumber(targetState);
+      targetTask.state = targetState;
+
+      delete targetTask["$$hashKey"];
 
       socket.emit('edit task', { id: targetTask._id, data: targetTask });
+
       setTimeout(function () {
         socket.emit('get tasks by user', userId);
       }, 100);
