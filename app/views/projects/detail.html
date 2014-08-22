@@ -19,7 +19,7 @@
         <li class="section-item-data-item">
           <octicon type="rocket"></octicon>
           <strong>Release date: </strong>
-          <span ng-bind="project.releaseDate"></span>
+          <span>{{project.releaseDate | date:'dd/MM/yyyy'}}</span>
         </li>
       </ul>
       <div class="section-item-description" ng-bind="project.description"></div>
