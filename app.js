@@ -1,27 +1,24 @@
 // Dependencies
 var express  = require('express');
+var http     = require('http');
+var connect  = require('connect');
+var cookie   = require('cookie');
+var session  = require('express-session');
+var io       = require('socket.io');
 var mongoose = require('mongoose');
-
-// Controllers
-var client  = require('./controllers/client');
-var project = require('./controllers/project');
-var session = require('./controllers/session');
-var task    = require('./controllers/task');
-var user    = require('./controllers/user');
-
-var CtrlClient  = require('./controllers/CtrlClient');
-var CtrlProject = require('./controllers/CtrlProject');
-var CtrlTask    = require('./controllers/CtrlTask');
-var CtrlUser    = require('./controllers/CtrlUser');
 
 // Start app
 var app = express();
-var server = require('http').Server(app);
+server  = http.createServer(app)
 
 // App Config
+app.use(connect.cookieParser());
+app.use(session({secret: 'secret', key: 'express.sid'}));
 app.use(express.static(__dirname + '/app'));
+
 var port = Number(process.env.PORT || 3000);
-var serverListen = app.listen(port, function() {
+
+server.listen(port, function () {
   console.log('Running on ' + port);
 });
 
@@ -29,7 +26,15 @@ var serverListen = app.listen(port, function() {
 mongoose.connect('mongodb://localhost/taskmanager');
 
 // Socket.io initialized
-var io = require('socket.io').listen(serverListen);
+io = io.listen(server);
+
+// Controllers
+var session     = require('./controllers/session');
+
+var CtrlClient  = require('./controllers/CtrlClient');
+var CtrlProject = require('./controllers/CtrlProject');
+var CtrlTask    = require('./controllers/CtrlTask');
+var CtrlUser    = require('./controllers/CtrlUser');
 
 // App Routes
 app.get('/', function (req, res) {
@@ -37,47 +42,33 @@ app.get('/', function (req, res) {
 });
 
 // API Routes
-  // Client routes
-app.get('/api/clients/get/all', client.getAll);
-app.get('/api/clients/get/single/:id', client.getSingle);
-app.post('/api/clients/add', client.add);
-app.post('/api/clients/edit/:id', client.edit);
-app.post('/api/clients/delete/:id', client.erase);
-
-  // Project routes
-app.get('/api/projects/get/all', project.getAll);
-app.get('/api/projects/get/single/:id', project.getSingle);
-app.get('/api/projects/by/client/:id', project.getByClient);
-app.post('/api/projects/add', project.add);
-app.post('/api/projects/edit/:id', project.edit);
-app.post('/api/projects/delete/:id', project.erase);
-
   // Session routes
 app.get('/api/session/login', session.login);
 app.post('/api/session/auth', session.auth);
 app.post('/api/session/logout', session.logout);
 
-  // Tasks routes
-app.get('/api/tasks/get/all', task.getAll);
-app.get('/api/tasks/get/single/:id', task.getSingle);
-app.get('/api/tasks/get/by/user/:id', task.getByUser);
-app.get('/api/tasks/get/by/project/:id', task.getByProject);
-app.post('/api/tasks/add', task.add);
-app.post('/api/tasks/edit/:id', task.edit);
-app.post('/api/tasks/delete/:id', task.erase);
-
-  // Users routes
-app.get('/api/users/get/all', user.getAll);
-app.get('/api/users/get/single/:id', user.getSingle);
-app.get('/api/users/only/scrummasters', user.getOnlyScrumMasters);
-app.post('/api/users/add', user.add);
-app.post('/api/users/edit/:id', user.edit);
-app.post('/api/users/delete/:id', user.erase);
-
 // Connected users
 var connectedUsers = {}
 
 // Socket.io events
+io.set('authorization', function (handshakeData, accept) {
+  if (handshakeData.headers.cookie) {
+    handshakeData.cookie = cookie.parse(handshakeData.headers.cookie);
+
+    handshakeData.sessionID = connect.utils.parseSignedCookie(handshakeData.cookie['express.sid'], 'secret');
+
+    if (handshakeData.cookie['express.sid'] == handshakeData.sessionID) {
+      console.error('Cookie is invalid');
+      return accept('Cookie is invalid.', false);
+    }
+  } else {
+    console.error('No cookie transmitted');
+    return accept('No cookie transmitted.', false);
+  }
+
+  accept(null, true);
+});
+
 io.on('connection', function (socket) {
   connectedUsers[socket.id] = Math.random();
 
