@@ -1,9 +1,9 @@
-TaskManager.service('session', function ($http, encryptor){
+TaskManager.service('session', function ($http) {
 
   this.login = function (user, pass) {
     return $http({
       method: 'GET',
-      url   : '/api/session/login',
+      url   : '/session/login',
       params: {
         user: user,
         pass: pass
@@ -12,17 +12,11 @@ TaskManager.service('session', function ($http, encryptor){
   };
 
   this.auth = function () {
-    var id    = localStorage.id;
-    var user  = localStorage.user;
-    var token = localStorage.token;
-
     $http({
       method: 'POST',
-      url   : '/api/session/auth',
+      url   : '/session/auth',
       params: {
-        id   : id,
-        user : user,
-        token: token
+        token: localStorage.token
       }
     }).success(function (data, status) {
       if (window.location.hash === '#/login') {
@@ -34,17 +28,11 @@ TaskManager.service('session', function ($http, encryptor){
   };
 
   this.logout = function () {
-    var id    = localStorage.id;
-    var user  = localStorage.user;
-    var token = localStorage.token;
-
     $http({
       method: 'POST',
-      url   : '/api/session/logout',
+      url   : '/session/logout',
       params: {
-        id   : id,
-        user : user,
-        token: token
+        token: localStorage.token
       }
     }).success(function (data, status) {
       localStorage.removeItem('id');

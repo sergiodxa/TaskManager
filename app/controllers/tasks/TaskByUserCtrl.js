@@ -37,6 +37,7 @@ function TaskByUserCtrl ($scope, $routeParams, session, socket) {
       if ((targetTask.state === '1' && targetTask.userAssigned === null) || targetTask.userAssigned === null) {
         targetTask.userAssigned = userId;
       } else {
+        console.log(targetTask.userAssigned._id);
         targetTask.userAssigned = targetTask.userAssigned._id;
       }
 

@@ -3,7 +3,6 @@ function TaskByProjectCtrl ($scope, $routeParams, session, socket) {
 
   var projectId = $routeParams.id;
   var userId    = localStorage.id;
-  userId = '53f33ed375f1edf40d3a1330';
   var overActive;
 
   socket.emit('get tasks by project', projectId);

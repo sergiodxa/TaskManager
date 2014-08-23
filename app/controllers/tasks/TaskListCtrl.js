@@ -2,7 +2,6 @@ function TaskListCtrl ($scope, session, socket) {
   session.auth();
 
   var userId    = localStorage.id;
-  userId = '53f33ed375f1edf40d3a1330';
   var overActive;
 
   socket.emit('get tasks');
