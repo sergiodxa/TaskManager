@@ -11,7 +11,9 @@
     "mongoose": "^3.8.14",
     "nodemailer": "^1.1.1",
     "redis-sessions": "^0.3.6",
-    "socket.io": "^1.0.6"
+    "socket.io": "^1.0.6",
+    "run-series": "^1.0.2",
+    "run-waterfall": "^1.0.2"
   },
   "devDependencies": {
     "gulp": "^3.8.0",
