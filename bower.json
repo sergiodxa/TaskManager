@@ -24,10 +24,10 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "app/vendor",
+    "public/vendor",
     "test",
     "tests",
-    "app/minified",
-    "app/dist"
+    "public/minified",
+    "public/dist"
   ]
 }
