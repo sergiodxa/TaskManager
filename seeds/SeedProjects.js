@@ -16,8 +16,7 @@ function generateProjects() {
           callback(null, clients);
         };
       });
-    },
-    function (clients, callback) {
+    }, function (clients, callback) {
       User.find({ position: 'Project Leader' }, function (err, users) {
         if (err) {
           callback(err);
