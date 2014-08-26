@@ -14,11 +14,13 @@ Get all clients in the database and emit the ''return clients'' event.
 Recive a client id, get that client data from databasse and emit the ''return client'' event.
 
 #### add client
-Recive a new client data and save it in the database, emit the ''client added'' o ''client added failed'' and emit ''return client''.
+Recive a new client data and save it in the database, emit the ''client added'' or ''client added failed'' event and emit ''return clients'' event.
 
 #### edit client
+Recive a client data edited and update the old data in the database, emit the ''client edited'' or ''client edited failed'' event and emit ''return clients'' event.
 
 #### delete client
+Recive a client id and delete it from the database, emit the ''client deleted'' or ''client deteled failed'' and emit ''return clients'' event.
 
 ### Project controller
 #### get projects
