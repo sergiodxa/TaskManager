@@ -1,0 +1,57 @@
+<section class="row">
+  <article class="column-12-hand">
+    <form role="form" ng-submit="sendForm()">
+      <h2 class="form-title">
+        New project
+      </h2>
+<!-- success alert -->
+      <div class="alert alert-success" ng-if="projectCreated">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="projectCreatedTxt"></span>
+      </div>
+<!-- error alert -->
+      <div class="alert alert-danger" ng-if="errorText">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="errorText"></span>
+      </div>
+<!-- project name -->
+      <label>
+        <span>Project name</span>
+        <input type="text" id="projectname" ng-model="project.projectName" placeholder="Project name" required>
+      </label>
+<!-- project owner -->
+      <label>
+        <span>Owner</span>
+        <select name="owner" id="owner" required ng-model="project.owner">
+          <option ng-repeat="client in clients" value="{{client._id}}">{{client.clientName}}</option>
+        </select>
+      </label>
+<!-- project project leader -->
+      <label>
+        <span>Project Leader</span>
+        <select name="projectleader" id="projectleader" required ng-model="project.projectLeader">
+          <option ng-repeat="user in users" value="{{user._id}}">{{user.firstName}} {{user.lastName}}</option>
+        </select>
+      </label>
+<!-- project description -->
+      <label>
+        <span>Description</span>
+        <textarea id="description" ng-model="project.description" placeholder="Description" required rows="4"></textarea>
+      </label>
+<!-- project release date -->
+      <label>
+        <span>Release Date</span>
+        <input type="text" id="release-date" ng-model="project.releaseDate" placeholder="Release date" required>
+      </div>
+<!-- project github repository -->
+      <label>
+        <span>Github Repository</span>
+        <input type="text" id="github-repo" ng-model="project.githubRepo" placeholder="Github Repository (optional)">
+      </label>
+
+      <button type="submit" class="btn btn-primary btn-block">
+        Create project
+      </button>
+    </form>
+  </article>
+</section>

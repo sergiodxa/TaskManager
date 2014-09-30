@@ -1,0 +1,39 @@
+<section class="row">
+  <legend class="section-title text-center column-12-hand">
+    Projects
+    <a ng-href="#/projects/add/" class="btn btn-primary pull-right">
+      <octicon type="plus"></octicon> Add project
+    </a>
+  </legend>
+  <article ng-repeat="project in projects" class="column-12-hand column-6-lap section-item">
+    <div class="box">
+      <h2 class="section-item-name" ng-bind="project.projectName"></h2>
+      <a ng-if="project.githubRepo !== null" ng-href="{{project.githubRepo}}" target="_blank" class="pull-right">
+        <octicon type="logo-github"></octicon>
+      </a>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="organization"></octicon>
+          <strong>Project owner: </strong>
+          <a ng-href="#/clients/single/{{project.owner._id}}" ng-bind="project.owner.clientName"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="person"></octicon>
+          <strong>Project Leader: </strong>
+          <a ng-href="#/users/single/{{project.projectLeader._id}}">{{project.projectLeader.firstName}} {{project.projectLeader.lastName}}</a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="rocket"></octicon>
+          <strong>Release date: </strong>
+          <span>{{project.releaseDate | date:'dd/MM/yyyy'}}</span>
+        </li>
+      </ul>
+      <a ng-href="#/projects/single/{{project._id}}" class="btn btn-info btn-block">
+        <octicon type="info"></octicon> View details
+      </a>
+      <a ng-href="#/tasks/by/project/{{project._id}}" class="btn btn-info btn-block">
+        <octicon type="dashboard"></octicon> View tasks
+      </a>
+    </div>
+  </article>
+</section>

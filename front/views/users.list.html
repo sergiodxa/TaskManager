@@ -1,0 +1,31 @@
+<section class="row">
+  <legend class="section-title text-center column-12-hand">
+    Users
+    <a ng-href="#/users/add/" class="btn btn-primary pull-right">
+      <octicon type="plus"></octicon> Add user
+    </a>
+  </legend>
+  <article ng-repeat="user in users" class="column-12-hand column-6-lap section-item">
+    <div class="box">
+      <h2 class="section-item-name">{{user.firstName}} {{user.lastName}}</h2>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="mail"></octicon>
+          <strong>Email: </strong>
+          <a ng-href="mailto:{{user.email}}" ng-bind="user.email"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="jersey"></octicon>
+          <strong>Position: </strong>
+          <span ng-bind="user.position"></span>
+        </li>
+      </ul>
+      <a ng-href="#/users/single/{{user._id}}" class="btn btn-info btn-block">
+        <octicon type="info"></octicon> View details
+      </a>
+      <a ng-href="#/tasks/by/user/{{user._id}}" class="btn btn-info btn-block">
+        <octicon type="dashboard"></octicon> View tasks
+      </a>
+    </div>
+  </article>
+</section>

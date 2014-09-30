@@ -1,0 +1,33 @@
+<section class="row">
+  <article class="column-12-hand section-item">
+    <div class="box">
+      <h2 class="section-item-name" ng-bind="client.clientName"></h2>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="mail"></octicon>
+          <strong>Email: </strong>
+          <a ng-href="mailto:{{client.email}}" ng-bind="client.email"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="location"></octicon>
+          <strong>Address: </strong>
+          <span ng-bind="client.address"></span>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="device-mobile"></octicon>
+          <strong>Telephone: </strong>
+          <span ng-bind="client.telephone"></span>
+        </li>
+      </ul>
+      <a ng-href="#/projects/by/client/{{client._id}}" class="btn btn-info btn-block">
+        <octicon type="dashboard"></octicon> View projects
+      </a>
+      <a ng-href="#/clients/edit/{{client._id}}" class="btn btn-primary btn-block">
+        <octicon type="pencil"></octicon> Edit client
+      </a>
+      <a ng-click="deleteClient()" class="btn btn-danger btn-block">
+        <octicon type="x"></octicon> Delete client
+      </a>
+    </div>
+  </article>
+</section>

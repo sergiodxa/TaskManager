@@ -1,0 +1,198 @@
+// coloca un box-sizing con el box-model indicado y los prefijos
+.box-sizing(@box-model) {
+  -webkit-box-sizing: @box-model; // Safari <= 5
+     -moz-box-sizing: @box-model; // Firefox <= 19
+          box-sizing: @box-model;
+}
+
+// coloca box-sizing con border-box con los prefijos
+.border-box() {
+  .box-sizing(border-box);
+}
+
+// coloca border-radius con los prefijos
+.border-radius(@br) {
+  -webkit-border-radius: @br;
+  -moz-border-radius: @br;
+  border-radius: @br;
+}
+
+// oculta el texto cuando la línea no entra en el contendor
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// define el ancho y alto de un rectángulo
+.size(@width; @height) {
+  height: @height;
+  width: @width;
+}
+
+// define el ancho y alto de un cuadrado
+.square(@size) {
+  .size(@size; @size);
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// centra un bloque
+.center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// flota a la izquierda
+.pull-left { float: left !important; }
+
+// flota a la derecha
+.pull-right { float: right !important; }
+
+// centra un texto
+.text-center { text-align: center; }
+
+// justificar un texto
+.text-justify { text-align: justify; }
+
+// alinear texto a la izquierda
+.text-left { text-align: left; }
+
+// alinear texto a la derecha
+.text-right { text-align: right; }
+
+// hace que la img sea responsive
+.img-responsive { max-width: 100%; }
+
+// redondea una imagen
+.img-circle {
+  .border-radius(50%);
+  overflow: hidden;
+}
+
+// vuelve visible un elemento
+.show { display: block !important; }
+
+// vuelve invisible un elemento
+.invisible { visibility: hidden !important; }
+
+// oculta completamente un elemento
+.hidden {
+  &:extend(.invisible);
+  display: none !important;
+}
+
+// define la opacidad de un elemento en todos los navegadores
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
+// define el color del texto de un placeholder
+.placeholder-color(@color) {
+  &:-moz-placeholder            { color: @color; } // Firefox 4-18
+  &::-moz-placeholder           { color: @color; } // Firefox 19+
+  &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+}
+
+// define la fuente del texto de un placeholder
+.placeholder-font(@font) {
+  &:-moz-placeholder            { font: @font; } // Firefox 4-18
+  &::-moz-placeholder           { font: @font; } // Firefox 19+
+  &:-ms-input-placeholder       { font: @font; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { font: @font; } // Safari and Chrome
+}
+
+// coloca una animación con todos los prefijos propietarios
+.animation(@animation) {
+  -webkit-animation: @animation;
+          animation: @animation;
+}
+
+// agrega una transición con todos los prefijos
+.transition(@transition) {
+  -webkit-transition: @transition;
+          transition: @transition;
+}
+
+.transform(@type) {
+  -webkit-transform: @type;
+      -ms-transform: @type; // IE9 only
+          transform: @type;
+}
+
+// le agrega un transform rotate con los prefijos
+.rotate(@degrees) {
+  .transform(rotate(@degrees));
+}
+
+// le agrega un transform scale con los prefijos
+.scale(@ratio; @ratio-y...) {
+  .transform(scale(@ratio, @ratio-y));
+}
+
+// le agrega un transform translate con los prefijos
+.translate(@x; @y) {
+  .transform(translate(@x, @y));
+}
+
+// le agrega un transform skew con los prefijos
+.skew(@x; @y) {
+  .transform(skew(@x, @y));
+}
+
+// le agrega un transform translate3d con los prefijos
+.translate3d(@x; @y; @z) {
+  .transform(translate3d(@x, @y, @z));
+}
+
+// le agrega un transform rotateX con los prefijos
+.rotateX(@degrees) {
+  .transform(rotateX(@degrees));
+}
+
+// le agrega un transform rotateY con los prefijos
+.rotateY(@degrees) {
+  .transform(rotateY(@degrees));
+}
+
+// le agrega un perspective con los prefijos
+.perspective(@perspective) {
+  -webkit-perspective: @perspective;
+     -moz-perspective: @perspective;
+          perspective: @perspective;
+}
+
+// le agrega un perspective-origin con los prefijos
+.perspective-origin(@perspective) {
+  -webkit-perspective-origin: @perspective;
+     -moz-perspective-origin: @perspective;
+          perspective-origin: @perspective;
+}
+
+// le agrega un transform transform-origin con los prefijos
+.transform-origin(@origin) {
+  -webkit-transform-origin: @origin;
+     -moz-transform-origin: @origin;
+      -ms-transform-origin: @origin; // IE9 only
+          transform-origin: @origin;
+}
+
+// le agrega sombra a una caja con los prefijos
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+          box-shadow: @shadow;
+}

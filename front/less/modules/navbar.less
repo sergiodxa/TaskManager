@@ -1,0 +1,38 @@
+.navbar {
+  background: #34495E;
+  line-height: 50px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  &-brand {
+    color: #ecf0f1;
+    display: inline-block;
+    font-weight: bold;
+    float: left;
+    line-height: 50px;
+    padding: 0 15px;
+    &:hover {
+      color: #ecf0f1;
+      text-decoration: none;
+    }
+  }
+  &-list {
+    float: left;
+    margin: 0;
+    padding-left: 0;
+    &-item {
+      display: inline-block;
+      &-link {
+        color: #ECF0F1;
+        display: block;
+        font-weight: bold;
+        padding: 0 10px;
+        line-height: 50px;
+        .transition(all .5s);
+        &:hover {
+          color: #1ABC9C;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<section class="row">
+  <article class="column-12-hand">
+    <form role="form" ng-submit="sendForm()">
+      <h2 class="form-title">
+        New client
+      </h2>
+<!-- success alert -->
+      <div class="alert alert-success" ng-if="clientCreated">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="clientCreatedTxt"></span>
+      </div>
+<!-- error alert -->
+      <div class="alert alert-danger" ng-if="errorText">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="errorText"></span>
+      </div>
+<!-- client name -->
+      <label>
+        <span>Client name</span>
+        <input type="text" id="clientname" ng-model="client.clientName" placeholder="Client name" required>
+      </label>
+<!-- client email -->
+      <label>
+        <span>Email</span>
+        <input type="text" id="email" ng-model="client.email" placeholder="Email" required>
+      </label>
+<!-- client adress -->
+      <label>
+        <span>Address</span>
+        <input type="text" id="address" ng-model="client.address" placeholder="Address" required>
+      </label>
+<!-- client telehpone -->
+      <label>
+        <span>Telephone</span>
+        <input type="text" id="telephone" ng-model="client.telephone" placeholder="Telephone" required>
+      </label>
+
+      <button type="submit" class="btn btn-primary btn-block">
+        Create client
+      </button>
+    </form>
+  </article>
+</section>

@@ -1,30 +1,60 @@
-var gulp        = require('gulp'),
-    concat      = require('gulp-concat'),
-    jsmin       = require('gulp-jsmin'),
-    rename      = require('gulp-rename'),
-    watch       = require('gulp-watch');
+var gulp  = require('gulp');
+var path  = require('path');
+var glob  = require('glob');
 
-gulp.task('minify', function () {
-  gulp.src(['public/controllers/**/*.js','public/services/*.js','public/directives/*.js','public/app.js'])
-      .pipe(jsmin())
-      .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest('public/minified'));
+// LESS Compile, Media Queries combine, delete unused CSS and CSS minification
+var less      = require('gulp-less');
+var gcmq      = require('gulp-group-css-media-queries');
+var uncss     = require('gulp-uncss');
+var minifyCSS = require('gulp-minify-css');
+gulp.task('css', function () {
+  gulp.src('./front/less/main.less')
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less') ],
+      filename: 'main.less',
+      ru: true
+    }))
+    .pipe(gcmq())
+    .pipe(uncss({
+      html: glob.sync('./front/**/*.html')
+    }))
+    .pipe(minifyCSS())
+    .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('merge', function () {
-  gulp.src(['./public/vendor/jquery/dist/jquery.min.js',
-           './public/vendor/bootstrap/dist/js/bootstrap.min.js',
-           './public/vendor/angular/angular.min.js',
-           './public/vendor/angular-route/angular-route.min.js',
-           './public/minified/app.min.js',
-           './public/minified/ClientService.min.js',
-           './public/minified/EncryptorService.js',
-           './public/minified/GitHubService.js',
-           './public/minified/ProjectService.min.js',
-           './public/minified/SocketService.min.js',
-           './public/minified/TaskService.min.js',
-           './public/minified/UserService.min.js',
-           './public/minified/**/*.min.js'])
-      .pipe(concat('main.js'))
-      .pipe(gulp.dest('public/dist'));
+// AngularJS Template Cache
+var templateCache = require('gulp-angular-templatecache');
+gulp.task('template-cache', function () {
+  gulp.src(['./front/views/*.html', './front/partials/*.html'])
+    .pipe(templateCache({ standalone: true, module: 'HTMLTemplates' }))
+    .pipe(gulp.dest('./front/modules/templates'));
 });
+
+// HTML Minify
+var minifyHTML    = require('gulp-minify-html');
+gulp.task('minify-html', function() {
+  gulp.src('./front/index.html')
+    .pipe(minifyHTML())
+    .pipe(gulp.dest('./public'))
+});
+
+// JS Concatenation and Minification
+var concat = require('gulp-concat');
+var jsmin  = require('gulp-jsmin');
+gulp.task('js', function() {
+  gulp.src('./front/**/**/*.js')
+    .pipe(concat('main.js'))
+    //.pipe(jsmin())
+    .pipe(gulp.dest('./public/js'));
+});
+
+// Watch
+var watch  = require('gulp-watch');
+gulp.task('watch', function() {
+  gulp.watch(['./front/less/**/*.less'], ['css']);
+  gulp.watch(['./front/**/*.html'], ['template-cache', 'css', 'minify-html']);
+  gulp.watch(['./front/**/**/*.js'], ['js']);
+});
+
+// Default
+gulp.task('default', ['css', 'template-cache', 'js', 'minify-html', 'watch']);

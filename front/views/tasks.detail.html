@@ -1,0 +1,44 @@
+<section class="row">
+  <article class="column-12-hand section-item">
+    <div class="box">
+      <span class="pull-right" ng-if="task.stateName != 'completed'
+      ">
+        <octicon type="issue-opened"></octicon>
+      </span>
+      <span class="pull-right" ng-if="task.stateName == 'completed'
+      ">
+        <octicon type="issue-closed"></octicon>
+      </span>
+      <h2 class="section-item-name" ng-bind="task.taskName"></h2>
+      <ul class="section-item-data">
+        <li class="section-item-data-item">
+          <octicon type="repo"></octicon>
+          <strong>Project: </strong>
+          <a ng-href="#/projects/single/{{task.project}}" ng-bind="task.projectName"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="person"></octicon>
+          <strong>Assigned to: </strong>
+          <a ng-href="#/users/single/{{task.userAssigned}}" ng-bind="task.fullName"></a>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="clock"></octicon>
+          <strong>Estimated time: </strong>
+          <span ng-bind="task.estimatedTime"></span>
+        </li>
+        <li class="section-item-data-item">
+          <octicon type="clock"></octicon>
+          <strong>Required time: </strong>
+          <span ng-bind="task.requiredTime"></span>
+        </li>
+      </ul>
+      <div class="section-item-description" ng-bind="task.description"></div>
+      <a ng-href="#/tasks/edit/{{task._id}}" class="btn btn-info btn-block">
+        <octicon type="pencil"></octicon> Edit task
+      </a>
+      <a ng-click="deleteTask()" class="btn btn-danger btn-block">
+        <octicon type="x"></octicon> Delete client
+      </a>
+    </div>
+  </article>
+</section>

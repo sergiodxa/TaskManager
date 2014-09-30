@@ -1,0 +1,64 @@
+<section class="row">
+  <article class="column-12-hand">
+    <form role="form" ng-submit="sendForm()">
+      <h2 class="form-title">
+        Create new user
+      </h2>
+<!-- success alert -->
+      <div class="alert alert-success" ng-if="userEdited">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="userEditedTxt"></span>
+      </div>
+<!-- error alert -->
+      <div class="alert alert-danger" ng-if="errorText">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="errorText"></span>
+      </div>
+<!-- user name -->
+      <label>
+        <span>User name</span>
+        <input type="text" id="username" ng-model="user.userName" placeholder="User name" required>
+      </label>
+<!-- user email -->
+      <label>
+        <span>Email</span>
+        <input type="text" id="email" ng-model="user.email" placeholder="Email" required>
+      </label>
+<!-- user first name -->
+      <label>
+        <span>First name</span>
+        <input type="text" id="first-name" ng-model="user.firstName" placeholder="First name" required>
+      </label>
+<!-- user last name -->
+      <label>
+        <span>Last name</span>
+        <input type="text" id="last-name" ng-model="user.lastName" placeholder="Last name" required>
+      </label>
+<!-- user last name -->
+      <label>
+        <span>Position</span>
+        <input type="text" id="position" ng-model="user.position" placeholder="Position" required>
+      </label>
+
+      <legend>Create password</legend>
+<!-- user new password -->
+      <label>
+        <span>Password</span>
+        <input type="password" id="new-pass" ng-model="user.newPass" placeholder="New password" ng-change="newPassCheck()">
+      </label>
+<!-- user new password repeated -->
+      <label>
+        <span>Repeat password</span>
+        <input type="password" id="repeat-pass" ng-model="user.repeatPass" placeholder="Repeat password" ng-change="newPassCheck()">
+      </label>
+<!-- alert new and repeated password don't match -->
+      <div ng-if="newPassIncorrect" class="alert alert-danger">
+          The passwords are incorrect!
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">
+        Create user
+      </button>
+    </form>
+  </article>
+</section>

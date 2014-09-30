@@ -29,7 +29,7 @@ var CtrlSession = require('./app/controllers/CtrlSession');
 
 // App Routes
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/public/app.html');
+  res.sendfile(__dirname + '/public/index.html');
 });
 
 // Session routes

@@ -1,0 +1,84 @@
+<section class="row">
+  <article class="column-12-hand">
+    <form role="form" ng-submit="sendForm()">
+      <h2 class="form-title">
+        Edit task <strong ng-bind="task.taskName"></strong>
+      </h2>
+<!-- success alert -->
+      <div class="alert alert-success" ng-if="taskEdited">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="taskEditedTxt"></span>
+      </div>
+<!-- error alert -->
+      <div class="alert alert-danger" ng-if="errorText">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-bind="errorText"></span>
+      </div>
+<!-- task name -->
+      <label>
+        <span>Name</span>
+        <input type="text" id="taskname" ng-model="task.taskName" placeholder="Taskname" required>
+      </label>
+<!-- task description -->
+      <label>
+        <span>Description</span>
+        <textarea id="description" ng-model="task.description" placeholder="Description" required rows="4"></textarea>
+      </label>
+<!-- task project -->
+      <label>
+        <span>Project</span>
+        <select name="project" id="project" required ng-model="task.project">
+          <option ng-repeat="project in projects" value="{{project._id}}">{{project.projectName}}</option>
+        </select>
+      </label>
+<!-- task user assigned -->
+      <label>
+        <span>User assigned</span>
+        <select name="user" id="user" required ng-model="task.userAssigned">
+          <option ng-repeat="user in users" value="{{user._id}}">{{user.firstName}} {{user.lastName}}</option>
+        </select>
+      </label>
+<!-- task priority -->
+      <label>
+        <span>Priority:</span>
+        <input type="number" id="priority" ng-model="task.priority" placeholder="Priority" required>
+      </label>
+<!-- task estimated time -->
+      <label>
+        <span>Estimated time</span>
+        <select name="estimated-time" id="estimated-time" ng-model="task.estimatedTime" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+        </select>
+      </label>
+<!-- task required time -->
+      <label>
+        <span>Required time</span>
+        <select name="required-time" id="required-time" ng-model="task.requiredTime" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+        </select>
+      </label>
+<!-- task status -->
+      <label>
+        <span>Status</span>
+        <select name="status" id="status" ng-model="task.stateName" required>
+          <option value="to do">To do</option>
+          <option value="in progress">In progress</option>
+          <option value="in testing">In testing</option>
+          <option value="completed">Completed</option>
+        </select>
+      </label>
+
+      <button type="submit" class="btn btn-primary btn-block">
+        Edit task
+      </button>
+    </form>
+  </article>
+</section>
